@@ -1,0 +1,29 @@
+import React, { createContext, useContext } from 'react';
+import HeaderContainer from "../container/HeaderContainer";
+import PageTitle from '../components/PageTitle';
+import CategoriesSection from '../components/CatagoriesShowSection';
+import Footer2 from '../components/Footer2';
+const Pagename = createContext();
+const Navbar = createContext();
+const Title = createContext();
+
+
+const Catagory = () => {
+    return (
+        <>
+            {/* <PageTitle page={props.page} navbar={props.navbar} title={props.title} /> */}
+            <HeaderContainer />
+            <Pagename.Provider value="Shop">
+                <Navbar.Provider value="Product Catagory">
+                    <Title.Provider value="Categories">
+                        <PageTitle />
+                    </Title.Provider>
+                </Navbar.Provider>
+            </Pagename.Provider>
+            <CategoriesSection />
+            <Footer2 />
+        </>
+    );
+}
+export default Catagory;
+export { Pagename, Navbar, Title };
