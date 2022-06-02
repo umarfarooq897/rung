@@ -64,7 +64,7 @@ const Header = (props) => {
                                                         <nav className="main-nav">
                                                                 <ul className="menu sf-arrows">
                                                                         <li className="active">
-                                                                                <NavLink to="/">HOME</NavLink>
+                                                                                <NavLink to="/">HOMEss</NavLink>
                                                                         </li>
                                                                         <li>
                                                                                 <NavLink to="/about">ABOUT</NavLink>
