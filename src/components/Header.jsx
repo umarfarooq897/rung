@@ -95,7 +95,7 @@ const Header = (props) => {
                                                                                 <NavLink to="/">HOME</NavLink>
                                                                         </li>
                                                                         <li>
-                                                                                <NavLink to="/about">ABOUT Us</NavLink>
+                                                                                <NavLink to="/about">ABOUT US</NavLink>
                                                                         </li>
                                                                         <li>
                                                                                 <NavLink to="/shop/categories">SHOP</NavLink>
@@ -149,7 +149,7 @@ const Header = (props) => {
 
                                                                                                                         <span className="cart-product-info">
                                                                                                                                 <span className="cart-product-qty">1</span>
-                                                                                                                                x $84.00
+                                                                                                                                {item.price}
                                                                                                                         </span>
                                                                                                                 </div>
                                                                                                                 {/* <!-- End .product-cart-details --> */}
