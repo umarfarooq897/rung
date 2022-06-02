@@ -8,6 +8,11 @@ const Fullwitdh = (props) => {
     const [relatedProduct, SetRelatedProduct] = useState([]);
     const [loading, setLoading] = useState(true);
     var [Value, setValue] = useState(1);
+    const [reload, setReload] = useState(1)
+    function reloadComp() {
+        setReload(reload + 1)
+        // console.log(reload)
+    }
     const inputDecrement = () => {
         if (Value > 1) {
             setValue(Value - 1);
@@ -40,7 +45,7 @@ const Fullwitdh = (props) => {
     }
     useEffect(() => {
         getProductApi();
-    }, []);
+    }, [reload]);
     const relatedProductApi = async () => {
         // https://cors-anywhere.herokuapp.com/
         const response = await fetch("https://beta.myrung.com/b/api/v2/products/related/6");
@@ -55,6 +60,13 @@ const Fullwitdh = (props) => {
 
     const notify = () => {
         toast("Item added")
+        let cartDrp = document.querySelector(".dropdown-menu")
+        cartDrp.style.visibility = "visible"
+        cartDrp.style.opacity = "1"
+        setTimeout(() => {
+            cartDrp.style.visibility = "hidden"
+            cartDrp.style.opacity = "0"
+        }, 3000);
     };
     const notifywhish = () => {
         toast("Please Login first")
@@ -117,6 +129,7 @@ const Fullwitdh = (props) => {
                                         var main_price = item.main_price
                                         var image = item.thumbnail_image
                                         var product_id = item.id
+                                        var product_price = item.main_price
                                         return (
                                             <>
                                                 <div className="col-md-6" key={index}>
@@ -223,7 +236,7 @@ const Fullwitdh = (props) => {
                                                             <a onClick={() => {
                                                                 props.addToCartHandler({
                                                                      name: name, main_price: main_price,
-                                                                    product_image: image, product_id: product_id,quantity:Value
+                                                                    product_image: image, product_id: product_id,quantity:Value,price:product_price
                                                                 })
                                                             }}
                                                                 className="btn-product btn-cart add_to_cat "><span >add to cart</span></a>
@@ -466,7 +479,7 @@ const Fullwitdh = (props) => {
                                             return (
                                                 <div className="product product-sm">
                                                     <figure className="product-media">
-                                                        <NavLink to={`/shop/product/catogeroy/fullwidth/${item.id}`}>
+                                                        <NavLink onClick={reloadComp} to={`/shop/product/catogeroy/fullwidth/${item.id}`}>
                                                             <img src={'https://beta.myrung.com/b/public/' + item.thumbnail_image} alt="Product image" className="product-image single-product-image" />
                                                         </NavLink>
                                                     </figure>

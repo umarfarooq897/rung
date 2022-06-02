@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // import product4_2 from "../assets/images/demos/demo-5/products/product-4-2.jpg";
 import { NavLink } from "react-router-dom";
 const Featured = (props) => {
+    
     const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState([]);
     // const [userdata, setUserdata] = useState()
@@ -36,6 +37,13 @@ const Featured = (props) => {
     const notify = () => {
 
         toast("Item added")
+        let cartDrp = document.querySelector(".dropdown-menu")
+        cartDrp.style.visibility = "visible"
+        cartDrp.style.opacity = "1"
+        setTimeout(() => {
+            cartDrp.style.visibility = "hidden"
+            cartDrp.style.opacity = "0"
+        }, 3000);
     };
     const notifywhish = () => {
         toast("Please Login first")
@@ -106,7 +114,7 @@ const Featured = (props) => {
             },
         },
     };
-
+   
     return (
         <>
             <div className="container">
@@ -137,10 +145,13 @@ const Featured = (props) => {
                             nav={false} margin={20} autoPlay={true} loop={false} {...options1} >
                             {product ? product.map((item, index) => {
                                 var cat_name = item.category_name
+                                {/* console.log(item) */}
                                 var name = item.name
-                                var main_price = item.main_price
+                                var calculable_price = item.calculable_price
+                                var currency_symbol = item.currency_symbol
                                 var image = item.thumbnail_image
                                 var product_id = item.id
+                                 var quantity = item.quantity
                                 return (
 
                                     <div className="product product-2" key={index}>
@@ -157,7 +168,7 @@ const Featured = (props) => {
                                                 <a onClick={() => {
                                                     props.addToCartHandler({
                                                         cat_name: cat_name, name: name,
-                                                        main_price: main_price, product_image: image, product_id: product_id
+                                                        Price:calculable_price, symbol:currency_symbol, product_image: image, product_id: product_id,quantity:1 
                                                     })
                                                 }} className="btn-product btn-cart"><span>add to cart</span></a>
                                             </div>
@@ -167,14 +178,14 @@ const Featured = (props) => {
 
                                         <div className="product-body">
                                             <div className="product-cat">
-                                                <a href="#">Clothing</a>
+                                                <a >{cat_name}</a>
                                             </div>
                                             {/* <!-- End .product-cat --> */}
                                             <h3 className="product-title">
-                                                <a href="product.html">Vest dress</a></h3>
+                                                <a >{name}</a></h3>
                                             {/* <!-- End .product-title --> */}
                                             <div className="product-price">
-                                                $9.99
+                                                {calculable_price}
                                             </div>
                                             {/* <!-- End .product-price --> */}
 

@@ -25,6 +25,13 @@ const Related_product = (props) => {
     }, []);
     const notify = () => {  
         toast("Item added")
+        let cartDrp = document.querySelector(".dropdown-menu")
+        cartDrp.style.visibility = "visible"
+        cartDrp.style.opacity = "1"
+        setTimeout(() => {
+            cartDrp.style.visibility = "hidden"
+            cartDrp.style.opacity = "0"
+        }, 3000);
     };
     const notifywhish = () => {
         toast("Please Login first")
@@ -76,7 +83,8 @@ const Related_product = (props) => {
                          document.getElementById('cat_title').innerText = product.category_name;
                          var cat_name=product.category_name
                          var name=product.name
-                         var main_price=product.main_price
+                         var calculable_price = product.calculable_price
+                         var currency_symbol = product.currency_symbol
                          var image = product.thumbnail_image
                          var product_id = product.id
                         return (
@@ -95,7 +103,8 @@ const Related_product = (props) => {
                                             </div>
                                             <ToastContainer/>
                                             <div onClick={notify}  className="product-action">
-                                                <a  onClick={()=>{props.addToCartHandler({cat_name:cat_name,name:name,main_price:main_price,
+                                                <a  onClick={()=>{props.addToCartHandler({cat_name:cat_name,name:name,quantity:1,
+                                                 Price:calculable_price, symbol:currency_symbol,
                                                  product_image:image,product_id:product_id})}}
                                                  className="btn-product btn-cart"><span>add to cart</span></a>
                                             </div>
@@ -106,7 +115,7 @@ const Related_product = (props) => {
                                             </div>
                                             <h3 className="product-title"><a href="product.php">{name}</a></h3>
                                             <div className="product-price">
-                                                {main_price}
+                                                {currency_symbol}{calculable_price}
                                             </div>
                                             {/* <div className="ratings-container">
                                                 <div className="ratings">

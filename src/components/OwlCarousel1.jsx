@@ -30,7 +30,7 @@ const OwlCarousel1 = () => {
                         <>
                     
                             <div className="intro-slide" style={{ backgroundImage : `url(${'https://beta.myrung.com/b/public/' + item.photo})` }} >
-                                <div className="container intro-content text-center">
+                                {/* <div className="container intro-content text-center">
                                     <h3 className="intro-subtitle text-white">Limited time only</h3>
 
                                     <h1 className="intro-title text-white">Treat your self</h1>
@@ -38,7 +38,7 @@ const OwlCarousel1 = () => {
                                     <div className="intro-text text-white">Up to 50% off</div>
 
                                     <a href="category.html" className="btn btn-primary">Shop NOW</a>
-                                </div>
+                                </div> */}
                             </div>
 
                         </>

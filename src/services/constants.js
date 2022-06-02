@@ -1,3 +1,4 @@
 export const ADD_TO_CART = "ADD_TO_CART"
-export const ADD_TO_CART1 = "ADD_TO_CART1"
+export const DECREMENT = "DECREMENT"
+export const INCREMENT = "INCREMENT"
 export const REMOVE_TO_CART = "REMOVE_TO_CART"

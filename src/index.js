@@ -6,8 +6,9 @@ import reportWebVitals from './reportWebVitals';
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { legacy_createStore as createStore} from 'redux';
 import {Provider} from 'react-redux';
-import rootReducer  from './services/reducers/index';
-const store = createStore(rootReducer)
+import store from './store'
+// import rootReducer  from './services/reducers/index';
+// const store = createStore(rootReducer)
 // console.warn(store)
 
 

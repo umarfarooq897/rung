@@ -734,8 +734,8 @@ blockquote {
   .cart-dropdown:hover .dropdown-menu, .cart-dropdown.show .dropdown-menu,
   .compare-dropdown:hover .dropdown-menu,
   .compare-dropdown.show .dropdown-menu {
-    visibility: visible;
-    opacity: 1; }
+    visibility: visible !important;
+    opacity: 1 !important;}
 
 .compare-dropdown {
   padding-left: 2.5rem; }

@@ -1,12 +1,18 @@
-import React, { useEffect, useState, USEre } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink,useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Cartdata = (props) => {
-	var [Value, setValue] = useState();
+	var [coupon_code, setCoupon_code] = useState();
+	const navigate = useNavigate();
 	//var quantity = (this).data('quantity-id');
 	//var attribute=('#quantity').attr('data-id');
-
+	var subtotal
+	var Discount
+	var Result
+	var calculable_price
+	var user_id
+	var a
 	var data_quantity
 	useEffect(() => {
 		const Getquantity = (e) => {
@@ -14,15 +20,53 @@ const Cartdata = (props) => {
 		}
 		Getquantity()
 	})
+	const notifynotLogin = () => {
+		toast("Please Login first")
+
+	}
+	const getData = async () => {
+		const data = await JSON.parse((localStorage.getItem('user-info')))
+		user_id = data.user.id
+	}
+	useEffect(() => {
+		getData()
+	}, [getData])
+	const CheckoutHandler = () => {
+		if (user_id) {
+			navigate('/checkout')
+		}
+		else {
+			notifynotLogin();
+		}
+	}
+	const CoupenHandler = async (e) => {
+		e.preventDefault();
+		let data = { coupon_code }
+		// console.log(event.target.value);
+		// https://cors-anywhere.herokuapp.com/
+		Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/check-coupon', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			body: JSON.stringify(data)
+		});
+		Result = await Result.json();
+		if (Result.result === true) {
+			Discount = Result.discount
+			console.log(Result.discount)
+		}
+	}
 	// console.log(data_quantity)
 	// console.log(Value)
-	const inputDecrement = (e) => {
-		var product_id = e;
-		var qty = document.getElementById('quantity-' + product_id).value;
-		if (qty == "") {
-			qty = 1;
-		}
-		document.getElementById('quantity-' + product_id).value = Number(qty) - 1;
+	// const inputDecrement = (e) => {
+	// 	var product_id = e;
+	// 	var qty = document.getElementById('quantity-' + product_id).value;
+	// 	if (qty == "") {
+	// 		qty = 1;
+	// 	}
+	// 	document.getElementById('quantity-' + product_id).value = Number(qty) - 1;
 		// if (Value > 1) {
 		//     setValue(Value - 1);
 		//   }
@@ -30,19 +74,16 @@ const Cartdata = (props) => {
 		//   else {
 		//     setValue(1)
 		//   }
-	}
-	const inputIncrement = async (e) => {
-		// Product[0].current_stock
-		var product_id = e;
-		// console.log(product_id);
-		var qty = document.getElementById('quantity-' + product_id).value;
-		if (qty == "") {
-			qty = 1;
-		}
-		document.getElementById('quantity-' + product_id).value = Number(qty) + 1
-		//    if(Value<10)
-		//     setValue(Value + 1)
-	}
+	// }
+	// const inputIncrement = async (e) => {
+	// 	var product_id = e;
+	// 	var qty = document.getElementById('quantity-' + product_id).value;
+	// 	if (qty == "") {
+	// 		qty = 1;
+	// 	}
+	// 	document.getElementById('quantity-' + product_id).value = Number(qty) + 1
+
+	// }
 	// console.warn("cart", props)
 	const notify = () => toast("Succesfully Deleted from cart");
 
@@ -79,12 +120,15 @@ const Cartdata = (props) => {
 										{data.map((item, index) => {
 
 											{/* console.warn(item.product_image) */ }
-											data_quantity = item.quantity 
-											{/* console.log(item) */ }
+											data_quantity = item.quantity
+											var product_id = item.product_id
+											calculable_price = item.Price
+											console.log(subtotal)
 
 											return (
 
 												<tr>
+													{/* {subtotal= item.totalPrice} */}
 													<td className="product-col">
 														<div className="product">
 															<figure className="product-media">
@@ -101,23 +145,33 @@ const Cartdata = (props) => {
 														</div>
 														{/* <!-- End .product --> */}
 													</td>
-													<td className="price-col">{item.main_price}</td>
+													<td className="price-col">{item.symbol}{item.Price}</td>
 													<td className="quantity-col">
 														<div className="cart-product-quantity" style={{ display: 'flex' }}>
-															<div className="input-group-prepend"><a data-id={item.product_id} onClick={() => inputDecrement(item.product_id)} className="btn btn-qantity-mines btn-decrement btn-spinner" >
+															{/* <div className="input-group-prepend"><a data-id={item.product_id} onClick={() => inputDecrement(item.product_id)} className="btn btn-qantity-mines btn-decrement btn-spinner" >
+																<i className="icon-minus"></i></a>
+															</div> */}
+															<div className="input-group-prepend"><a data-id={item.product_id}
+																onClick={() => { props.DecreHandler({ Price: calculable_price, quantity: item.quantity, product_id: product_id }) }}
+																className="btn btn-qantity-mines btn-decrement btn-spinner" >
 																<i className="icon-minus"></i></a>
 															</div>
 															<input type="number" id={'quantity-' + item.product_id} className="form-control" onChange={(e) => e.target.value} value={item.quantity} min="1" max="10" step="1" data-decimals="0" required />
 															<div className="input-group-append">
-																<a onClick={() => inputIncrement(item.product_id)} data-id={item.product_id} className="btn btn-qantity-plus btn-increment btn-spinner">
+																<a onClick={() => { props.IncreHandler({ Price: calculable_price, quantity: item.quantity, product_id: product_id }) }}
+																	data-id={item.product_id} className="btn btn-qantity-plus btn-increment btn-spinner">
 																	<i className="icon-plus"></i></a>
 															</div>
+															{/* <div className="input-group-append">
+																<a onClick={() => inputIncrement(item.product_id)} data-id={item.product_id} className="btn btn-qantity-plus btn-increment btn-spinner">
+																	<i className="icon-plus"></i></a>
+															</div> */}
 														</div>
 
 													</td>
 
 
-													<td className="total-col">{item.main_price}</td>
+													<td className="total-col">{item.symbol}{item.totalPrice ? item.totalPrice : calculable_price}</td>
 													<td className="remove-col"><button onClick={() => props.removeToCartHandler({ item })} className="btn-remove"><i onClick={notify} className="icon-close"></i></button></td>
 													<ToastContainer />
 												</tr>
@@ -125,15 +179,13 @@ const Cartdata = (props) => {
 										})}
 									</tbody>
 								</table>
-								
-
 								<div className="cart-bottom">
 									<div className="cart-discount">
 										<form action="#">
 											<div className="input-group">
-												<input type="text" className="form-control" required placeholder="coupon code" />
+												<input type="text" onChange={(e) => setCoupon_code(e.target.value)} name="coupon_code" className="form-control" required placeholder="coupon code" />
 												<div className="input-group-append">
-													<button className="btn btn-outline-primary-2" type="submit"><i className="icon-long-arrow-right"></i></button>
+													<button onClick={CoupenHandler} className="btn btn-outline-primary-2" type="submit"><i className="icon-long-arrow-right"></i></button>
 												</div>
 												{/* <!-- .End .input-group-append --> */}
 											</div>
@@ -141,14 +193,12 @@ const Cartdata = (props) => {
 										</form>
 									</div>
 									{/* <!-- End .cart-discount --> */}
-										{console.log(data_quantity)}
-									<a onClick={() => {
-										props.addToCartHandler({
-											quantity:data_quantity})
-									}}
-										className="btn btn-outline-dark-2"><span>UPDATE CART</span><i className="icon-refresh"></i></a>
+									{/* {console.log(data_quantity)} */}
+									{/* <a className="btn btn-outline-dark-2"><span>UPDATE CART</span><i className="icon-refresh"></i></a> */}
 								</div>
+
 								{/* <!-- End .cart-bottom --> */}
+
 
 
 							</div>
@@ -157,12 +207,15 @@ const Cartdata = (props) => {
 								<div className="summary summary-cart">
 									<h3 className="summary-title">Cart Total</h3>
 									{/* <!-- End .summary-title --> */}
-
 									<table className="table table-summary">
 										<tbody>
 											<tr className="summary-subtotal">
 												<td>Subtotal:</td>
-												<td>$160.00</td>
+												<td>
+
+													{/* ( data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:calculable_price), 0) * 10) / 100 */}
+													{data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0)}
+												</td>
 											</tr>
 											{/* <!-- End .summary-subtotal --> */}
 											<tr className="summary-shipping">
@@ -178,50 +231,50 @@ const Cartdata = (props) => {
 													</div>
 													{/* <!-- End .custom-control --> */}
 												</td>
-												<td>$0.00</td>
+												<td></td>
 											</tr>
 											{/* <!-- End .summary-shipping-row --> */}
 
-											<tr className="summary-shipping-row">
+											{/* <tr className="summary-shipping-row">
 												<td>
 													<div className="custom-control custom-radio">
 														<input type="radio" id="standart-shipping" name="shipping" className="custom-control-input" />
 														<label className="custom-control-label" for="standart-shipping">Standart:</label>
-													</div>
+													</div> */}
 													{/* <!-- End .custom-control --> */}
-												</td>
-												<td>$10.00</td>
-											</tr>
+												{/* </td>
+												<td></td>
+											</tr> */}
 											{/* <!-- End .summary-shipping-row --> */}
 
-											<tr className="summary-shipping-row">
+											{/* <tr className="summary-shipping-row">
 												<td>
 													<div className="custom-control custom-radio">
 														<input type="radio" id="express-shipping" name="shipping" className="custom-control-input" />
 														<label className="custom-control-label" for="express-shipping">Express:</label>
-													</div>
+													</div> */}
 													{/* <!-- End .custom-control --> */}
-												</td>
-												<td>$20.00</td>
-											</tr>
+												{/* </td>
+												<td></td>
+											</tr> */}
 											{/* <!-- End .summary-shipping-row --> */}
 
-											<tr className="summary-shipping-estimate">
+											{/* <tr className="summary-shipping-estimate">
 												<td>Estimate for Your Country<br /> <a href="dashboard.php">Change address</a></td>
 												<td>&nbsp;</td>
-											</tr>
+											</tr> */}
 											{/* <!-- End .summary-shipping-estimate --> */}
 
 											<tr className="summary-total">
 												<td>Total:</td>
-												<td>$160.00</td>
+												<td>{data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0)}</td>
 											</tr>
 											{/* <!-- End .summary-total --> */}
 										</tbody>
 									</table>
 									{/* <!-- End .table table-summary --> */}
 
-									<a href="checkout.php" className="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+									<a onClick={CheckoutHandler}  className="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
 								</div>
 								{/* <!-- End .summary --> */}
 

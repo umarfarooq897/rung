@@ -111,7 +111,34 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-
+.header-5 .sticky-header.fixed .menu > li:not(:hover):not(.active):not(.show) > a{
+    color: #282828 !important;
+}
+.header-5 .sticky-header.fixed .header-search .header-search-wrapper .form-control{
+    color: #282828;
+    border-bottom: 1px solid #282828;
+}
+.header-5 .sticky-header.fixed .header-search .header-search-wrapper .form-control::placeholder{
+    color: #282828;
+}
+.header-5 .sticky-header.fixed .header-search .header-search-wrapper .form-control:-ms-input-placeholder {
+    color: #282828;
+}
+.header-5 .sticky-header.fixed .header-search .header-search-wrapper .form-control::-moz-placeholder {
+    color: #282828;
+}
+.header-5 .sticky-header.fixed .header-search .header-search-wrapper .form-control:-moz-placeholder {
+    color: #282828;
+}
+.header-5 .sticky-header.fixed .icon-search{
+    color: #282828;
+}
+.header-5 .sticky-header.fixed .wishlist-link:not(:hover):not(:focus){
+    color: #282828 !important;
+}
+.header-5 .sticky-header.fixed .cart-dropdown:not(:hover):not(.show) .dropdown-toggle {
+    color: #282828;
+}
 @media (max-width:768px) {
     .product.product-sm .product-title {
         font-size: 1rem !important;

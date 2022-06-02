@@ -1,15 +1,31 @@
-import React, { useState,useEffect } from "react";
-import { Outlet, Link, NavLink ,useNavigate} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Outlet, Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import logo from '../assets/images/finellogo-min.png';
 import '../assets/css/style.css'
 import '../assets/css/skins/skin-demo-5.css';
 import '../assets/css/demos/demo-5.css';
-import '../assets/css/mystyle.css';
 import '../assets/css/bootstrap.min.css';
-import { ToastContainer , toast } from 'react-toastify';
+import '../assets/css/mystyle.css';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Header = (props) => {
+
+        const [scroll, setScroll] = useState("")
+
+        useEffect(() => {
+                document.addEventListener("scroll", () => {
+                        // const scrollCheck = window.scrollY < 100
+                        if (window.scrollY > 300) {
+                                setScroll("fixed")
+                        }
+                        else {
+                                setScroll("")
+                        }
+                })
+        }, [scroll])
+
+
         const [hiddenmenu, setHiddenmenu] = useState(false)
         const navigate = useNavigate();
         var user_id;
@@ -17,10 +33,10 @@ const Header = (props) => {
         var data = props.data.cardData
         const notify = () => toast("Succesfully Deleted from cart");
         // console.log(data)
-        
-        const notifynotLogin=()=>{
+
+        const notifynotLogin = () => {
                 toast("Please Login first")
-            
+
         }
         // const [menu,setMenu]=useState(true)
         // const [toglestate,setToglestate]=useState({})
@@ -35,22 +51,34 @@ const Header = (props) => {
         const getData = async () => {
                 const data = await JSON.parse((localStorage.getItem('user-info')))
                 user_id = data.user.id
-            }
-            useEffect(() => {
+        }
+        useEffect(() => {
                 getData()
-            }, [getData])
-            const WhishlistHandler=()=>{
-                if(user_id){
-                    navigate('/whishlist')
+        }, [getData])
+        const WhishlistHandler = () => {
+                if (user_id) {
+                        navigate('/whishlist')
                 }
-                else{
-                    notifynotLogin();
+                else {
+                        notifynotLogin();
                 }
-            }
+        }
+
+
+
+        const location = useLocation();
+
+        //destructuring pathname from location
+        const { pathname } = location;
+
+        //Javascript split method to get the name of the path in array
+        const splitLocation = pathname.split("/");
+
+
         return (
                 <>
                         <header className="header header-5">
-                                <div className="header-middle sticky-header">
+                                <div className={"header-middle sticky-header " + scroll}>
                                         <div className="container-fluid">
                                                 <div className="header-left w-100">
                                                         <button onClick={() => setHiddenmenu(!hiddenmenu)} className="mobile-menu-toggler">
@@ -97,7 +125,7 @@ const Header = (props) => {
                                                                 </div>
                                                                 {/* <!-- End .header-search --> */}
 
-                                                                <a style={{cursor:"pointer"}} onClick={WhishlistHandler} className="wishlist-link">
+                                                                <a style={{ cursor: "pointer" }} onClick={WhishlistHandler} className="wishlist-link">
                                                                         <i className="icon-heart-o"></i>
                                                                 </a>
 
@@ -131,8 +159,8 @@ const Header = (props) => {
                                                                                                                                 <img src={'https://beta.myrung.com/b/public/' + item.product_image} alt="product" />
                                                                                                                         </a>
                                                                                                                 </figure>
-                                                                                                                <a  onClick={()=>props.removeToCartHandler({item})} className="btn-remove" title="Remove Product"><i onClick={notify} className="icon-close"></i></a>
-                                                                                                                <ToastContainer/>
+                                                                                                                <a onClick={() => props.removeToCartHandler({ item })} className="btn-remove" title="Remove Product"><i onClick={notify} className="icon-close"></i></a>
+                                                                                                                <ToastContainer />
                                                                                                         </div>
                                                                                                 );
                                                                                         })}
@@ -205,16 +233,16 @@ const Header = (props) => {
 
                                         <nav className="mobile-nav">
                                                 <ul className="mobile-menu">
-                                                        <li className="active">
+                                                        <li className={splitLocation[1] === "" ? "active" : ""}>
                                                                 <NavLink to='/'>Home</NavLink>
                                                         </li>
-                                                        <li>
+                                                        <li className={splitLocation[1] === "about" ? "active" : ""}>
                                                                 <NavLink to='/about'>About</NavLink>
                                                         </li>
-                                                        <li>
+                                                        <li className={splitLocation[1] === "shop" ? "active" : ""}>
                                                                 <NavLink to='/shop/categories'>Shop</NavLink>
                                                         </li>
-                                                        <li>
+                                                        <li className={splitLocation[1] === "faq" ? "active" : ""}>
                                                                 <NavLink to='/faq' className="sf-with-ul">FAQ</NavLink>
                                                         </li>
                                                 </ul>

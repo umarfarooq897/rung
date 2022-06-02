@@ -23,6 +23,13 @@ const NewArrivel = (props) => {
     }, []);
     const notify = () => {
         toast("Item added")
+        let cartDrp = document.querySelector(".dropdown-menu")
+        cartDrp.style.visibility = "visible"
+        cartDrp.style.opacity = "1"
+        setTimeout(() => {
+            cartDrp.style.visibility = "hidden"
+            cartDrp.style.opacity = "0"
+        }, 3000);
     };
     const notify_add_whishlist = () => {
         toast("Item added into Whishlist")
@@ -105,7 +112,9 @@ const NewArrivel = (props) => {
                                     var background1 = "https://beta.myrung.com/b/public/" + item.thumbnail_image;
                                     var cat_name = item.category_name
                                     var name = item.name
-                                    var main_price = item.main_price
+                                    var calculable_price = item.calculable_price
+                                    var currency_symbol = item.currency_symbol
+                                    {/* var main_price = item.main_price */}
                                     var image = item.thumbnail_image
                                     var product_id = item.id
                                     {/* console.log(background1); */ }
@@ -128,8 +137,8 @@ const NewArrivel = (props) => {
                                                         {/* <!-- End .product-action --> */}
                                                                 <ToastContainer/>
                                                         <div onClick={notify} className="product-action product-action-transparent">
-                                                            <a onClick={() => { props.addToCartHandler({ cat_name: cat_name, name: name, main_price: main_price,
-                                                            product_image:image,product_id:product_id }) }}
+                                                            <a onClick={() => { props.addToCartHandler({ cat_name: cat_name, name: name,quantity:1,
+                                                             Price:calculable_price, symbol:currency_symbol,product_image:image,product_id:product_id }) }}
                                                                 className="btn-product btn-cart"><span>add to cart</span></a>
                                                         </div>
                                                         {/* <!-- End .product-action --> */}
@@ -144,7 +153,7 @@ const NewArrivel = (props) => {
                                                         <h3 className="product-title"><NavLink to=''>{item.name}</NavLink></h3>
                                                         {/* <!-- End .product-title --> */}
                                                         <div className="product-price">
-                                                            {item.main_price}
+                                                        {item.currency_symbol}{item.calculable_price}
                                                         </div>
                                                         {/* <!-- End .product-price --> */}
                                                     </div>
