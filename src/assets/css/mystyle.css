@@ -152,6 +152,9 @@ input[type=number] {
     width: 5px;
     background-color: #fdcc04;
 }
+.btn-remove{
+    cursor: pointer;
+}
 @media (max-width:768px) {
     .product.product-sm .product-title {
         font-size: 1rem !important;
