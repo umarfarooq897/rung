@@ -11,7 +11,7 @@ const Checkout_content=(props)=>{
     const [email, setEmail] = useState('');
     const [notes, setNotes] = useState('');
     var products=[]
-  
+	var total
 	var data = props.data.cardData
 	console.log(data)
     const CheckoutHandler= async(e)=>{
@@ -151,6 +151,8 @@ const Checkout_content=(props)=>{
 
 		                					<tbody>
 											{data.map((item,index) =>{
+												total=data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0)
+
 												return(
 													<>
 		                						<tr>
@@ -161,7 +163,7 @@ const Checkout_content=(props)=>{
 										})}
 		                						<tr className="summary-subtotal">
 		                							<td>Subtotal:</td>
-		                							<td>{data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0)}</td>
+		                							<td>{total}</td>
 		                						</tr>
                                               
 		                						<tr>
@@ -170,7 +172,7 @@ const Checkout_content=(props)=>{
 		                						</tr>
 		                						<tr className="summary-total">
 		                							<td>Total:</td>
-		                							<td>{data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0)}</td>
+		                							<td>{total}</td>
 		                						</tr>
 										
                                                 {/* <!-- End .summary-total --> */}

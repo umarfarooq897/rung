@@ -4,6 +4,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Fullwitdh = (props) => {
+    console.log(props)
     const [Product, SetProduct] = useState([]);
     const [relatedProduct, SetRelatedProduct] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -13,20 +14,20 @@ const Fullwitdh = (props) => {
         setReload(reload + 1)
         // console.log(reload)
     }
-    const inputDecrement = () => {
-        if (Value > 1) {
-            setValue(Value - 1);
-          }
+    // const inputDecrement = () => {
+    //     if (Value > 1) {
+    //         setValue(Value - 1);
+    //       }
       
-          else {
-            setValue(1)
-          }
-    }
-    const inputIncrement = () => {
+    //       else {
+    //         setValue(1)
+    //       }
+    // }
+    // const inputIncrement = () => {
         // Product[0].current_stock
-       if(Value<10)
-        setValue(Value + 1)
-    }
+    //    if(Value<10)
+    //     setValue(Value + 1)
+    // }
     // const [userdata, setUserdata] = useState()
     // const [user_id, setUser_id] = useState()
     var user_id;
@@ -123,10 +124,12 @@ const Fullwitdh = (props) => {
                             <div className="product-details-top">
                                 <div className="row">
                                     {Product.map((item, index) => {
-                                        {/* console.warn(item)  */}
+                                        console.log(item) 
                                         {/* var cat_name = item.category_name */}
                                         var name = item.name
-                                        var main_price = item.main_price
+                                        var calculable_price = item.calculable_price
+                                        var currency_symbol = item.currency_symbol
+                                        var quantity = item.quantity
                                         var image = item.thumbnail_image
                                         var product_id = item.id
                                         var product_price = item.main_price
@@ -217,12 +220,12 @@ const Fullwitdh = (props) => {
                                                         <div className="details-filter-row details-row-size">
                                                             <label for="qty">Qty:</label>
                                                             <div className="product-details-quantity" >
-                                                                <div className="input-group-prepend"><button  onClick={inputDecrement} className="btn btn-qantity-mines btn-decrement btn-spinner" type="button">
+                                                                <div className="input-group-prepend"><button  onClick={() => { props.DecreHandler({ Price: calculable_price, quantity: item.quantity, product_id: product_id }) }} className="btn btn-qantity-mines btn-decrement btn-spinner" type="button">
                                                                     <i className="icon-minus"></i></button>
                                                                 </div>
-                                                                <input type="number" disabled id="quantity" value={Value} className="form-control" min="1" max="10" step="1" data-decimals="0" required />
+                                                                <input type="number" disabled id="quantity" onChange={(e) => e.target.value} value={item.quantity} className="form-control" min="1" max="10" step="1" data-decimals="0" required />
                                                                 <div className="input-group-append">
-                                                                    <button onClick={inputIncrement}  className="btn btn-qantity-plus btn-increment btn-spinner" type="button">
+                                                                    <button onClick={() => { props.IncreHandler({ Price: calculable_price, quantity:item.quantity, product_id: product_id }) }} className="btn btn-qantity-plus btn-increment btn-spinner" type="button">
                                                                         <i className="icon-plus"></i></button>
                                                                 </div>
                                                             </div>
@@ -235,8 +238,8 @@ const Fullwitdh = (props) => {
 
                                                             <a onClick={() => {
                                                                 props.addToCartHandler({
-                                                                     name: name, main_price: main_price,
-                                                                    product_image: image, product_id: product_id,quantity:Value,price:product_price
+                                                                     name: name, Price:calculable_price, symbol:currency_symbol,quantity:item.quantity,
+                                                                    product_image: image, product_id: product_id,
                                                                 })
                                                             }}
                                                                 className="btn-product btn-cart add_to_cat "><span >add to cart</span></a>
@@ -476,6 +479,7 @@ const Fullwitdh = (props) => {
 
                                         {relatedProduct.map((item, index) => {
                                             {/* console.warn(item.thumbnail_image) */ }
+                                          
                                             return (
                                                 <div className="product product-sm">
                                                     <figure className="product-media">

@@ -151,7 +151,7 @@ const Featured = (props) => {
                                 var currency_symbol = item.currency_symbol
                                 var image = item.thumbnail_image
                                 var product_id = item.id
-                                 var quantity = item.quantity
+                                var quantity = item.quantity
                                 return (
 
                                     <div className="product product-2" key={index}>
