@@ -12,7 +12,7 @@ const Cartdata = (props) => {
 	var Result
 	var calculable_price
 	var user_id
-	var a
+	var total
 	var data_quantity
 	useEffect(() => {
 		const Getquantity = (e) => {
@@ -20,25 +20,25 @@ const Cartdata = (props) => {
 		}
 		Getquantity()
 	})
-	const notifynotLogin = () => {
-		toast("Please Login first")
+	// const notifynotLogin = () => {
+	// 	toast("Please Login first")
 
-	}
-	const getData = async () => {
-		const data = await JSON.parse((localStorage.getItem('user-info')))
-		user_id = data.user.id
-	}
-	useEffect(() => {
-		getData()
-	}, [getData])
-	const CheckoutHandler = () => {
-		if (user_id) {
-			navigate('/checkout')
-		}
-		else {
-			notifynotLogin();
-		}
-	}
+	// }
+	// const getData = async () => {
+	// 	const data = await JSON.parse((localStorage.getItem('user-info')))
+	// 	user_id = data.user.id
+	// }
+	// useEffect(() => {
+	// 	getData()
+	// }, [getData])
+	// const CheckoutHandler = () => {
+	// 	if (user_id) {
+	// 		navigate('/checkout')
+	// 	}
+	// 	else {
+	// 		notifynotLogin();
+	// 	}
+	// }
 	const CoupenHandler = async (e) => {
 		e.preventDefault();
 		let data = { coupon_code }
@@ -55,7 +55,7 @@ const Cartdata = (props) => {
 		Result = await Result.json();
 		if (Result.result === true) {
 			Discount = Result.discount
-			console.log(Result.discount)
+			console.log(Discount)
 		}
 	}
 	// console.log(data_quantity)
@@ -118,12 +118,13 @@ const Cartdata = (props) => {
 									<tbody>
 
 										{data.map((item, index) => {
+											total=(data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0))
 
 											{/* console.warn(item.product_image) */ }
 											data_quantity = item.quantity
 											var product_id = item.product_id
 											calculable_price = item.Price
-											console.log(subtotal)
+											{/* console.log(subtotal) */}
 
 											return (
 
@@ -211,10 +212,9 @@ const Cartdata = (props) => {
 										<tbody>
 											<tr className="summary-subtotal">
 												<td>Subtotal:</td>
-												<td>
-
-													{/* ( data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:calculable_price), 0) * 10) / 100 */}
-													{data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0)}
+												<td> 
+												{/* (( data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:calculable_price), 0) * 10) /100) */}
+													{Discount?total-total*Discount/100:total}
 												</td>
 											</tr>
 											{/* <!-- End .summary-subtotal --> */}
@@ -267,14 +267,14 @@ const Cartdata = (props) => {
 
 											<tr className="summary-total">
 												<td>Total:</td>
-												<td>{data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0)}</td>
+												<td>{total}</td>
 											</tr>
 											{/* <!-- End .summary-total --> */}
 										</tbody>
 									</table>
 									{/* <!-- End .table table-summary --> */}
 
-									<a onClick={CheckoutHandler}  className="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+									<NavLink to='/checkout' className="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</NavLink>
 								</div>
 								{/* <!-- End .summary --> */}
 

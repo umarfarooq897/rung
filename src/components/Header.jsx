@@ -139,6 +139,7 @@ const Header = (props) => {
                                                                         <div className="dropdown-menu dropdown-menu-right">
                                                                                 <div className="dropdown-cart-products">
                                                                                         {data.map((item, index) => {
+                                                                                                console.log(item)
                                                                                                 return (
 
                                                                                                         <div className="product">
@@ -148,8 +149,8 @@ const Header = (props) => {
                                                                                                                         </h4>
 
                                                                                                                         <span className="cart-product-info">
-                                                                                                                                <span className="cart-product-qty">1</span>
-                                                                                                                                {item.price}
+                                                                                                                                <span className="cart-product-qty">{item.quantity}</span>
+                                                                                                                                x{item.symbol}{item.Price}
                                                                                                                         </span>
                                                                                                                 </div>
                                                                                                                 {/* <!-- End .product-cart-details --> */}
@@ -193,13 +194,13 @@ const Header = (props) => {
                                                                                 <div className="dropdown-cart-total">
                                                                                         <span>Total</span>
 
-                                                                                        <span className="cart-total-price"></span>
+                                                                                        <span className="cart-total-price">{data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0)}</span>
                                                                                 </div>
                                                                                 {/* <!-- End .dropdown-cart-total --> */}
 
                                                                                 <div className="dropdown-cart-action">
                                                                                         <NavLink to='/cart' className="btn btn-primary">View Cart</NavLink>
-                                                                                        <NavLink to='' className="btn btn-outline-primary-2"><span>Checkout</span><i className="icon-long-arrow-right"></i></NavLink>
+                                                                                        <NavLink to='/checkout' className="btn btn-outline-primary-2"><span>Checkout</span><i className="icon-long-arrow-right"></i></NavLink>
                                                                                 </div>
                                                                                 {/* <!-- End .dropdown-cart-total --> */}
                                                                         </div>
