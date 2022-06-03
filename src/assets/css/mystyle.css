@@ -139,6 +139,22 @@ input[type=number] {
 .header-5 .sticky-header.fixed .cart-dropdown:not(:hover):not(.show) .dropdown-toggle {
     color: #282828;
 }
+.dropdown-cart-products{
+    max-height: 500px;
+    overflow-y: scroll;
+    scrollbar-color: #fdcc04 transparent  ;
+    scrollbar-width: thin;
+}
+.dropdown-cart-products::-webkit-scrollbar{
+    width: 5px;
+}
+.dropdown-cart-products::-webkit-scrollbar-thumb{
+    width: 5px;
+    background-color: #fdcc04;
+}
+.btn-remove{
+    cursor: pointer;
+}
 @media (max-width:768px) {
     .product.product-sm .product-title {
         font-size: 1rem !important;

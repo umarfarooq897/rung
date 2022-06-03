@@ -2,6 +2,7 @@ import React from 'react';
 import banneimg1 from '../assets/images/demos/demo-5/banners/banner-1.jpg';
 import banneimg2 from '../assets/images/demos/demo-5/banners/banner-2.jpg';
 import banneimg3 from '../assets/images/demos/demo-5/banners/banner-3.jpg';
+import { NavLink } from "react-router-dom";
 
  const Banner=()=>{
      return( 
@@ -20,7 +21,7 @@ import banneimg3 from '../assets/images/demos/demo-5/banners/banner-3.jpg';
                             {/* <!-- End .banner-subtitle --> */}
                             <h3 className="banner-title"><a href="#"><span>This Week's<br/>Most Wanted</span></a></h3>
                             {/* <!-- End .banner-title --> */}
-                            <a href="#" className="btn btn-outline-primary-2 banner-link">Discover Now<i className="icon-long-arrow-right"></i></a>
+                            <NavLink to="shop/categories" className="btn btn-outline-primary-2 banner-link">Discover Now<i className="icon-long-arrow-right"></i></NavLink>
                         </div>
                         {/* <!-- End .banner-content --> */}
                     </div>
@@ -39,7 +40,7 @@ import banneimg3 from '../assets/images/demos/demo-5/banners/banner-3.jpg';
                             {/* \<!-- End .banner-subtitle --> */}
                             <h3 className="banner-title"><a href="#"><span>Trainers & Sportwear<br/>Sale Up to 70% off</span></a></h3>
                             {/* \<!-- End .banner-title --> */}
-                            <a href="#" className="btn btn-outline-primary-2 banner-link">Shop Now<i className="icon-long-arrow-right"></i></a>
+                            <NavLink to="shop/categories" className="btn btn-outline-primary-2 banner-link">Shop Now<i className="icon-long-arrow-right"></i></NavLink>
                         </div>
                         {/* <!-- End .banner-content --> */}
                     </div>
@@ -55,7 +56,7 @@ import banneimg3 from '../assets/images/demos/demo-5/banners/banner-3.jpg';
                             {/* <!-- End .banner-subtitle --> */}
                             <h3 className="banner-title"><a href="#"><span>Womens <br/>Holiday Clothes</span></a></h3>
                             {/* <!-- End .banner-title --> */}
-                            <a href="#" className="btn btn-outline-primary-2 banner-link">Discover Now<i className="icon-long-arrow-right"></i></a>
+                            <NavLink to="shop/categories" className="btn btn-outline-primary-2 banner-link">Discover Now<i className="icon-long-arrow-right"></i></NavLink>
                         </div>
                         {/* <!-- End .banner-content --> */}
                     </div>
