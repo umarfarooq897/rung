@@ -114,22 +114,6 @@ const Featured = (props) => {
                 </div>
                 {/* <!-- End .heading --> */}
 
-<<<<<<< HEAD
-                <div className="tab-content tab-content-carousel">
-                    <div className="tab-pane p-0 fade show active" id="trendy-all-tab" role="tabpanel" aria-labelledby="trendy-all-link">
-                        <OwlCarousel className=" owl-theme owl-carousel owl-simple carousel-equal-height carousel-with-shadow" dots={true}
-                            nav={false} margin={20} autoPlay={true} loop={false} {...options1} >
-                            {product ? product.map((item, index) => {
-                                var cat_name = item.category_name
-                                {/* console.log(item) */}
-                                var name = item.name
-                                var calculable_price = item.calculable_price
-                                var currency_symbol = item.currency_symbol
-                                var image = item.thumbnail_image
-                                var product_id = item.id
-                                var quantity = item.quantity
-                                return (
-=======
                 <OwlCarousel className=" owl-theme owl-carousel owl-simple carousel-equal-height carousel-with-shadow" dots={true}
                     nav={false} margin={20} autoPlay={true} loop={false} {...options1} >
                     {product ? product.map((item, index) => {
@@ -142,7 +126,6 @@ const Featured = (props) => {
                         var product_id = item.id
                         var quantity = item.quantity
                         return (
->>>>>>> shehrozwork
 
                             <div className="product product-2" key={index}>
                                 <figure className="product-media">
