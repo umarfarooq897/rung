@@ -58,10 +58,10 @@ const Cartdata = (props) => {
 		if (Result.result === true) {
 			Discount = Result.discount
 		}
-		 maxtotal=Discount?total-total*Discount/100:total
-		 setTotalprice(maxtotal)
+		maxtotal=Discount?total-total*Discount/100:total
+		setTotalprice(maxtotal)
 		// console.log(total)
-	
+		
 	}
 	// console.log(data_quantity)
 	// console.log(Value)
@@ -192,7 +192,7 @@ const Cartdata = (props) => {
 											<div className="input-group">
 												<input type="text" onChange={(e) => setCoupon_code(e.target.value)} name="coupon_code" className="form-control" required placeholder="coupon code" />
 												<div className="input-group-append">
-													<button onClick={CoupenHandler} className="btn btn-outline-primary-2" type="submit"><i className="icon-long-arrow-right"></i></button>
+													<button onClick={CoupenHandler}  className="btn btn-outline-primary-2" type="submit"><i className="icon-long-arrow-right"></i></button>
 												</div>
 												{/* <!-- .End .input-group-append --> */}
 											</div>
@@ -202,7 +202,7 @@ const Cartdata = (props) => {
 									{/* <!-- End .cart-discount --> */}
 									{/* {console.log(data_quantity)} */}
 									<a className="btn " onClick={() => { props.DiscountedHandler({ DiscountetdPrice: totalprice, }) }}>
-									<a onClick={CoupenHandler} className="btn btn-outline-dark-2"><span>UPDATE CART</span><i className="icon-refresh"></i></a></a>
+									<a id="update_cart" onClick={CoupenHandler} className="btn btn-outline-dark-2"><span>UPDATE CART</span><i className="icon-refresh"></i></a></a>
 								</div>
 
 								{/* <!-- End .cart-bottom --> */}
