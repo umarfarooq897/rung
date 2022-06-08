@@ -205,7 +205,9 @@ const Cartdata = (props) => {
 									{/* <!-- End .cart-discount --> */}
 									{/* {console.log(data_quantity)} */}
 									{/* <a className=" btn btn-outline-dark-2 " onClick={() => { props.DiscountedHandler({ DiscountetdPrice: totalprice, }) }}> */}
+									
 									<a id="update" onClick={CoupenHandler} className="btn btn-outline-dark-2"><span>UPDATE CART</span><i className="icon-refresh"></i></a>
+									
 									{/* </a> */}
 								</div>
 
