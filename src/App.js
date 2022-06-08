@@ -26,6 +26,7 @@ import ProductFullWidth from './pages/Singelproduct';
 import Cart from './pages/Cart';
 import Whishlist from './pages/Whishlist';
 import Checkout from './pages/checkout';
+import Search from './pages/Search';
 const Pagename = createContext();
 
 
@@ -62,6 +63,7 @@ function App() {
                   <Route exact path="/cart" element={<Cart/>} />
                   <Route exact path="/whishlist" element={<Whishlist/>} />
                   <Route exact path="/checkout" element={<Checkout/>} />
+                  <Route exact path="/Search" element={<Search/>} />
                   {/* <Route path="*" element={<NoPage />} />  */}
                 </Route>
               </Routes>

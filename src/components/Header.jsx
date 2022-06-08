@@ -260,8 +260,6 @@ const Header = (props) => {
                                 </div>
                                 {/* <!-- End .mobile-menu-wrapper --> */}
                         </div>
-
-
                 </>
         );
 }

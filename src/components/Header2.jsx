@@ -68,6 +68,38 @@ const Header2 = (props) => {
     //Javascript split method to get the name of the path in array
     const splitLocation = pathname.split("/");
 
+    // var $searchWrapper = $('.header-search-wrapper'),
+    //             $body = $('body'),
+    //             $searchToggle = $('.search-toggle');
+
+    //             $searchToggle.on('click', function (e) {
+    //               $searchWrapper.toggleClass('show');
+    //               $(this).toggleClass('active');
+    //               $searchWrapper.find('input').focus();
+    //               e.preventDefault();
+    //             });
+
+    //             $body.on('click', function (e) {
+    //               if ( $searchWrapper.hasClass('show') ) {
+    //                 $searchWrapper.removeClass('show');
+    //                 $searchToggle.removeClass('active');
+    //                 $body.removeClass('is-search-active');
+    //               }
+    //             });
+
+    //             $('.header-search').on('click', function (e) {
+    //               e.stopPropagation();
+    //             });
+
+    const [searchValue, setsearchValue] = useState()
+
+    let body = document.querySelector("body")
+
+
+    const toggleSearch = (e)=>{
+        e.preventDefault()
+        localStorage.setItem('search', JSON.stringify(searchValue));
+    }
     return (
         <>
             <header className="header">
@@ -162,11 +194,13 @@ const Header2 = (props) => {
 
                         <div className="header-right">
                             <div className="header-search">
-                                <a href="#" className="search-toggle" role="button" title="Search"><i className="icon-search"></i></a>
-                                <form action="#" method="get">
-                                    <div className="header-search-wrapper">
+                                <span onClick={toggleSearch}>
+                                    <NavLink  to="/search" className="search-toggle active" role="button" title="Search"><i className="icon-search"></i></NavLink>
+                                </span>
+                                <form action="#" method="get" onSubmit={toggleSearch}>
+                                    <div className="header-search-wrapper show" >
                                         <label for="q" className="sr-only">Search</label>
-                                        <input type="search" className="form-control" name="q" id="q" placeholder="Search in..." required />
+                                        <input type="search" className="form-control"  name="q" id="searchBar" placeholder="Search in..." onChange={(e)=>{setsearchValue(e.target.value)}} value={searchValue}/>
                                     </div>
                                     {/* <!-- End .header-search-wrapper --> */}
                                 </form>
@@ -263,7 +297,7 @@ const Header2 = (props) => {
                                     <div className="dropdown-cart-total">
                                         <span>Total</span>
 
-                                        <span className="cart-total-price">{data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0)}</span>
+                                        <span className="cart-total-price">{data.reduce((total, item) => total + (item.totalPrice ? item.totalPrice : item.Price), 0)}</span>
                                     </div>
                                     {/* <!-- End .dropdown-cart-total --> */}
 
@@ -303,7 +337,7 @@ const Header2 = (props) => {
                     <nav className="mobile-nav">
                         <ul className="mobile-menu">
                             <li className={splitLocation[1] === "" ? "active" : ""}>
-                                <NavLink  to='/'>Home</NavLink>
+                                <NavLink to='/'>Home</NavLink>
                             </li>
                             <li className={splitLocation[1] === "about" ? "active" : ""}>
                                 <NavLink to='/about'>About</NavLink>
@@ -328,6 +362,9 @@ const Header2 = (props) => {
                 </div>
                 {/* <!-- End .mobile-menu-wrapper --> */}
             </div>
+            {
+
+            }
         </>
     );
 }
