@@ -26,7 +26,7 @@ import ProductFullWidth from './pages/Singelproduct';
 import Cart from './pages/Cart';
 import Whishlist from './pages/Whishlist';
 import Checkout from './pages/checkout';
-import Search from './components/Search';
+import Search from './pages/Search';
 const Pagename = createContext();
 
 
