@@ -13,7 +13,6 @@ const Fullwitdh = (props) => {
     var data=props.data.cardData
     function reloadComp() {
         setReload(reload + 1)
-        // console.log(reload)
     }
     const inputDecrement = () => {
         if (Value > 1) {
@@ -25,19 +24,16 @@ const Fullwitdh = (props) => {
           }
     }
     const inputIncrement = () => {
-        // Product[0].current_stock
        if(Value<10)
         setValue(Value + 1)
     }
-    // const [userdata, setUserdata] = useState()
-    // const [user_id, setUser_id] = useState()
     var user_id;
     var path = window.location.pathname;
     var splitCurUrl = path.split('/');
     const nthElementcurnt = (splitCurUrl, n = 0) => (n > 0 ? splitCurUrl.slice(n, n + 1) : splitCurUrl.slice(n))[0];
     var Page_Title_id = nthElementcurnt(splitCurUrl, -1);
     // https://cors-anywhere.herokuapp.com/
-    var fullwidthapilink = "https://beta.myrung.com/b/api/v2/products/" + Page_Title_id;
+    var fullwidthapilink = "https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/" + Page_Title_id;
     const getProductApi = async () => {
         const response = await fetch(fullwidthapilink);
         const data = await response.json();
@@ -50,7 +46,7 @@ const Fullwitdh = (props) => {
     }, [reload]);
     const relatedProductApi = async () => {
         // https://cors-anywhere.herokuapp.com/
-        const response = await fetch("https://beta.myrung.com/b/api/v2/products/related/6");
+        const response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/related/6");
         const data = await response.json();
         var insidData = data.data;
         SetRelatedProduct(insidData);
@@ -85,7 +81,6 @@ const Fullwitdh = (props) => {
     }, [getData])
     const addWhishlistHandler = async (e) => {
         if (user_id) {
-            // setUser_id(userdata.user.id)
             let product_id = e.target.getAttribute("data-id")
             console.log(e.target.getAttribute("data-id"))
             let data = { product_id, user_id }
@@ -104,7 +99,6 @@ const Fullwitdh = (props) => {
         }
         Result = await Result.json()
         var Data = Result.is_in_wishlist;
-        // console.log(Data);
         if (Data === true) {
             notify_add_whishlist();
         }
@@ -112,10 +106,6 @@ const Fullwitdh = (props) => {
 
         }
     }
-    // const toggleChecked = () => setChecked(Value => !value);
-    // useEffect(() => {
-    //     toggleChecked();
-    // }, [checked]);
     return (
         <>
             <div className="page-content">
@@ -126,11 +116,9 @@ const Fullwitdh = (props) => {
                                 <div className="row">
                                     {Product.map((item, index) => {
                                         console.log(item) 
-                                        {/* var cat_name = item.category_name */}
                                         var name = item.name
                                         var calculable_price = item.calculable_price
                                         var currency_symbol = item.currency_symbol
-                                        {/* var quantity = item.quantity */}
                                         var image = item.thumbnail_image
                                         var product_id = item.id
                                         var product_price = item.main_price

@@ -21,9 +21,7 @@ const Cartdata = (props) => {
 		}
 		Getquantity()
 	})
-	useEffect(() => {
-		CoupenHandler()
-		},[total])
+	
 	// const notifynotLogin = () => {
 	// 	toast("Please Login first")
 
@@ -43,7 +41,13 @@ const Cartdata = (props) => {
 	// 		notifynotLogin();
 	// 	}
 	// }
+	useEffect(() => {
+		CoupenHandler()
+		},[])
+		const discount=() => { props.DiscountedHandler({ DiscountetdPrice: totalprice, }) }
 	const CoupenHandler = async (e) => {
+		discount()
+		// document.getElementById("update").dblclick(CoupenHandler); 
 		e.preventDefault();
 		let data = { coupon_code }
 		Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/check-coupon', {
@@ -58,9 +62,8 @@ const Cartdata = (props) => {
 		if (Result.result === true) {
 			Discount = Result.discount
 		}
-		 maxtotal=Discount?total-total*Discount/100:total
-		 setTotalprice(maxtotal)
-		// console.log(total)
+		maxtotal=Discount?total-total*Discount/100:total
+		setTotalprice(maxtotal)
 	
 	}
 	// console.log(data_quantity)
@@ -192,7 +195,7 @@ const Cartdata = (props) => {
 											<div className="input-group">
 												<input type="text" onChange={(e) => setCoupon_code(e.target.value)} name="coupon_code" className="form-control" required placeholder="coupon code" />
 												<div className="input-group-append">
-													<button onClick={CoupenHandler} className="btn btn-outline-primary-2" type="submit"><i className="icon-long-arrow-right"></i></button>
+													<button onClick={CoupenHandler}  className="btn btn-outline-primary-2" type="submit"><i className="icon-long-arrow-right"></i></button>
 												</div>
 												{/* <!-- .End .input-group-append --> */}
 											</div>
@@ -201,8 +204,11 @@ const Cartdata = (props) => {
 									</div>
 									{/* <!-- End .cart-discount --> */}
 									{/* {console.log(data_quantity)} */}
-									<a className="btn " onClick={() => { props.DiscountedHandler({ DiscountetdPrice: totalprice, }) }}>
-									<a onClick={CoupenHandler} className="btn btn-outline-dark-2"><span>UPDATE CART</span><i className="icon-refresh"></i></a></a>
+									{/* <a className=" btn btn-outline-dark-2 " onClick={() => { props.DiscountedHandler({ DiscountetdPrice: totalprice, }) }}> */}
+									
+									<a id="update" onClick={CoupenHandler} className="btn btn-outline-dark-2"><span>UPDATE CART</span><i className="icon-refresh"></i></a>
+									
+									{/* </a> */}
 								</div>
 
 								{/* <!-- End .cart-bottom --> */}

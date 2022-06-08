@@ -14,7 +14,7 @@ const Featured = (props) => {
     // const [user_id, setUser_id] = useState();
     var user_id;
     let FeaturedProduct = [];
-    var api = 'https://beta.myrung.com/b/api/v2/products/featured';
+    var api = 'https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/featured';
     // const navigate = useNavigate();
     const getFeaturedApi = async () => {
         const response = await fetch(api);

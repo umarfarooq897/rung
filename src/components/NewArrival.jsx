@@ -10,7 +10,7 @@ const NewArrivel = (props) => {
     const [catData, setCatData] = useState([])
     useEffect(() => {
         const fetchApi = async () => {
-            const catagories = await fetch("/https://beta.myrung.com/b/api/v2/categories")
+            const catagories = await fetch("https://cors-anywhere.herokuapp.com//https://beta.myrung.com/b/api/v2/categories")
             const catagoriesData = await catagories.json()
             setCatData(catagoriesData.data)
         }
@@ -26,8 +26,8 @@ const NewArrivel = (props) => {
     // const [user_id, setUser_id] = useState()
     var user_id;
     const newProductApi = async () => {
-        // /
-        const response = await fetch("/https://beta.myrung.com/b/api/v2/products");
+        // https://cors-anywhere.herokuapp.com/
+        const response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products");
         const data = await response.json();
         var insidData = data.data;
         SetProduct(insidData);
