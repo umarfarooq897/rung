@@ -10,24 +10,25 @@ const Fullwitdh = (props) => {
     const [loading, setLoading] = useState(true);
     var [Value, setValue] = useState(1);
     const [reload, setReload] = useState(1)
+    var data=props.data.cardData
     function reloadComp() {
         setReload(reload + 1)
         // console.log(reload)
     }
-    // const inputDecrement = () => {
-    //     if (Value > 1) {
-    //         setValue(Value - 1);
-    //       }
+    const inputDecrement = () => {
+        if (Value > 1) {
+            setValue(Value - 1);
+          }
       
-    //       else {
-    //         setValue(1)
-    //       }
-    // }
-    // const inputIncrement = () => {
+          else {
+            setValue(1)
+          }
+    }
+    const inputIncrement = () => {
         // Product[0].current_stock
-    //    if(Value<10)
-    //     setValue(Value + 1)
-    // }
+       if(Value<10)
+        setValue(Value + 1)
+    }
     // const [userdata, setUserdata] = useState()
     // const [user_id, setUser_id] = useState()
     var user_id;
@@ -89,7 +90,7 @@ const Fullwitdh = (props) => {
             console.log(e.target.getAttribute("data-id"))
             let data = { product_id, user_id }
             // https://cors-anywhere.herokuapp.com/
-            var Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
+            var Result = await fetch(' https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -129,7 +130,7 @@ const Fullwitdh = (props) => {
                                         var name = item.name
                                         var calculable_price = item.calculable_price
                                         var currency_symbol = item.currency_symbol
-                                        var quantity = item.quantity
+                                        {/* var quantity = item.quantity */}
                                         var image = item.thumbnail_image
                                         var product_id = item.id
                                         var product_price = item.main_price
@@ -216,16 +217,16 @@ const Fullwitdh = (props) => {
                                                             {/* <!-- End .select-custom --> */}
                                                         </div>
                                                         {/* <!-- End .details-filter-row --> */}
-
+                                                       
                                                         <div className="details-filter-row details-row-size">
                                                             <label for="qty">Qty:</label>
                                                             <div className="product-details-quantity" >
-                                                                <div className="input-group-prepend"><button  onClick={() => { props.DecreHandler({ Price: calculable_price, quantity: item.quantity, product_id: product_id }) }} className="btn btn-qantity-mines btn-decrement btn-spinner" type="button">
+                                                                <div className="input-group-prepend"><button onClick={inputDecrement}  className="btn btn-qantity-mines btn-decrement btn-spinner" type="button">
                                                                     <i className="icon-minus"></i></button>
                                                                 </div>
-                                                                <input type="number" disabled id="quantity" onChange={(e) => e.target.value} value={item.quantity} className="form-control" min="1" max="10" step="1" data-decimals="0" required />
+                                                                <input type="number" disabled id="quantity" value={Value} className="form-control" min="1" max="10" step="1" data-decimals="0" required />
                                                                 <div className="input-group-append">
-                                                                    <button onClick={() => { props.IncreHandler({ Price: calculable_price, quantity:item.quantity, product_id: product_id }) }} className="btn btn-qantity-plus btn-increment btn-spinner" type="button">
+                                                                    <button onClick={inputIncrement}  className="btn btn-qantity-plus btn-increment btn-spinner" type="button">
                                                                         <i className="icon-plus"></i></button>
                                                                 </div>
                                                             </div>
@@ -238,7 +239,7 @@ const Fullwitdh = (props) => {
 
                                                             <a onClick={() => {
                                                                 props.addToCartHandler({
-                                                                     name: name, Price:calculable_price, symbol:currency_symbol,quantity:item.quantity,
+                                                                     name: name, Price:calculable_price, symbol:currency_symbol,quantity:Value,
                                                                     product_image: image, product_id: product_id,
                                                                 })
                                                             }}

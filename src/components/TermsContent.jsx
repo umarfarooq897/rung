@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 const TermsContent =() =>{
     const [TermData, SetTermData] = useState([]);
 	const getTermApi = async () => {
-		const response = await fetch('https://beta.myrung.com/b/api/v2/policies/termCondition');
+		const response = await fetch(' https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/policies/termCondition');
 		const data = await response.json();
 		var insidData = data.data;
 		SetTermData(insidData);

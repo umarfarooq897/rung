@@ -13,7 +13,7 @@ const Related_product = (props) => {
     var splitCurUrl = path.split('/');
     const nthElementcurnt = (splitCurUrl, n = 0) => (n > 0 ? splitCurUrl.slice(n, n + 1) : splitCurUrl.slice(n))[0];
     var Page_Title_id = nthElementcurnt(splitCurUrl, -1);
-    var productsapilink = "https://beta.myrung.com/b/api/v2/products/category/" + Page_Title_id
+    var productsapilink = " https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/category/" + Page_Title_id
     const getProductApi = async () => {
         const response = await fetch(productsapilink);
         const data = await response.json();
@@ -52,7 +52,7 @@ const Related_product = (props) => {
             let product_id = e.target.getAttribute("data-id")
             let data = {product_id,user_id}
             // https://cors-anywhere.herokuapp.com/
-            var Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
+            var Result = await fetch(' https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
