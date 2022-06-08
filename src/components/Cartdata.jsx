@@ -21,9 +21,7 @@ const Cartdata = (props) => {
 		}
 		Getquantity()
 	})
-	useEffect(() => {
-		CoupenHandler()
-		},[total])
+	
 	// const notifynotLogin = () => {
 	// 	toast("Please Login first")
 
@@ -43,7 +41,13 @@ const Cartdata = (props) => {
 	// 		notifynotLogin();
 	// 	}
 	// }
+	useEffect(() => {
+		CoupenHandler()
+		},[])
+		const discount=() => { props.DiscountedHandler({ DiscountetdPrice: totalprice, }) }
 	const CoupenHandler = async (e) => {
+		discount()
+		// document.getElementById("update").dblclick(CoupenHandler); 
 		e.preventDefault();
 		let data = { coupon_code }
 		Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/check-coupon', {
@@ -60,8 +64,7 @@ const Cartdata = (props) => {
 		}
 		maxtotal=Discount?total-total*Discount/100:total
 		setTotalprice(maxtotal)
-		// console.log(total)
-		
+	
 	}
 	// console.log(data_quantity)
 	// console.log(Value)
@@ -201,8 +204,9 @@ const Cartdata = (props) => {
 									</div>
 									{/* <!-- End .cart-discount --> */}
 									{/* {console.log(data_quantity)} */}
-									<a className="btn " onClick={() => { props.DiscountedHandler({ DiscountetdPrice: totalprice, }) }}>
-									<a id="update_cart" onClick={CoupenHandler} className="btn btn-outline-dark-2"><span>UPDATE CART</span><i className="icon-refresh"></i></a></a>
+									{/* <a className=" btn btn-outline-dark-2 " onClick={() => { props.DiscountedHandler({ DiscountetdPrice: totalprice, }) }}> */}
+									<a id="update" onClick={CoupenHandler} className="btn btn-outline-dark-2"><span>UPDATE CART</span><i className="icon-refresh"></i></a>
+									{/* </a> */}
 								</div>
 
 								{/* <!-- End .cart-bottom --> */}
