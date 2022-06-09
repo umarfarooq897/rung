@@ -93,12 +93,17 @@ const Header2 = (props) => {
 
     const [searchValue, setsearchValue] = useState()
 
-    let body = document.querySelector("body")
-
-
     const toggleSearch = (e)=>{
         e.preventDefault()
-        localStorage.setItem('search', JSON.stringify(searchValue));
+        if (searchValue.length>0) {
+            navigate(
+                "/search",              
+                { state: { searchValue } })
+        }
+    }
+    const searchHandle = (e)=>{
+        let key = e.target.value
+        setsearchValue(key)
     }
     return (
         <>
@@ -195,12 +200,12 @@ const Header2 = (props) => {
                         <div className="header-right">
                             <div className="header-search">
                                 <span onClick={toggleSearch}>
-                                    <NavLink  to="/search" className="search-toggle active" role="button" title="Search"><i className="icon-search"></i></NavLink>
+                                    <a className="search-toggle active" role="button" title="Search"><i className="icon-search"></i></a>
                                 </span>
                                 <form action="#" method="get" onSubmit={toggleSearch}>
                                     <div className="header-search-wrapper show" >
                                         <label for="q" className="sr-only">Search</label>
-                                        <input type="search" className="form-control"  name="q" id="searchBar" placeholder="Search in..." onChange={(e)=>{setsearchValue(e.target.value)}} value={searchValue}/>
+                                        <input type="search" className="form-control"  name="q" id="searchBar" placeholder="Search in..." onChange={searchHandle} value={searchValue} required/>
                                     </div>
                                     {/* <!-- End .header-search-wrapper --> */}
                                 </form>
@@ -326,9 +331,9 @@ const Header2 = (props) => {
 
                     <span onClick={() => setHiddenmenu(!hiddenmenu)} className="mobile-menu-close"> <i className="icon-close"></i></span>
 
-                    <form action="#" method="get" className="mobile-search">
+                    <form action="#" method="get" onSubmit={toggleSearch} className="mobile-search">
                         <label for="mobile-search" className="sr-only">Search</label>
-                        <input type="search" className="form-control" name="mobile-search" id="mobile-search"
+                        <input onChange={searchHandle} value={searchValue} type="search" className="form-control" name="mobile-search" id="mobile-search"
                             placeholder="Search in..." required />
                         <button className="btn btn-primary"> <i className="icon-search"></i>
                         </button>

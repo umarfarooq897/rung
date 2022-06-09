@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation} from "react-router-dom";
 import { ToastContainer , toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -74,11 +74,8 @@ const SearchFilter = (props) => {
         }
     }
 
-    let searchedValue = localStorage.getItem("search") 
-    console.log(searchedValue)
-
-
-    
+    const location = useLocation()
+    const { searchValue } = location.state;
     return (
         <>
             <div className="products mb-3">
@@ -94,6 +91,7 @@ const SearchFilter = (props) => {
                          var product_id = product.id
                          let checkName = name.toLowerCase()
                          name.toLowerCase()
+                         let searchedValue = searchValue.toLowerCase()
                          if (checkName.includes(searchedValue)) {
                              return (
                                  <>
