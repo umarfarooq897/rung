@@ -8,6 +8,7 @@ import Navigation from "../components/Pagenavigation";
 import Sidebar from "../components/Shopsidbar";
 import Related_product from "../components/Relatedproduct";
 import Homecontainer from "../container/Homecontainer";
+import SearchContainer from "../container/SearchContainer";
 import HeaderContainer from "../container/HeaderContainer";
 import SearchFilter from '../components/SearchFilter'
 
@@ -19,7 +20,6 @@ const Search = (props) => {
     return (
         <>
             <HeaderContainer/>
-            {/* page={props.page} navbar={props.navbar} title={props.title} */}
             <ProductPageTitle />
             <div class="page-content">
                 <div class="container">
@@ -28,12 +28,11 @@ const Search = (props) => {
                             <Sidebar />
                         </div>
                         <div class="col-lg-9">
-                            <SearchFilter />
+                            <SearchContainer />
                         </div>
                     </div>
                 </div>
             </div>
-            {/* <Navigation /> */}
             <Footer2 />
         </>
     );
