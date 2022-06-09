@@ -10,7 +10,7 @@ export function  cardItem(state=initialState,action){
         const item = state.cardData.find(
             product => product.product_id === action.data.product_id,
           );
-        //   console.warn("reducer",item)
+          console.warn("reducer",action.data)
           if (item) {
             //   var qty = 0;
             return {
@@ -25,7 +25,7 @@ export function  cardItem(state=initialState,action){
               ),
             }
         };
-        console.warn("reducer",action.data.quantity) ;
+        // console.warn("reducer",action.data.quantity) ;
         return {
             ...state,
             cardData: [...state.cardData, action.data],
@@ -68,7 +68,7 @@ export function  cardItem(state=initialState,action){
                 product => product.product_id === action.data.product_id,
                 );
                 // console.warn("inicre",itemdec)
-              console.warn("reducer",itemdec)
+              // console.warn("reducer",itemdec)
               if (itemdec) {
                 //   var qty = 0;
                 return {

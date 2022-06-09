@@ -224,7 +224,7 @@ const Fullwitdh = (props) => {
 
                                                         <ToastContainer />
                                                         <div onClick={notify} className="product-details-action">
-
+                                                        
                                                             <a onClick={() => {
                                                                 props.addToCartHandler({
                                                                      name: name, Price:calculable_price, symbol:currency_symbol,quantity:Value,

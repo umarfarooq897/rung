@@ -42,10 +42,10 @@ const Cartdata = (props) => {
 	// 	}
 	// }
 	useEffect(() => {
-		CoupenHandler()
-		},[])
-		const discount=() => { props.DiscountedHandler({ DiscountetdPrice: totalprice, }) }
+	},[])
+	const discount=() => { props.DiscountedHandler({ DiscountetdPrice: totalprice, }) }
 	const CoupenHandler = async (e) => {
+		
 		discount()
 		// document.getElementById("update").dblclick(CoupenHandler); 
 		e.preventDefault();
@@ -96,8 +96,10 @@ const Cartdata = (props) => {
 	const notify = () => toast("Succesfully Deleted from cart");
 
 	var data = props.data.cardData
+	if(props.data.discount){
 	var discounted_price = props.data.discount[0].DiscountetdPrice
-	console.log('cart',props)
+	}
+	// console.log('cart',props)
 	// console.log(data)
 	// const toast=()=>{
 

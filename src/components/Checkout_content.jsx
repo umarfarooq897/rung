@@ -13,8 +13,10 @@ const Checkout_content=(props)=>{
     var products=[]
 	var total
 	var data = props.data.cardData
+	if(props.data.discount){
 	var discounted_price = props.data.discount[0].DiscountetdPrice
-	console.log(data)
+	}
+	// console.log(data)
     const CheckoutHandler= async(e)=>{
         e.preventDefault();
 		// let user_type = "customer"

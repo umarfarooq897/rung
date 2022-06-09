@@ -9,7 +9,7 @@ const SearchFilter = (props) => {
     // const [userdata, setUserdata] = useState()
     // const [user_id, setUser_id] = useState()
     var user_id;
-    var productsapilink = "https://beta.myrung.com/b/api/v2/products/search"
+    var productsapilink = "https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/search"
     const getProductApi = async () => {
         const response = await fetch(productsapilink);
         const data = await response.json();
