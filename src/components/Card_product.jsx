@@ -59,7 +59,7 @@ const Related_product = () => {
                                                             <figure className="product-media">
                                                                 <span className="product-label label-new">New</span>
                                                                 <a href="product.php">
-                                                                    <img src={"https://alpha.techcon.com.pk/rung_backend/public/" +prod.thumbnail_image} alt="Product image" className="product-image" />
+                                                                    <img src={"https://beta.myrung.com/b/public/" +prod.thumbnail_image} alt="Product image" className="product-image" />
                                                                 </a>
                                                                 <div className="product-action-vertical">
                                                                     <a href="#" className="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>

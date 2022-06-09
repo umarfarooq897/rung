@@ -2,7 +2,7 @@ import React,{useEffect,useState} from "react";
 const PrivacyContent =() =>{
     const [PrivacyData, SetPrivacyData] = useState([]);
 	const getPrivacyApi = async () => {
-		const response = await fetch(' https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/policies/privacyPolicy');
+		const response = await fetch(' https://beta.myrung.com/b/api/v2/policies/privacyPolicy');
 		const data = await response.json();
 		var insidData = data.data;
 		SetPrivacyData(insidData);

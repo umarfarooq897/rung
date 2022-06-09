@@ -23,7 +23,7 @@ const addUserHandler = async(event) => {
         setEmail('');
         setPassword('');
 		// https://cors-anywhere.herokuapp.com/
-		let Result= await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/auth/signup ',{
+		let Result= await fetch('https://beta.myrung.com/b/api/v2/auth/signup ',{
 			method:'POST',
 			body:JSON.stringify(data),
 			headers:{

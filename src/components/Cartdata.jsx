@@ -50,7 +50,7 @@ const Cartdata = (props) => {
 		// document.getElementById("update").dblclick(CoupenHandler); 
 		e.preventDefault();
 		let data = { coupon_code }
-		Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/check-coupon', {
+		Result = await fetch('https://beta.myrung.com/b/api/v2/check-coupon', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
