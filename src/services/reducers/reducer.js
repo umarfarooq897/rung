@@ -1,4 +1,4 @@
-import { ADD_TO_CART,INCREMENT,DECREMENT,REMOVE_TO_CART } from "../constants";
+import { ADD_TO_CART,INCREMENT,DECREMENT,REMOVE_TO_CART,TOTAL_PRICE } from "../constants";
 const initialState= {
     cardData:[],
     // id: '',
@@ -25,12 +25,12 @@ export function  cardItem(state=initialState,action){
               ),
             }
         };
+        console.warn("reducer",action.data.quantity) ;
         return {
             ...state,
             cardData: [...state.cardData, action.data],
             totalPrice: (action.data.Price * action.data.quantity),
         }
-        // console.warn("reducer",action.data)
         // return {
         //     ...state,
         //     cardData: [...state.cardData, action.data],
@@ -57,7 +57,7 @@ export function  cardItem(state=initialState,action){
             };
             return{
               ...state,
-            cardData: [...state.cardData, action.data],
+            cardData: [...state.cardData, action.data,],
             totalPrice: (action.data.Price * action.data.quantity),
 
             }
@@ -91,15 +91,16 @@ export function  cardItem(state=initialState,action){
             }
           }
 
+    case TOTAL_PRICE:
+      console.warn("decre",action.data)
+        return{
+          ...state,
+          discount: [action.data],   
+    }
     case REMOVE_TO_CART:
-        // console.warn("reducer",action.data.item.product_id)
-        // state.pop()
-        // console.log("reducer",state)
         return{
             ...state,
-        // cartItems: newCartItems
-        cardData: state.cardData.filter(item => item.product_id !== action.data.item.product_id)
-            
+        cardData: state.cardData.filter(item => item.product_id !== action.data.item.product_id)      
     }
     
     default:

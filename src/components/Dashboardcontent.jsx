@@ -24,7 +24,7 @@ const Dashboardcontent = ()=>{
         setNew_password('');
         setConfirm_password('');
         // https://cors-anywhere.herokuapp.com/
-		let Result= await fetch('https://beta.myrung.com/b/api/v2/auth/profile/updateprofile ',{
+		let Result= await fetch(' https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/auth/profile/updateprofile ',{
 			method:'POST',
 			body:JSON.stringify(data),
 			headers:{

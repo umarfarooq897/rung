@@ -4,10 +4,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Cartdata = (props) => {
 	var [coupon_code, setCoupon_code] = useState();
+	var [totalprice, setTotalprice] = useState();
 	const navigate = useNavigate();
 	//var quantity = (this).data('quantity-id');
 	//var attribute=('#quantity').attr('data-id');
-	var subtotal
+	var maxtotal
 	var Discount
 	var Result
 	var calculable_price
@@ -20,6 +21,7 @@ const Cartdata = (props) => {
 		}
 		Getquantity()
 	})
+	
 	// const notifynotLogin = () => {
 	// 	toast("Please Login first")
 
@@ -39,11 +41,15 @@ const Cartdata = (props) => {
 	// 		notifynotLogin();
 	// 	}
 	// }
+	useEffect(() => {
+		CoupenHandler()
+		},[])
+		const discount=() => { props.DiscountedHandler({ DiscountetdPrice: totalprice, }) }
 	const CoupenHandler = async (e) => {
+		discount()
+		// document.getElementById("update").dblclick(CoupenHandler); 
 		e.preventDefault();
 		let data = { coupon_code }
-		// console.log(event.target.value);
-		// https://cors-anywhere.herokuapp.com/
 		Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/check-coupon', {
 			method: 'POST',
 			headers: {
@@ -55,8 +61,10 @@ const Cartdata = (props) => {
 		Result = await Result.json();
 		if (Result.result === true) {
 			Discount = Result.discount
-			console.log(Discount)
 		}
+		maxtotal=Discount?total-total*Discount/100:total
+		setTotalprice(maxtotal)
+	
 	}
 	// console.log(data_quantity)
 	// console.log(Value)
@@ -88,6 +96,8 @@ const Cartdata = (props) => {
 	const notify = () => toast("Succesfully Deleted from cart");
 
 	var data = props.data.cardData
+	var discounted_price = props.data.discount[0].DiscountetdPrice
+	console.log('cart',props)
 	// console.log(data)
 	// const toast=()=>{
 
@@ -118,13 +128,12 @@ const Cartdata = (props) => {
 									<tbody>
 
 										{data.map((item, index) => {
+											console.log("dtadaaaaa",item)
 											total=(data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0))
-
-											{/* console.warn(item.product_image) */ }
 											data_quantity = item.quantity
 											var product_id = item.product_id
 											calculable_price = item.Price
-											{/* console.log(subtotal) */}
+											
 
 											return (
 
@@ -158,7 +167,7 @@ const Cartdata = (props) => {
 																<i className="icon-minus"></i></a>
 															</div>
 															<input type="number" id={'quantity-' + item.product_id} className="form-control" onChange={(e) => e.target.value} value={item.quantity} min="1" max="10" step="1" data-decimals="0" required />
-															<div className="input-group-append">
+															<div  className="input-group-append">
 																<a onClick={() => { props.IncreHandler({ Price: calculable_price, quantity: item.quantity, product_id: product_id }) }}
 																	data-id={item.product_id} className="btn btn-qantity-plus btn-increment btn-spinner">
 																	<i className="icon-plus"></i></a>
@@ -186,7 +195,7 @@ const Cartdata = (props) => {
 											<div className="input-group">
 												<input type="text" onChange={(e) => setCoupon_code(e.target.value)} name="coupon_code" className="form-control" required placeholder="coupon code" />
 												<div className="input-group-append">
-													<button onClick={CoupenHandler} className="btn btn-outline-primary-2" type="submit"><i className="icon-long-arrow-right"></i></button>
+													<button onClick={CoupenHandler}  className="btn btn-outline-primary-2" type="submit"><i className="icon-long-arrow-right"></i></button>
 												</div>
 												{/* <!-- .End .input-group-append --> */}
 											</div>
@@ -195,7 +204,11 @@ const Cartdata = (props) => {
 									</div>
 									{/* <!-- End .cart-discount --> */}
 									{/* {console.log(data_quantity)} */}
-									{/* <a className="btn btn-outline-dark-2"><span>UPDATE CART</span><i className="icon-refresh"></i></a> */}
+									{/* <a className=" btn btn-outline-dark-2 " onClick={() => { props.DiscountedHandler({ DiscountetdPrice: totalprice, }) }}> */}
+									
+									<a id="update" onClick={CoupenHandler} className="btn btn-outline-dark-2"><span>UPDATE CART</span><i className="icon-refresh"></i></a>
+									
+									{/* </a> */}
 								</div>
 
 								{/* <!-- End .cart-bottom --> */}
@@ -213,8 +226,9 @@ const Cartdata = (props) => {
 											<tr className="summary-subtotal">
 												<td>Subtotal:</td>
 												<td> 
+												{/* {console.log("max",totalprice)} */}
 												{/* (( data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:calculable_price), 0) * 10) /100) */}
-													{Discount?total-total*Discount/100:total}
+												{discounted_price?discounted_price:total}
 												</td>
 											</tr>
 											{/* <!-- End .summary-subtotal --> */}
@@ -267,7 +281,7 @@ const Cartdata = (props) => {
 
 											<tr className="summary-total">
 												<td>Total:</td>
-												<td>{total}</td>
+												<td>{discounted_price?discounted_price:total}</td>
 											</tr>
 											{/* <!-- End .summary-total --> */}
 										</tbody>

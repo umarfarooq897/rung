@@ -13,6 +13,7 @@ const Checkout_content=(props)=>{
     var products=[]
 	var total
 	var data = props.data.cardData
+	var discounted_price = props.data.discount[0].DiscountetdPrice
 	console.log(data)
     const CheckoutHandler= async(e)=>{
         e.preventDefault();
@@ -163,7 +164,7 @@ const Checkout_content=(props)=>{
 										})}
 		                						<tr className="summary-subtotal">
 		                							<td>Subtotal:</td>
-		                							<td>{total}</td>
+		                							<td>{discounted_price?discounted_price:total}</td>
 		                						</tr>
                                               
 		                						<tr>
@@ -172,7 +173,7 @@ const Checkout_content=(props)=>{
 		                						</tr>
 		                						<tr className="summary-total">
 		                							<td>Total:</td>
-		                							<td>{total}</td>
+		                							<td>{discounted_price?discounted_price:total}</td>
 		                						</tr>
 										
                                                 {/* <!-- End .summary-total --> */}
