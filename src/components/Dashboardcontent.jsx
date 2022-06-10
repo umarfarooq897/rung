@@ -11,7 +11,7 @@ const Dashboardcontent = ()=>{
 
     useEffect(()=>{
      const data = JSON.parse((localStorage.getItem('user-info')))
-     setUser_id(data.user.id)
+     setUser_id(data)
     //  console.log(user_id)	
 	},[])
     const editUserHandler = async(event) => {
@@ -36,7 +36,7 @@ const Dashboardcontent = ()=>{
 		localStorage.setItem("user-info", JSON.stringify(Result));
     }
     const singoutHandler =() =>{
-        localStorage.removeItem('user-info')
+        localStorage.removeItem('user-info_token')
     }
     return (
         <>

@@ -50,7 +50,7 @@ const Cartdata = (props) => {
 		// document.getElementById("update").dblclick(CoupenHandler); 
 		e.preventDefault();
 		let data = { coupon_code }
-		Result = await fetch('https://beta.myrung.com/b/api/v2/check-coupon', {
+		Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/check-coupon', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -163,14 +163,15 @@ const Cartdata = (props) => {
 															{/* <div className="input-group-prepend"><a data-id={item.product_id} onClick={() => inputDecrement(item.product_id)} className="btn btn-qantity-mines btn-decrement btn-spinner" >
 																<i className="icon-minus"></i></a>
 															</div> */}
-															<div className="input-group-prepend"><a data-id={item.product_id}
+															<div className="input-group-prepend">
+															<a data-id={item.product_id}
 																onClick={() => { props.DecreHandler({ Price: calculable_price, quantity: item.quantity, product_id: product_id }) }}
 																className="btn btn-qantity-mines btn-decrement btn-spinner" >
 																<i className="icon-minus"></i></a>
 															</div>
 															<input type="number" id={'quantity-' + item.product_id} className="form-control" onChange={(e) => e.target.value} value={item.quantity} min="1" max="10" step="1" data-decimals="0" required />
 															<div  className="input-group-append">
-																<a onClick={() => { props.IncreHandler({ Price: calculable_price, quantity: item.quantity, product_id: product_id }) }}
+															<a onClick={() => { props.IncreHandler({ Price: calculable_price, quantity: item.quantity, product_id: product_id }) }}
 																	data-id={item.product_id} className="btn btn-qantity-plus btn-increment btn-spinner">
 																	<i className="icon-plus"></i></a>
 															</div>
@@ -206,11 +207,8 @@ const Cartdata = (props) => {
 									</div>
 									{/* <!-- End .cart-discount --> */}
 									{/* {console.log(data_quantity)} */}
-									{/* <a className=" btn btn-outline-dark-2 " onClick={() => { props.DiscountedHandler({ DiscountetdPrice: totalprice, }) }}> */}
-									
 									<a id="update" onClick={CoupenHandler} className="btn btn-outline-dark-2"><span>UPDATE CART</span><i className="icon-refresh"></i></a>
-									
-									{/* </a> */}
+								
 								</div>
 
 								{/* <!-- End .cart-bottom --> */}

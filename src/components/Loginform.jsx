@@ -25,7 +25,7 @@ const LoginForm = () => {
 		let data = {user_type ,email, password }
 		// console.log(event.target.value);
 		// https://cors-anywhere.herokuapp.com/
-		let Result = await fetch('https://beta.myrung.com/b/api/v2/auth/login', {
+		let Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/auth/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -34,9 +34,10 @@ const LoginForm = () => {
 			body: JSON.stringify(data)
 		});
 		Result = await Result.json();
-		localStorage.setItem('user-info', JSON.stringify(Result)) 
-		// console.log(Result.result);
-		if(Result.result === true){
+		sessionStorage.setItem('user-info_token', JSON.stringify({exp: new Date() + 5,token:Result.access_token})) 
+		localStorage.setItem('user-info', JSON.stringify(Result.user.id)) 
+		console.log(Result.access_token + Result.user.id);
+		if(Result.access_token){
 			setCredentialError('')
 			navigate('/dashboard');
 		}else{

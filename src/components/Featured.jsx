@@ -44,8 +44,8 @@ const Featured = (props) => {
         toast("Item added into Whishlist")
     };
     const getData = async () => {
-        const data = await JSON.parse((localStorage.getItem('user-info')))
-        user_id = data.user.id
+        const data = await JSON.parse((localStorage.getItem('user-info_token')))
+        user_id = data
     }
     useEffect(() => {
         getData()
@@ -55,7 +55,7 @@ const Featured = (props) => {
             // console.log(userdata.user.id)
             // setUser_id(userdata.user.id)
             let product_id = e.target.getAttribute("data-id")
-            console.log(user_id)
+            // console.log(user_id)
             let data = { product_id, user_id }
             // https://cors-anywhere.herokuapp.com/
             var Result = await fetch(' https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
