@@ -6,7 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const Related_product = (props) => {
     // console.warn("product",props.data)
     const [Product, SetProduct] = useState([]);
-    // const [userdata, setUserdata] = useState()
+    const [min, setMin] = useState()
+    const [max, setMax] = useState()
     // const [user_id, setUser_id] = useState()
     var user_id;
     var path = window.location.pathname;
@@ -23,6 +24,18 @@ const Related_product = (props) => {
     useEffect(() => {
         getProductApi();
     }, []);
+    useEffect(() => {
+        priceFilter();
+    }, [min]);
+    useEffect(() => {
+        priceFilter();
+    }, [max]);
+    const priceFilter=async()=>{
+        setMin(sessionStorage.getItem('min') )
+        // console.log(min)
+        setMax(sessionStorage.getItem('max') )
+        // console.log(max)
+    }
     const notify = () => {  
         toast("Item added")
         let cartDrp = document.querySelector(".dropdown-menu")
@@ -79,16 +92,26 @@ const Related_product = (props) => {
         <>
             <div className="products mb-3">
                 <div className="row justify-content-center">
-                    {Product.map((product, index) => {
-                         document.getElementById('cat_title').innerText = product.category_name;
-                         var cat_name=product.category_name
-                         var name=product.name
-                         var calculable_price = product.calculable_price
-                         var currency_symbol = product.currency_symbol
-                         var image = product.thumbnail_image
-                         var product_id = product.id
-                        return (
-                            <>
+                        {Product.filter((item)=>{
+                        if(item.calculable_price>=min && item.calculable_price<=max ){
+                            return item
+                        }
+                    }).map((product, index) => {
+                            
+                            document.getElementById('cat_title').innerText = product.category_name;
+                            var cat_name=product.category_name
+                            var name=product.name
+                            var calculable_price = product.calculable_price
+                            var currency_symbol = product.currency_symbol
+                            var image = product.thumbnail_image
+                            var product_id = product.id
+                            console.log(min)
+                            console.log(max)
+                            {if(calculable_price>=min && calculable_price<=max  )
+                        // console.log(calculable_price)
+                         return (
+                             <>
+                            
                                 <div className="col-6">
                                     <div className="product product-7 text-center">
                                         <figure className="product-media">
@@ -138,8 +161,9 @@ const Related_product = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                            </>
-                        );
+                                </>
+                                );
+                            }
 
                     })}
                     {/* <!-- End .col-sm-6 --> */}

@@ -73,7 +73,9 @@ const SearchFilter = (props) => {
             
         }
     }
-
+    const noResult = ()=>{
+        return <h1>false</h1>
+    }
     const location = useLocation()
     const { searchValue } = location.state;
     return (
@@ -81,7 +83,12 @@ const SearchFilter = (props) => {
             <div className="products mb-3">
                 <div className="row justify-content-center">
                     
-                    {Product.map((product, index) => {
+                    {Product.filter((value)=>{
+                        if(value.name.toLowerCase().includes(searchValue.toLowerCase())){
+                            return value
+                        }
+                    })
+                    .map((product, index) => {
                          document.getElementById('cat_title').innerText = product.category_name;
                          var cat_name=product.category_name
                          var name=product.name
@@ -89,10 +96,6 @@ const SearchFilter = (props) => {
                          var currency_symbol = product.currency_symbol
                          var image = product.thumbnail_image
                          var product_id = product.id
-                         let checkName = name.toLowerCase()
-                         name.toLowerCase()
-                         let searchedValue = searchValue.toLowerCase()
-                         if (checkName.includes(searchedValue)) {
                              return (
                                  <>
                                      <div className="col-6">
@@ -127,7 +130,6 @@ const SearchFilter = (props) => {
                                      </div>
                                  </>
                              );
-                         }
 
                     })}
                     {/* <!-- End .col-sm-6 --> */}
