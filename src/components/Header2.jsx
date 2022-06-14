@@ -28,7 +28,7 @@ const Header2 = (props) => {
     const [hiddenmenu, setHiddenmenu] = useState(false)
     const navigate = useNavigate();
     const notify = () => toast("Succesfully Deleted from cart");
-    var user_id;
+    var token;
     // console.warn('header', props.data)
     var data = props.data.cardData;
     const notifynotLogin = () => {
@@ -43,14 +43,14 @@ const Header2 = (props) => {
     // }
     // Toastdel_Fo_cart()
     const getData = async () => {
-        const data = await JSON.parse((localStorage.getItem('user-info')))
-        user_id = data.user.id
+        const data = await JSON.parse((localStorage.getItem('user-info_token')))
+        token = data
     }
     useEffect(() => {
         getData()
     }, [getData])
     const WhishlistHandler = () => {
-        if (user_id) {
+        if (token) {
             navigate('/whishlist')
         }
         else {

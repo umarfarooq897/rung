@@ -26,11 +26,20 @@ export function  cardItem(state=initialState,action){
             }
         };
         // console.warn("reducer",action.data.quantity) ;
+        if(action.data.quantity>1){
         return {
             ...state,
             cardData: [...state.cardData, action.data],
             totalPrice: (action.data.Price * action.data.quantity),
-        }
+          }}
+          else{
+            return {
+              ...state,
+              cardData: [...state.cardData, action.data],
+              totalPrice: (action.data.Price * action.data.quantity),
+            }
+          }
+        
         // return {
         //     ...state,
         //     cardData: [...state.cardData, action.data],

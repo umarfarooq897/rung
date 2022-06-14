@@ -37,34 +37,34 @@ const Fotter = () => {
                                     <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate
                                         magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
                                         porttitor, facilisis luctus, metus. </p>
-                                                 
+
                                     {/* {insidData.map((item, index) => {
                                         console.log(item);
                                         return ( */}
-                                            <div className="widget-about-info">
-                                                <div className="row">
-                                                    <div className="col-sm-6 col-md-4">
-                                                        <span className="widget-about-title">Got Question? Call us 24/7</span>
-                                                       
-                                                       
-                                                        <a href="tel:123456789"></a>
-                                                       
-                                                       { console.warn()}
-                                                    </div>
-                                                    {/* <!-- End .col-sm-6 --> */}
-                                                    <div className="col-sm-6 col-md-8">
-                                                        <span className="widget-about-title">Payment Method</span>
-                                                        <figure className="footer-payments">
-                                                            <img src={payamentsimg} alt="Payment methods" width="272"
-                                                                height="20" />
-                                                        </figure>
-                                                        {/* <!-- End .footer-payments --> */}
-                                                    </div>
-                                                    {/* <!-- End .col-sm-6 --> */}
-                                                </div>
-                                                {/* <!-- End .row --> */}
+                                    <div className="widget-about-info">
+                                        <div className="row">
+                                            <div className="col-sm-6 col-md-4">
+                                                <span className="widget-about-title">Got Question? Call us 24/7</span>
+
+
+                                                <a href="tel:123456789"></a>
+
+                                                {console.warn()}
                                             </div>
-                                        {/* );
+                                            {/* <!-- End .col-sm-6 --> */}
+                                            <div className="col-sm-6 col-md-8">
+                                                <span className="widget-about-title">Payment Method</span>
+                                                <figure className="footer-payments">
+                                                    <img src={payamentsimg} alt="Payment methods" width="272"
+                                                        height="20" />
+                                                </figure>
+                                                {/* <!-- End .footer-payments --> */}
+                                            </div>
+                                            {/* <!-- End .col-sm-6 --> */}
+                                        </div>
+                                        {/* <!-- End .row --> */}
+                                    </div>
+                                    {/* );
                                     })} */}
 
                                     {/* <!-- End .widget-about-info --> */}
@@ -84,7 +84,7 @@ const Fotter = () => {
                                         <li><NavLink exact to="/faq">FAQ</NavLink></li>
                                         <li><NavLink exact to="/contact">Contact Us</NavLink></li>
                                         <li><NavLink exact to="/login">Log in</NavLink></li>
-                                       
+
                                     </ul>
                                     {/* <!-- End .widget-list --> */}
                                 </div>
@@ -117,9 +117,9 @@ const Fotter = () => {
                                     {/* <!-- End .widget-title --> */}
 
                                     <ul className="widget-list">
-                                    <li><NavLink exact to="/signup">Sign Up</NavLink> </li>
-                                        <li><a href="cart.html">View Cart</a></li>
-                                        <li><a href="#">My Wishlist</a></li>
+                                        <li><NavLink exact to="/signup">Sign Up</NavLink> </li>
+                                        <li><NavLink exact to="/cart">View Cart</NavLink> </li>
+                                        <li><NavLink exact to="/whishlist">My Wishlist</NavLink> </li>
                                         {/* <li><a href="#">Track My Order</a></li> */}
                                         <li><NavLink exact to="/help">Help</NavLink> </li>
 
@@ -170,7 +170,7 @@ const Fotter = () => {
             <button id="scroll-top" title="Back to Top"><i className="icon-arrow-up"></i></button>
 
             {/* <!-- Mobile Menu --> */}
-           
+
             {/* <!-- End .mobile-menu-container --> */}
 
             {/* <div className="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">

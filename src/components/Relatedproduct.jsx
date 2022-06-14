@@ -53,8 +53,8 @@ const Related_product = (props) => {
         toast("Item added into Whishlist")
     };
     const getData = async () => {
-        const data = await JSON.parse((localStorage.getItem('user-info')))
-        user_id = data.user.id
+        const data = await JSON.parse((localStorage.getItem('user-info_token')))
+        user_id = data
     }
     useEffect(() => {
         getData()

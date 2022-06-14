@@ -34,9 +34,10 @@ const LoginForm = () => {
 			body: JSON.stringify(data)
 		});
 		Result = await Result.json();
-		localStorage.setItem('user-info', JSON.stringify(Result)) 
-		// console.log(Result.result);
-		if(Result.result === true){
+		sessionStorage.setItem('user-info_token', JSON.stringify(Result.access_token)) 
+		localStorage.setItem('user-info', JSON.stringify(Result.user.id)) 
+		// console.log(Result.access_token + Result.user.id);
+		if(Result.access_token){
 			setCredentialError('')
 			navigate('/dashboard');
 		}else{

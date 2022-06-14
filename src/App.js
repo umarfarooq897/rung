@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 import './assets/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js'
 import './assets/css/style.css';
@@ -19,7 +19,7 @@ import Privacy_Policy from "./pages/PrivacyPolicy";
 import Contact from "./pages/Contact";
 import Return from "./pages/Return";
 import Login from './pages/Login';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route,useNavigate,Navigate, NavLink } from "react-router-dom";
 import Register from './pages/Registeration';
 import Dashboard from './pages/Dashboard';
 import ProductFullWidth from './pages/Singelproduct';
@@ -27,11 +27,20 @@ import Cart from './pages/Cart';
 import Whishlist from './pages/Whishlist';
 import Checkout from './pages/checkout';
 import Search from './pages/Search';
+import sessionStorage from 'redux-persist/es/storage/session';
 const Pagename = createContext();
 
-
 function App() {
-
+  var token
+  // const navigate =useNavigate();
+  const Token= async()=>{
+    
+    token= await sessionStorage.getItem('user-info_token') 
+    console.log(token)
+  }
+  useEffect(() => {
+    Token()
+  },[])
   return (
     <>
       <Pagename.Provider value="Shop">
@@ -58,7 +67,10 @@ function App() {
                   <Route exact path="/shipping" element={<Shipping />} />
                   <Route exact path="/privacypolicy" element={<Privacy_Policy />} />
                   <Route exact path="/signup" element={<Register />} />
-                  <Route exact path="/dashboard" element={<Dashboard />} />
+                  
+                  <Route exact path="/dashboard" element={setTimeout((token!=undefined),100)?<Dashboard/>:<Navigate replace to="/login" />} />
+                  {console.log("token",token)}
+                  
                   <Route exact path="/shop/product/catogeroy/fullwidth/:id" element={<ProductFullWidth />} />
                   <Route exact path="/cart" element={<Cart/>} />
                   <Route exact path="/whishlist" element={<Whishlist/>} />

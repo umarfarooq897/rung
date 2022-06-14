@@ -11,7 +11,7 @@ const CategoriesSection = () => {
 		const data = await response.json();
 		var insidData = data.data;
 		SetCatagories(insidData);
-		// console.log(insidData);
+		console.log("dataa",insidData);
 		// localStorage.setItem("catgeroiesData",JSON.stringify(insidData))
 	}
 	useEffect(() => {

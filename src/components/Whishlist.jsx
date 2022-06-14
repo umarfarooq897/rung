@@ -8,7 +8,7 @@ const Whishlist_content = (props) => {
     var user_id;
     const getData = async () => {
         const data = await JSON.parse((localStorage.getItem('user-info')))
-        user_id = data.user.id
+        user_id = data
     }
     useEffect(() => {
         getData()
@@ -19,7 +19,7 @@ const Whishlist_content = (props) => {
                 const data = { user_id }
                 // console.log(user_id)
                 // https://cors-anywhere.herokuapp.com/
-                let Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-list ', {
+                let Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-list ', {
                     method: 'POST',
                     body: JSON.stringify(data),
                     headers: {
@@ -47,7 +47,7 @@ const Whishlist_content = (props) => {
         const data = {product_id,user_id}
         // console.log(user_id)
         // https://cors-anywhere.herokuapp.com/
-        let Result = await fetch(' https://beta.myrung.com/b/api/v2/wishlists-remove-product ', {
+        let Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-remove-product ', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
