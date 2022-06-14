@@ -92,12 +92,7 @@ const Related_product = (props) => {
         <>
             <div className="products mb-3">
                 <div className="row justify-content-center">
-                        {Product.filter((item)=>{
-                        if(item.calculable_price>=min && item.calculable_price<=max ){
-                            return item
-                        }
-                    }).map((product, index) => {
-                            
+                        {Product.map((product, index) => {
                             document.getElementById('cat_title').innerText = product.category_name;
                             var cat_name=product.category_name
                             var name=product.name

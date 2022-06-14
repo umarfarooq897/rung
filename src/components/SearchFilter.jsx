@@ -6,20 +6,32 @@ import 'react-toastify/dist/ReactToastify.css';
 const SearchFilter = (props) => {
     // console.warn("product",props.data)
     const [Product, SetProduct] = useState([]);
-    // const [userdata, setUserdata] = useState()
     // const [user_id, setUser_id] = useState()
     var user_id;
-    var productsapilink = "https://beta.myrung.com/b/api/v2/products/search"
+    const location = useLocation()
+    const { searchValue } = location.state;
+    let name = searchValue
+    console.log(name)
+    let searchName = {name}
+    // var productsapilink = "https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/search"
     const getProductApi = async () => {
-        const response = await fetch(productsapilink);
-        const data = await response.json();
-        var productData = data.data;
+        let response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/search",{
+            method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			body: JSON.stringify(searchName)
+        });
+        response = await response.json();
+        var productData = response.data;
+        
         SetProduct(productData);
         console.log(productData)
     }
     useEffect(() => {
         getProductApi();
-    }, []);
+    }, [name]);
     const notify = () => {  
         toast("Item added")
         let cartDrp = document.querySelector(".dropdown-menu")
@@ -76,19 +88,13 @@ const SearchFilter = (props) => {
     const noResult = ()=>{
         return <h1>false</h1>
     }
-    const location = useLocation()
-    const { searchValue } = location.state;
+    
     return (
         <>
             <div className="products mb-3">
                 <div className="row justify-content-center">
                     
-                    {Product.filter((value)=>{
-                        if(value.name.toLowerCase().includes(searchValue.toLowerCase())){
-                            return value
-                        }
-                    })
-                    .map((product, index) => {
+                    {Product.map((product, index) => {
                          document.getElementById('cat_title').innerText = product.category_name;
                          var cat_name=product.category_name
                          var name=product.name

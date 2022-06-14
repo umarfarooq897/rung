@@ -47,7 +47,7 @@ const Sidebar = () => {
 										<span id="filter-price-range"></span>
 									</div>
 									{/* <!-- End .filter-price-text --> */}
-									<Nouislider onSlide={demo} range={{ min: 0, max: 1000 }} start={[20, 580]} connect />
+									{/* <Nouislider onSlide={demo} range={{ min: 0, max: 1000 }} start={[20, 580]} connect /> */}
 									{/* <!-- End #price-slider --> */}
 									
 									
