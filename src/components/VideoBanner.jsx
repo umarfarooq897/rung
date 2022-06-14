@@ -50,7 +50,7 @@ const VideoBanner=()=>{
 
                                                             <div className="product-body">
                                                                 <h3 className="product-title"><a
-                                                                        href="product.html">Rib-knit cardigan</a></h3>
+                                                                        >Rib-knit cardigan</a></h3>
                                                                 {/* <!-- End .product-title --> */}
                                                                 <div className="product-price">
                                                                     $24.99
@@ -75,7 +75,7 @@ const VideoBanner=()=>{
 
                                                             <div className="product-body">
                                                                 <h3 className="product-title"><a
-                                                                        href="product.html">Linen-blend trousers</a>
+                                                                        >Linen-blend trousers</a>
                                                                 </h3>
                                                                 {/* <!-- End .product-title --> */}
                                                                 <div className="product-price">
@@ -113,7 +113,7 @@ const VideoBanner=()=>{
                                         <h4 className="banner-detail">• Rib-knit cardigan <br/>• Linen-blend paper bag
                                             trousers</h4>
                                         <h4 className="banner-price">$19.99 - $48.00</h4>
-                                        <NavLink to='' className="btn btn-outline-primary-2 banner-link">buy all</NavLink>
+                                        <NavLink to='/shop/categories' className="btn btn-outline-primary-2 banner-link">buy all</NavLink>
                                     </div>
                                     {/* <!-- End .banner-content --> */}
                                 </div>

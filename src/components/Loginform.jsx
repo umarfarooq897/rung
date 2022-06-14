@@ -34,9 +34,9 @@ const LoginForm = () => {
 			body: JSON.stringify(data)
 		});
 		Result = await Result.json();
-		sessionStorage.setItem('user-info_token', JSON.stringify({exp: new Date() + 5,token:Result.access_token})) 
+		sessionStorage.setItem('user-info_token', JSON.stringify(Result.access_token)) 
 		localStorage.setItem('user-info', JSON.stringify(Result.user.id)) 
-		console.log(Result.access_token + Result.user.id);
+		// console.log(Result.access_token + Result.user.id);
 		if(Result.access_token){
 			setCredentialError('')
 			navigate('/dashboard');

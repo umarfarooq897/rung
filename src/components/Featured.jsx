@@ -10,9 +10,9 @@ const Featured = (props) => {
 
     const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState([]);
-    // const [userdata, setUserdata] = useState()
-    // const [user_id, setUser_id] = useState();
+    var token
     var user_id;
+    var verifyToken;
     let FeaturedProduct = [];
     var api = 'https://beta.myrung.com/b/api/v2/products/featured';
     // const navigate = useNavigate();
@@ -23,11 +23,18 @@ const Featured = (props) => {
         setProduct(FeaturedProduct)
         setLoading(false)
     }
+    const Token= ()=>{
+        
+        token =  sessionStorage.getItem('user-info_token') 
+        // console.log(setToken)
+    }
+    useEffect(() => {
+        Token()
+        },[])
     useEffect(() => {
         getFeaturedApi()
     }, []);
     const notify = () => {
-
         toast("Item added")
         let cartDrp = document.querySelector(".dropdown-menu")
         cartDrp.style.visibility = "visible"
@@ -44,21 +51,41 @@ const Featured = (props) => {
         toast("Item added into Whishlist")
     };
     const getData = async () => {
-        const data = await JSON.parse((localStorage.getItem('user-info_token')))
+        const data = await JSON.parse((localStorage.getItem('user-info')))
+        // console.logh(data)
         user_id = data
     }
     useEffect(() => {
         getData()
     }, [getData])
+    const loginHandler = async (e) => {
+        console.log("roken",token)
+            let data = {token}
+            // https://cors-anywhere.herokuapp.com/
+            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/auth/verifyToken', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            });
+        Result = await Result.json()
+         verifyToken = Result;
+       
+    
+    }
     const addWhishlistHandler = async (e) => {
-        if (user_id) {
+        // console.log("verify",verifyToken)
+        
+        if (setTimeout((verifyToken),1000)) {
             // console.log(userdata.user.id)
             // setUser_id(userdata.user.id)
             let product_id = e.target.getAttribute("data-id")
             // console.log(user_id)
             let data = { product_id, user_id }
             // https://cors-anywhere.herokuapp.com/
-            var Result = await fetch(' https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
+            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -132,7 +159,7 @@ const Featured = (props) => {
                                     <NavLink to={`/shop/product/catogeroy/fullwidth/${item.id}`} >
                                         <img src={'https://beta.myrung.com/b/public/' + item.thumbnail_image} alt="Product image" className="product-image" />
                                     </NavLink>
-                                    <div className="product-action-vertical">
+                                    <div onClick={loginHandler} className="product-action-vertical">
                                         <a onClick={addWhishlistHandler} data-id={product_id} className="btn-product-icon btn-wishlist btn-expandable" title="Add to wishlist"><span>add to wishlist</span></a>
                                     </div>
                                     {/* <!-- End .product-action --> */}

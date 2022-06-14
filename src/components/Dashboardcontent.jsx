@@ -36,7 +36,8 @@ const Dashboardcontent = ()=>{
 		localStorage.setItem("user-info", JSON.stringify(Result));
     }
     const singoutHandler =() =>{
-        localStorage.removeItem('user-info_token')
+        sessionStorage.removeItem('user-info_token')
+        localStorage.removeItem('user-info')
     }
     return (
         <>

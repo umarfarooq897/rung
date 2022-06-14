@@ -50,7 +50,7 @@ const Header = (props) => {
         // }
         const getData = async () => {
                 const data = await JSON.parse((localStorage.getItem('user-info')))
-                user_id = data.user.id
+                user_id = data
         }
         useEffect(() => {
                 getData()
