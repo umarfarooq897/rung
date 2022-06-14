@@ -62,7 +62,7 @@ const Featured = (props) => {
         console.log("roken",token)
             let data = {token}
             // https://cors-anywhere.herokuapp.com/
-            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/auth/verifyToken', {
+            var Result = await fetch('https://beta.myrung.com/b/api/v2/auth/verifyToken', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -85,7 +85,7 @@ const Featured = (props) => {
             // console.log(user_id)
             let data = { product_id, user_id }
             // https://cors-anywhere.herokuapp.com/
-            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
+            var Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {

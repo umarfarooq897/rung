@@ -10,7 +10,7 @@ const NewArrivel = (props) => {
     const [catData, setCatData] = useState([])
     useEffect(() => {
         const fetchApi = async () => {
-            const catagories = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/categories")
+            const catagories = await fetch("https://beta.myrung.com/b/api/v2/categories")
             const catagoriesData = await catagories.json()
             setCatData(catagoriesData.data)
         }

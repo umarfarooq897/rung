@@ -13,9 +13,9 @@ const SearchFilter = (props) => {
     let name = searchValue
     console.log(name)
     let searchName = {name}
-    // var productsapilink = "https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/search"
+    // var productsapilink = "https://beta.myrung.com/b/api/v2/products/search"
     const getProductApi = async () => {
-        let response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/search",{
+        let response = await fetch("https://beta.myrung.com/b/api/v2/products/search",{
             method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
