@@ -30,7 +30,7 @@ const Featured = (props) => {
     }
     useEffect(() => {
         Token()
-        },[])
+        },[Token])
     useEffect(() => {
         getFeaturedApi()
     }, []);
@@ -58,34 +58,34 @@ const Featured = (props) => {
     useEffect(() => {
         getData()
     }, [getData])
-    const loginHandler = async (e) => {
-        console.log("roken",token)
-            let data = {token}
+    // const loginHandler = async (e) => {
+    //     console.log("roken",token)
+    //         let data = {token}
             // https://cors-anywhere.herokuapp.com/
-            var Result = await fetch('https://beta.myrung.com/b/api/v2/auth/verifyToken', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            });
-        Result = await Result.json()
-         verifyToken = Result;
+    //         var Result = await fetch('https://beta.myrung.com/b/api/v2/auth/verifyToken', {
+    //             method: 'POST',
+    //             body: JSON.stringify(data),
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'Accept': 'application/json'
+    //             }
+    //         });
+    //     Result = await Result.json()
+    //      verifyToken = Result;
        
     
-    }
+    // }
     const addWhishlistHandler = async (e) => {
         // console.log("verify",verifyToken)
-        
-        if (setTimeout((verifyToken),1000)) {
+        console.log(token)
+        if (token!=null) {
             // console.log(userdata.user.id)
             // setUser_id(userdata.user.id)
             let product_id = e.target.getAttribute("data-id")
             // console.log(user_id)
             let data = { product_id, user_id }
             // https://cors-anywhere.herokuapp.com/
-            var Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
+            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -159,7 +159,7 @@ const Featured = (props) => {
                                     <NavLink to={`/shop/product/catogeroy/fullwidth/${item.id}`} >
                                         <img src={'https://beta.myrung.com/b/public/' + item.thumbnail_image} alt="Product image" className="product-image" />
                                     </NavLink>
-                                    <div onClick={loginHandler} className="product-action-vertical">
+                                    <div className="product-action-vertical">
                                         <a onClick={addWhishlistHandler} data-id={product_id} className="btn-product-icon btn-wishlist btn-expandable" title="Add to wishlist"><span>add to wishlist</span></a>
                                     </div>
                                     {/* <!-- End .product-action --> */}

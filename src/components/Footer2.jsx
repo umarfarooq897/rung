@@ -1,9 +1,31 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React,{useEffect} from "react";
+import { NavLink,useNavigate } from "react-router-dom";
 import finel_logo from "../assets/images/finellogo-min.png";
 import payaments_img from "../assets/images/payments.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Footer2 = () => {
+    var token
+    const getData = async () => {
+        const data = await JSON.parse((sessionStorage.getItem('user-info_token')))
+        token = data
+}
+const notifywhish = () => {
+    toast("Please Login first")
+};
+useEffect(() => {
+        getData()
+}, [getData])
+const navigate = useNavigate();
+const WhishlistHandler = () => {
+        if (token!=null) {
+                navigate('/whishlist')
+        }
+        else {
+            notifywhish();
+        }
+}
 	return (
 		<>
 			<footer className="footer">
@@ -75,7 +97,7 @@ const Footer2 = () => {
 									<ul className="widget-list">
 										<li><NavLink exact to="/signup">Sign Up</NavLink> </li>
 										<li><NavLink to="/cart">View Cart</NavLink></li>
-										<li><NavLink exact to="/whishlist">My Wishlist</NavLink> </li>
+                                        <li><a style={{ cursor: "pointer" }}  onClick={WhishlistHandler} >My Wishlist</a> </li>
 										{/* <li><a href="#">Track My Order</a></li> */}
 										<li><NavLink exact to="/help">Help</NavLink> </li>
 									</ul>
