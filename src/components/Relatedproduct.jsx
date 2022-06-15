@@ -100,9 +100,7 @@ const Related_product = (props) => {
                             var currency_symbol = product.currency_symbol
                             var image = product.thumbnail_image
                             var product_id = product.id
-                            console.log(min)
-                            console.log(max)
-                            {if(calculable_price>=min && calculable_price<=max  )
+                           
                         // console.log(calculable_price)
                          return (
                              <>
@@ -158,7 +156,7 @@ const Related_product = (props) => {
                                 </div>
                                 </>
                                 );
-                            }
+                            
 
                     })}
                     {/* <!-- End .col-sm-6 --> */}
