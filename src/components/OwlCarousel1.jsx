@@ -25,7 +25,6 @@ const OwlCarousel1 = () => {
             <OwlCarousel className='owl-theme' dots={false} items={1} loop autoPlay={true} autoplaySpeed="200" nav={false} >
                 {Banners ? Banners.map((item, i) => {
                     {/* var background1 = "https://alpha.techcon.com.pk/rung_backend/public/" + item.photo; */}
-                    {/* console.log(item); */}
                     return (
                         <>
                     

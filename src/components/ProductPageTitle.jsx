@@ -5,9 +5,7 @@ import Title_img from '../assets/images/page-header-bg.jpg';
 
 const ProductPageTitle = () => {
     var path = window.location.pathname;
-    // console.log(path);
     var splitUrl = path.split('/');
-    // console.log(splitUrl);
     const nthElement = (splitUrl, n = 0) => (n > 0 ? splitUrl.slice(n, n + 1) : splitUrl.slice(n))[0];
     var Page_Title = nthElement(splitUrl, -2);
 

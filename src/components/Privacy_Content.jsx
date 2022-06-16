@@ -19,7 +19,6 @@ const PrivacyContent =() =>{
             	<div className="categories-page">
 	                <div className="container">
                     { PrivacyData.map((data, i) => {
-                       {/* console.log(data); */}
                        return data.content;
                     
                    })}

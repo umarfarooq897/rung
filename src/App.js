@@ -39,16 +39,12 @@ function App() {
 
         <BrowserRouter>
           <Routes>
-            {/* <Route > */}
             <Route exact index element={<Home />} />
             <Route exact path="/about" element={<AboutUs />} />
-            {/* navbar={'Product Catagory'} page={'Shop'} title={'Categories'} */}
             <Route exact path="/shop/categories" element={<Catagory />} />
-            {/* page={'Shop'} title={'Shop'} */}
             <Route exact path="/shop" element={<Shop />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
-            {/* navbar={'List'} page={'Shop'} title={'Categories'}   */}
             <Route path="/shop/product/catogeroy/:id" element={<Products />} />
             <Route exact path="/faq" element={<Faq />} />
             <Route exact path="/help" element={<Help />} />
@@ -63,15 +59,11 @@ function App() {
             <PrivateRoute>
               <Dashboard/>
             </PrivateRoute>} />
-            {/* <Route exact path="/dashboard" element={setTimeout((token!=null),100)?<Dashboard/>:<Navigate replace to="/login" />} /> */}
-            {/* {console.log("token",token)} */}
             <Route exact path="/shop/product/catogeroy/fullwidth/:id" element={<ProductFullWidth />} />
             <Route exact path="/cart" element={<Cart />} />
             <Route exact path="/whishlist" element={<Whishlist />} />
             <Route exact path="/checkout" element={<Checkout />} />
             <Route exact path="/Search" element={<Search />} />
-            {/* <Route path="*" element={<NoPage />} />  */}
-            {/* </Route> */}
           </Routes>
         </BrowserRouter>
 

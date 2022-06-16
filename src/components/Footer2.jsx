@@ -26,6 +26,19 @@ const WhishlistHandler = () => {
             notifywhish();
         }
 }
+const loginHandler  = () => {
+    if (token) {
+        // SetLog("Logout")
+        sessionStorage.removeItem('user-info_token')
+        localStorage.removeItem('user-info')
+        navigate('/login')
+    }
+    else{
+        // SetLog("Login")
+        navigate('/login')
+    }
+
+}
 	return (
 		<>
 			<footer className="footer">
@@ -54,15 +67,13 @@ const WhishlistHandler = () => {
 								<div className="widget">
 									<h4 className="widget-title">Quick Links</h4>
 									{/* <!-- End .widget-title --> */}
-
 									<ul className="widget-list">
 										<li><NavLink exact to="/about">About Rung</NavLink></li>
 										{/* <li><a href="#">How to shop on Molla</a></li> */}
 										<li><NavLink exact to="/faq">FAQ</NavLink></li>
-
 										<li><NavLink exact to="/contact">Contact Us</NavLink></li>
-
-										<li><NavLink exact to="/login">Log in</NavLink></li>
+										<li><a onClick={loginHandler} style={{ cursor: "pointer" }} >
+										{sessionStorage.getItem('user-info_token') ? 'Logout' : 'Login'}</a> </li>
 									</ul>
 									{/* <!-- End .widget-list --> */}
 								</div>

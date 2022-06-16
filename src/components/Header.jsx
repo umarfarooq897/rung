@@ -10,9 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Header = (props) => {
-
         const [scroll, setScroll] = useState("")
-
         useEffect(() => {
                 document.addEventListener("scroll", () => {
                         // const scrollCheck = window.scrollY < 100
@@ -24,16 +22,11 @@ const Header = (props) => {
                         }
                 })
         }, [scroll])
-
-
         const [hiddenmenu, setHiddenmenu] = useState(false)
         const navigate = useNavigate();
         var token;
-        console.warn('header1', props)
         var data = props.data.cardData
         const notify = () => toast("Succesfully Deleted from cart");
-        // console.log(data)
-
         const notifynotLogin = () => {
                 toast("Please Login first")
 
@@ -150,7 +143,6 @@ const Header = (props) => {
                                                                         <div className="dropdown-menu dropdown-menu-right">
                                                                                 <div className="dropdown-cart-products">
                                                                                         {data.map((item, index) => {
-                                                                                                console.log(item)
                                                                                                 return (
 
                                                                                                         <div className="product">

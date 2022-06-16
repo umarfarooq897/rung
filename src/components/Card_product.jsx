@@ -8,7 +8,6 @@ const Related_product = () => {
         const data = await response.json();
         var insidData = data.data;
         SetCatagories(insidData);
-        // console.log(insidData);
     }
     useEffect(() => {
         getApi();
@@ -20,7 +19,6 @@ const Related_product = () => {
         const data = await response.json();
         var productData = data.data;
         SetProduct(productData);
-        // console.log(productData);
     }
     useEffect(() => {
         getProductApi();
@@ -30,28 +28,21 @@ const Related_product = () => {
             <div className="products mb-3">
                 <div className="row justify-content-center">
                     {
-
                         Catagaries.map((item, i) => {
                             linksApi = item.links.products;
-                            //apiurl
-                            
-                            console.log(linksApi);
                             var splitApiUrl = linksApi.split('/');
                             const nthElement = (splitApiUrl, n = 0) => (n > 0 ? splitApiUrl.slice(n, n + 1) : splitApiUrl.slice(n))[0];
                             var category_id = nthElement(splitApiUrl, -1);
-                            console.log(category_id);
                             //curnt url
                             var path = window.location.pathname;
                             var splitCurUrl = path.split('/');
                             const nthElementcurnt = (splitCurUrl, n = 0) => (n > 0 ? splitCurUrl.slice(n, n + 1) : splitCurUrl.slice(n))[0];
                             var Page_Title_id = nthElementcurnt(splitCurUrl, -1);
-                            console.log(Page_Title_id);
                             return (
                                 <>
                                 
                                     {Page_Title_id === category_id ? 
                                        Product.map((prod, index) => {
-                                            console.log(item)
                                             return (
                                                 <>
                                                     <div className="col-6">

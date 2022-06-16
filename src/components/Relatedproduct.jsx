@@ -4,7 +4,6 @@ import { ToastContainer , toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Related_product = (props) => {
-    // console.warn("product",props.data)
     const [Product, SetProduct] = useState([]);
     const [min, setMin] = useState()
     const [max, setMax] = useState()
@@ -32,9 +31,7 @@ const Related_product = (props) => {
     }, [max]);
     const priceFilter=async()=>{
         setMin(sessionStorage.getItem('min') )
-        // console.log(min)
         setMax(sessionStorage.getItem('max') )
-        // console.log(max)
     }
     const notify = () => {  
         toast("Item added")
@@ -79,7 +76,6 @@ const Related_product = (props) => {
         }
         Result = await Result.json()
         var Data=Result.is_in_wishlist;
-        // console.log(Data);
         if(Data===true)
         {
             notify_add_whishlist();
@@ -100,8 +96,6 @@ const Related_product = (props) => {
                             var currency_symbol = product.currency_symbol
                             var image = product.thumbnail_image
                             var product_id = product.id
-                            
-                        // console.log(calculable_price)
                          return (
                              <>
                             

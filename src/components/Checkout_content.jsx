@@ -1,6 +1,5 @@
 import React,{useEffect, useState} from "react";
 const Checkout_content=(props)=>{
-	// console.log(props)
     const [name, setName] = useState('');
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
@@ -16,12 +15,10 @@ const Checkout_content=(props)=>{
 	if(props.data.discount){
 	var discounted_price = props.data.discount[0].DiscountetdPrice
 	}
-	// console.log(data)
     const CheckoutHandler= async(e)=>{
         e.preventDefault();
 		// let user_type = "customer"
 		let data = {name,country,city,street_address,state,zip,phone,email,notes,products,user_id}
-		// console.log(event.target.value);
 		// https://cors-anywhere.herokuapp.com/
 		let Result = await fetch('https://beta.myrung.com/b/api/v2/order/store', {
 			method: 'POST',
@@ -36,18 +33,15 @@ const Checkout_content=(props)=>{
     const getData = async () => {
         const data = await JSON.parse((localStorage.getItem('user-info')))
         user_id = data.user.id
-		console.log(user_id)
     }
     useEffect(() => {
         getData()
     }, [getData])
-	// useEffect(() => {
 	products=data.map((item,index)=>{
 		return  {cat_name:item.cat_name,name:item.name,product_id:item.product_id,product_image:item.product_image
 			,quantity:item.quantity,totalprice:item.totalPrice,price:item.Price,tax:0,discount:0,user_id:user_id};
 	})
-// });
-	// console.log(products) 
+
     return(
         <>
                   <div className="page-content">

@@ -19,7 +19,6 @@ const TermsContent =() =>{
             	<div className="categories-page">
 	                <div className="container">
                    { TermData.map((data, i) => {
-                       {/* console.log(data); */}
                        return data.content;
                     
                    })}

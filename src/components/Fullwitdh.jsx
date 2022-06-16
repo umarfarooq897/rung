@@ -4,7 +4,6 @@ import { NavLink, useHistory } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Fullwitdh = (props) => {
-    console.log(props)
     const [Product, SetProduct] = useState([]);
     const [relatedProduct, SetRelatedProduct] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -82,7 +81,6 @@ const Fullwitdh = (props) => {
     const addWhishlistHandler = async (e) => {
         if (user_id) {
             let product_id = e.target.getAttribute("data-id")
-            console.log(e.target.getAttribute("data-id"))
             let data = { product_id, user_id }
             // https://cors-anywhere.herokuapp.com/
             var Result = await fetch(' https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
@@ -115,7 +113,6 @@ const Fullwitdh = (props) => {
                             <div className="product-details-top">
                                 <div className="row">
                                     {Product.map((item, index) => {
-                                        console.log(item) 
                                         var name = item.name
                                         var calculable_price = item.calculable_price
                                         var currency_symbol = item.currency_symbol
@@ -237,7 +234,6 @@ const Fullwitdh = (props) => {
 
 
                                                             <div className="details-action-wrapper">
-                                                                {/* {console.log(product_id)} */}
                                                                 <a onClick={addWhishlistHandler} data-id={product_id} className="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
                                                                 {/* <a href="#" className="btn-product btn-compare" title="Compare"><span>Add to Compare</span></a> */}
                                                             </div>
@@ -467,7 +463,6 @@ const Fullwitdh = (props) => {
                                     <div className="products">
 
                                         {relatedProduct.map((item, index) => {
-                                            {/* console.warn(item.thumbnail_image) */ }
                                           
                                             return (
                                                 <div className="product product-sm">

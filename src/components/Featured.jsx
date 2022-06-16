@@ -25,8 +25,7 @@ const Featured = (props) => {
     }
     const Token= ()=>{
         
-        token =  sessionStorage.getItem('user-info_token') 
-        // console.log(setToken)
+        token =  sessionStorage.getItem('user-info_token')
     }
     useEffect(() => {
         Token()
@@ -52,14 +51,12 @@ const Featured = (props) => {
     };
     const getData = async () => {
         const data = await JSON.parse((localStorage.getItem('user-info')))
-        // console.logh(data)
         user_id = data
     }
     useEffect(() => {
         getData()
     }, [getData])
     // const loginHandler = async (e) => {
-    //     console.log("roken",token)
     //         let data = {token}
             // https://cors-anywhere.herokuapp.com/
     //         var Result = await fetch('https://beta.myrung.com/b/api/v2/auth/verifyToken', {
@@ -76,13 +73,8 @@ const Featured = (props) => {
     
     // }
     const addWhishlistHandler = async (e) => {
-        // console.log("verify",verifyToken)
-        console.log(token)
         if (token!=null) {
-            // console.log(userdata.user.id)
-            // setUser_id(userdata.user.id)
             let product_id = e.target.getAttribute("data-id")
-            // console.log(user_id)
             let data = { product_id, user_id }
             // https://cors-anywhere.herokuapp.com/
             var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
@@ -99,7 +91,6 @@ const Featured = (props) => {
         }
         Result = await Result.json()
         var Data = Result.is_in_wishlist;
-        // console.log(Data);
         if (Data === true) {
             notify_add_whishlist();
         }
@@ -145,7 +136,6 @@ const Featured = (props) => {
                     nav={false} margin={20} autoPlay={true} loop={false} {...options1} >
                     {product ? product.map((item, index) => {
                         var cat_name = item.category_name
-                        {/* console.log(item) */ }
                         var name = item.name
                         var calculable_price = item.calculable_price
                         var currency_symbol = item.currency_symbol

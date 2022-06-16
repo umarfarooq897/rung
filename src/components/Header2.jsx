@@ -29,7 +29,6 @@ const Header2 = (props) => {
     const navigate = useNavigate();
     const notify = () => toast("Succesfully Deleted from cart");
     var token;
-    // console.warn('header', props.data)
     var data = props.data.cardData;
     const notifynotLogin = () => {
         toast("Please Login first")

@@ -18,7 +18,6 @@ const Signup = () =>{
 const addUserHandler = async(event) => {
         event.preventDefault();
 		let data={name,email,password}
-        console.log(data);
         setName('');
         setEmail('');
         setPassword('');
@@ -32,7 +31,6 @@ const addUserHandler = async(event) => {
 			}
 		});
 		Result=await Result.json()
-		// console.warn("Result",Result);
 		localStorage.setItem("user-info", JSON.stringify(Result));
 		if(Result.result === true){
 		notify1()

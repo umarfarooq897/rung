@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Whishlist_content = (props) => {
-    console.log(props)
     const [loading, setLoading] = useState(true);
     const [Product, setProduct] = useState([]);
     var user_id;
@@ -17,7 +16,6 @@ const Whishlist_content = (props) => {
         setTimeout(() => {
             const ShowWhishlist = async () => {
                 const data = { user_id }
-                // console.log(user_id)
                 // https://cors-anywhere.herokuapp.com/
                 let Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-list ', {
                     method: 'POST',
@@ -28,7 +26,6 @@ const Whishlist_content = (props) => {
                     }
                 })
                 Result = await Result.json()
-                // console.log(Result)
                 var Data = Result.data;
                 setProduct(Data)
             }
@@ -43,9 +40,7 @@ const Whishlist_content = (props) => {
     };
     const RemoveWhislist = async (e) => {
         let product_id = e.target.getAttribute("data-id")
-        // console.log(e.target.getAttribute("data-id"))
         const data = {product_id,user_id}
-        // console.log(user_id)
         // https://cors-anywhere.herokuapp.com/
         let Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-remove-product ', {
             method: 'POST',
@@ -56,10 +51,7 @@ const Whishlist_content = (props) => {
             }
         })
         Result = await Result.json()
-        // var Data = Result;
-        // console.log(Result.is_in_wishlist);
         var Data=Result.is_in_wishlist;
-        // console.log(Data);
         if(Data===false)
         {
             notifyremove()
@@ -67,11 +59,7 @@ const Whishlist_content = (props) => {
             document.getElementById('row'+remove_data).style.display = "none"
         }
         else if(Data===true){
-            
         }
-
-
-        // setProduct(Data)
     }
     return (
         <>
@@ -89,14 +77,12 @@ const Whishlist_content = (props) => {
                         </thead>
                         <tbody>
                             {Product ? Product.map((item, index) => {
-                                {/* var whishlist_num= Product.length */}
                                 document.getElementById('whishlist_num').innerText = Product.length;
                                 var cat_name = item.product.category_name
                                 var name = item.product.name
                                 var main_price =item.product.base_price
                                 var image = item.product.thumbnail_image
                                 var product_id = item.product.id
-                                {/* console.log(product_id) */}
                                 return (
                                     <>
                                         <tr id={"row" + product_id} >
@@ -129,7 +115,6 @@ const Whishlist_content = (props) => {
                                                 className="btn btn-block btn-outline-primary-2"><i className="icon-cart-plus"></i>Add to Cart</button>
                                             </a>
                                             </td>
-                                                          {/* {console.log(product_id)} */}
                                             <td className="remove-col"><button onClick={RemoveWhislist} data-id={product_id} className="btn-remove"><i  data-id={product_id} className="icon-close"></i></button></td>
                                         </tr>
                                     </>

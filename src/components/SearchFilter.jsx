@@ -4,14 +4,12 @@ import { ToastContainer , toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const SearchFilter = (props) => {
-    // console.warn("product",props.data)
     const [Product, SetProduct] = useState([]);
     // const [user_id, setUser_id] = useState()
     var user_id;
     const location = useLocation()
     const { searchValue } = location.state;
     let name = searchValue
-    console.log(name)
     let searchName = {name}
     // var productsapilink = "https://beta.myrung.com/b/api/v2/products/search"
     const getProductApi = async () => {
@@ -25,9 +23,7 @@ const SearchFilter = (props) => {
         });
         response = await response.json();
         var productData = response.data;
-        
         SetProduct(productData);
-        console.log(productData)
     }
     useEffect(() => {
         getProductApi();
@@ -76,7 +72,6 @@ const SearchFilter = (props) => {
         }
         Result = await Result.json()
         var Data=Result.is_in_wishlist;
-        // console.log(Data);
         if(Data===true)
         {
             notify_add_whishlist();

@@ -92,7 +92,6 @@ const Cartdata = (props) => {
 	// 	document.getElementById('quantity-' + product_id).value = Number(qty) + 1
 
 	// }
-	// console.warn("cart", props)
 	const notify = () => toast("Succesfully Deleted from cart");
 
 	var data = props.data.cardData
@@ -130,7 +129,6 @@ const Cartdata = (props) => {
 									<tbody>
 
 										{data.map((item, index) => {
-											console.log("dtadaaaaa",item)
 											total=(data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0))
 											data_quantity = item.quantity
 											var product_id = item.product_id
@@ -206,7 +204,6 @@ const Cartdata = (props) => {
 										</form>
 									</div>
 									{/* <!-- End .cart-discount --> */}
-									{/* {console.log(data_quantity)} */}
 									<a id="update" onClick={CoupenHandler} className="btn btn-outline-dark-2"><span>UPDATE CART</span><i className="icon-refresh"></i></a>
 								
 								</div>
@@ -225,9 +222,7 @@ const Cartdata = (props) => {
 										<tbody>
 											<tr className="summary-subtotal">
 												<td>Subtotal:</td>
-												<td> 
-												{/* {console.log("max",totalprice)} */}
-												{/* (( data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:calculable_price), 0) * 10) /100) */}
+												<td>
 												{discounted_price?discounted_price:total}
 												</td>
 											</tr>

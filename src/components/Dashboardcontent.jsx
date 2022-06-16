@@ -11,13 +11,11 @@ const Dashboardcontent = ()=>{
 
     useEffect(()=>{
      const data = JSON.parse((localStorage.getItem('user-info')))
-     setUser_id(data)
-    //  console.log(user_id)	
+     setUser_id(data)	
 	},[])
     const editUserHandler = async(event) => {
         event.preventDefault();
 		let data={name,email,current_password,new_password,confirm_password,user_id}
-        // console.log(data);
         setName('');
         setEmail('');
         setCurrent_password('');

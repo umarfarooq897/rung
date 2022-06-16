@@ -9,19 +9,24 @@ import popuplogo from "../assets/images/popup/newsletter/logo.png";
 import { phoneNumber } from './Testimonial';
 const Fotter = () => {
     var insidData;
-    var value
-    const [Product, SetProduct] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [product,setProduct]=useState([]);
+    
+    var socialapi ="https://beta.myrung.com/b/api/v2/business-settings"
     const newProductApi = async () => {
-        const response = await fetch("https://beta.myrung.com/b/api/v2/categories");
+        const response = await fetch(socialapi);
         const data = await response.json();
-        insidData = data.data;
-        // console.log( Product)
-        SetProduct(insidData);
-        // alert("Helo");
-        // value=Product[57].value;
-        // console.log(insidData[57].value);
-        // localStorage.setItem("catgeroiesData",JSON.stringify(insidData))
-        // { console.warn(insidData[57].value) }
+        insidData = await data;
+        setProduct(insidData) 
+        setLoading(false)
+        // console.log(product)
+        localStorage.setItem("phonenumber",JSON.stringify(insidData[57].value))
+        localStorage.setItem("facbookelink",JSON.stringify(insidData[64].value))
+        localStorage.setItem("twitter_link",JSON.stringify(insidData[65].value))
+        localStorage.setItem("instagram_link",JSON.stringify(insidData[66].value))
+        localStorage.setItem("youtube_link",JSON.stringify(insidData[67].value))
+        // phone= setTimeout((localStorage.getItem("youtube_link")),2000)
+        // { console.warn(insidData)}
     }
     useEffect(() => {
         newProductApi();
@@ -47,6 +52,19 @@ const WhishlistHandler = () => {
         }
 }
 
+const loginHandler  = () => {
+    if (token) {
+        sessionStorage.removeItem('user-info_token')
+        localStorage.removeItem('user-info')
+        navigate('/login')
+    }
+    else{
+        navigate('/login')
+    }
+
+}
+
+
     return (
         <>
             <footer className="footer footer-2">
@@ -60,19 +78,12 @@ const WhishlistHandler = () => {
                                     <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate
                                         magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
                                         porttitor, facilisis luctus, metus. </p>
-
-                                    {/* {insidData.map((item, index) => {
-                                        console.log(item);
-                                        return ( */}
                                     <div className="widget-about-info">
                                         <div className="row">
                                             <div className="col-sm-6 col-md-4">
                                                 <span className="widget-about-title">Got Question? Call us 24/7</span>
-
-
-                                                <a href="tel:123456789"></a>
-
-                                                {console.warn()}
+                                                
+                                                <a href={JSON.parse(localStorage.getItem('phonenumber'))}>{}</a>
                                             </div>
                                             {/* <!-- End .col-sm-6 --> */}
                                             <div className="col-sm-6 col-md-8">
@@ -87,9 +98,6 @@ const WhishlistHandler = () => {
                                         </div>
                                         {/* <!-- End .row --> */}
                                     </div>
-                                    {/* );
-                                    })} */}
-
                                     {/* <!-- End .widget-about-info --> */}
                                 </div>
                                 {/* <!-- End .widget about-widget --> */}
@@ -106,7 +114,7 @@ const WhishlistHandler = () => {
                                         {/* <li><a href="#">How to shop on Molla</a></li> */}
                                         <li><NavLink exact to="/faq">FAQ</NavLink></li>
                                         <li><NavLink exact to="/contact">Contact Us</NavLink></li>
-                                        <li><NavLink exact to="/login">Log in</NavLink></li>
+                                        <li><a onClick={loginHandler} style={{ cursor: "pointer" }} >{sessionStorage.getItem('user-info_token') ? 'Logout' : 'Login'}</a> </li>
 
                                     </ul>
                                     {/* <!-- End .widget-list --> */}
@@ -171,16 +179,16 @@ const WhishlistHandler = () => {
                         {/* <!-- End .footer-menu --> */}
                         <div className="social-icons social-icons-color">
                             <span className="social-label">Social Media</span>
-                            <a href="#" className="social-icon social-facebook" title="Facebook" target="_blank"><i
+                            <a href={JSON.parse(localStorage.getItem("facbookelink"))} className="social-icon social-facebook" title="Facebook" target="_blank">{}<i
                                 className="icon-facebook-f"></i></a>
-                            <a href="#" className="social-icon social-twitter" title="Twitter" target="_blank"><i
+                            <a href={JSON.parse(localStorage.getItem("twitter_link"))} className="social-icon social-twitter" title="Twitter" target="_blank"><i
                                 className="icon-twitter"></i></a>
-                            <a href="#" className="social-icon social-instagram" title="Instagram" target="_blank"><i
+                            <a href={JSON.parse(localStorage.getItem("instagram_link"))} className="social-icon social-instagram" title="Instagram" target="_blank"><i
                                 className="icon-instagram"></i></a>
-                            <a href="#" className="social-icon social-youtube" title="Youtube" target="_blank"><i
+                            <a href={JSON.parse(localStorage.getItem("youtube_link"))} className="social-icon social-youtube" title="Youtube" target="_blank"><i
                                 className="icon-youtube"></i></a>
-                            <a href="#" className="social-icon social-pinterest" title="Pinterest" target="_blank"><i
-                                className="icon-pinterest"></i></a>
+                            {/* <a href="#" className="social-icon social-pinterest" title="Pinterest" target="_blank"><i
+                                className="icon-pinterest"></i></a> */}
                         </div>
                         {/* <!-- End .soial-icons --> */}
                     </div>

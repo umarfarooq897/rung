@@ -18,8 +18,6 @@ const phoneNumber = createContext();
 		const data = await response.json();
 		var insidData = data.data;
 		SetSocialLinks(insidData);
-		// console.log(SocialLinks);
-		// localStorage.setItem("catgeroiesData",JSON.stringify(insidData))
 	}
 	useEffect(() => {
 		getApi();

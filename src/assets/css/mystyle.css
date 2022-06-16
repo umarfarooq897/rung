@@ -167,4 +167,15 @@ input[type=number] {
     
 
 }
-
+@media (max-width:992px) {
+.product .product-action-vertical {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+}
+.product .product-action, .product .product-action {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+}

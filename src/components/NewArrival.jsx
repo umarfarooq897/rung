@@ -61,7 +61,6 @@ const NewArrivel = (props) => {
     const addWhishlistHandler = async (e) => {
 
         if (user_id) {
-            // console.log()
             // setUser_id(userdata.user.id)
             let product_id = e.target.getAttribute("data-id")
             let data = { product_id, user_id }
@@ -80,7 +79,6 @@ const NewArrivel = (props) => {
         }
         Result = await Result.json()
         var Data = Result.is_in_wishlist;
-        // console.log(Data);
         if (Data === true) {
             notify_add_whishlist();
         }
@@ -125,7 +123,6 @@ const NewArrivel = (props) => {
                                     {/* var main_price = item.main_price */ }
                                     var image = item.thumbnail_image
                                     var product_id = item.id
-                                    {/* console.log(background1); */ }
                                     return (
                                         <>
                                             <div className="col-6 col-md-4 col-lg-3">

@@ -11,7 +11,6 @@ const CategoriesSection = () => {
 		const data = await response.json();
 		var insidData = data.data;
 		SetCatagories(insidData);
-		console.log("dataa",insidData);
 		// localStorage.setItem("catgeroiesData",JSON.stringify(insidData))
 	}
 	useEffect(() => {
@@ -27,7 +26,6 @@ const CategoriesSection = () => {
 								return (
 									<>
 										<div className="col-md-4" key={item.id}>
-											{/* {console.log(item.links)}; */}
 											<div className="banner banner-cat banner-badge">
 
 												<NavLink to={`/shop/product/catogeroy/${item.id}`}  >

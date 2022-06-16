@@ -12,8 +12,6 @@ const Sidebar = () => {
 		setRang(e)
 	   sessionStorage.setItem('min', e[0]);
 	   sessionStorage.setItem('max', e[1]);
-		console.log(rang)
-		console.log(e)
 	}
 	// var a=localStorage.getItem('min')
 	// var b=localStorage.getItem('max')

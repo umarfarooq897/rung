@@ -19,7 +19,6 @@ const Returns_content =() =>{
             	<div className="categories-page">
 	                <div className="container">
                     { ReturnData.map((data, i) => {
-                       {/* console.log(data); */}
                        return data.content;
                     
                    })}
