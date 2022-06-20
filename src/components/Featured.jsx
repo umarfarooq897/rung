@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import OwlCarousel from 'react-owl-carousel';
-// import { useNavigate } from 'react-router-dom';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import { ToastContainer, toast } from 'react-toastify';
@@ -14,8 +13,7 @@ const Featured = (props) => {
     var user_id;
     var verifyToken;
     let FeaturedProduct = [];
-    var api = 'https://beta.myrung.com/b/api/v2/products/featured';
-    // const navigate = useNavigate();
+    var api ='https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/featured';
     const getFeaturedApi = async () => {
         const response = await fetch(api);
         const data = await response.json();
@@ -23,13 +21,13 @@ const Featured = (props) => {
         setProduct(FeaturedProduct)
         setLoading(false)
     }
-    const Token= ()=>{
-        
-        token =  sessionStorage.getItem('user-info_token')
+    const Token = () => {
+
+        token = sessionStorage.getItem('user-info_token')
     }
     useEffect(() => {
         Token()
-        },[Token])
+    }, [Token])
     useEffect(() => {
         getFeaturedApi()
     }, []);
@@ -56,33 +54,19 @@ const Featured = (props) => {
     useEffect(() => {
         getData()
     }, [getData])
-    // const loginHandler = async (e) => {
-    //         let data = {token}
-            // https://cors-anywhere.herokuapp.com/
-    //         var Result = await fetch('https://beta.myrung.com/b/api/v2/auth/verifyToken', {
-    //             method: 'POST',
-    //             body: JSON.stringify(data),
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Accept': 'application/json'
-    //             }
-    //         });
-    //     Result = await Result.json()
-    //      verifyToken = Result;
-       
-    
-    // }
+
     const addWhishlistHandler = async (e) => {
-        if (token!=null) {
+        if (token != null) {
             let product_id = e.target.getAttribute("data-id")
             let data = { product_id, user_id }
-            // https://cors-anywhere.herokuapp.com/
             var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    "Authorization": "Bearer " + token
+
                 }
             });
         }
@@ -123,7 +107,6 @@ const Featured = (props) => {
             },
         },
     };
-
     return (
         <>
             <div className="container">
@@ -141,6 +124,7 @@ const Featured = (props) => {
                         var currency_symbol = item.currency_symbol
                         var image = item.thumbnail_image
                         var product_id = item.id
+
                         var quantity = item.quantity
                         return (
 
@@ -150,7 +134,7 @@ const Featured = (props) => {
                                         <img src={'https://beta.myrung.com/b/public/' + item.thumbnail_image} alt="Product image" className="product-image" />
                                     </NavLink>
                                     <div className="product-action-vertical">
-                                        <a onClick={addWhishlistHandler} data-id={product_id} className="btn-product-icon btn-wishlist btn-expandable" title="Add to wishlist"><span>add to wishlist</span></a>
+                                        {/* <a onClick={addWhishlistHandler} data-id={product_id} className="btn-product-icon btn-wishlist btn-expandable" title="Add to wishlist"><span>add to wishlist</span></a> */}
                                     </div>
                                     {/* <!-- End .product-action --> */}
 
@@ -195,7 +179,7 @@ const Featured = (props) => {
 
                     {/* <!-- End .owl-carousel --> */}
                 </OwlCarousel>
-                
+
             </div>
             <div class="mb-5"></div>
             {/* <!-- End .mb-5 --> */}

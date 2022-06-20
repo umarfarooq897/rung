@@ -32,7 +32,7 @@ const Fullwitdh = (props) => {
     const nthElementcurnt = (splitCurUrl, n = 0) => (n > 0 ? splitCurUrl.slice(n, n + 1) : splitCurUrl.slice(n))[0];
     var Page_Title_id = nthElementcurnt(splitCurUrl, -1);
     // https://cors-anywhere.herokuapp.com/
-    var fullwidthapilink = "https://beta.myrung.com/b/api/v2/products/" + Page_Title_id;
+    var fullwidthapilink = "https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/" + Page_Title_id;
     const getProductApi = async () => {
         const response = await fetch(fullwidthapilink);
         const data = await response.json();
@@ -45,7 +45,7 @@ const Fullwitdh = (props) => {
     }, [reload]);
     const relatedProductApi = async () => {
         // https://cors-anywhere.herokuapp.com/
-        const response = await fetch("https://beta.myrung.com/b/api/v2/products/related/6");
+        const response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/related/6");
         const data = await response.json();
         var insidData = data.data;
         SetRelatedProduct(insidData);

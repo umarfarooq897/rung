@@ -27,7 +27,7 @@ const NewArrivel = (props) => {
     var user_id;
     const newProductApi = async () => {
         // https://cors-anywhere.herokuapp.com/
-        const response = await fetch("https://beta.myrung.com/b/api/v2/products");
+        const response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products");
         const data = await response.json();
         var insidData = data.data;
         SetProduct(insidData);
@@ -65,7 +65,7 @@ const NewArrivel = (props) => {
             let product_id = e.target.getAttribute("data-id")
             let data = { product_id, user_id }
             // https://cors-anywhere.herokuapp.com
-            var Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
+            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {

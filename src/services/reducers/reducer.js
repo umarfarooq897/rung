@@ -27,6 +27,7 @@ export function  cardItem(state=initialState,action){
         };
         // console.warn("reducer",action.data.quantity) ;
         if(action.data.quantity>1){
+          console.log(action.data.quantity)
         return {
             ...state,
             cardData: [...state.cardData, action.data],

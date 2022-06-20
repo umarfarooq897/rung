@@ -11,26 +11,27 @@ const Fotter = () => {
     var insidData;
     const [loading, setLoading] = useState(true);
     const [product,setProduct]=useState([]);
+    const [phone,setPhone]=useState();
     
-    var socialapi ="https://beta.myrung.com/b/api/v2/business-settings"
+    var socialapi ="https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/business-settings"
     const newProductApi = async () => {
         const response = await fetch(socialapi);
         const data = await response.json();
         insidData = await data;
         setProduct(insidData) 
         setLoading(false)
-        // console.log(product)
         localStorage.setItem("phonenumber",JSON.stringify(insidData[57].value))
+        setPhone( localStorage.getItem("phonenumber"))
         localStorage.setItem("facbookelink",JSON.stringify(insidData[64].value))
         localStorage.setItem("twitter_link",JSON.stringify(insidData[65].value))
         localStorage.setItem("instagram_link",JSON.stringify(insidData[66].value))
         localStorage.setItem("youtube_link",JSON.stringify(insidData[67].value))
-        // phone= setTimeout((localStorage.getItem("youtube_link")),2000)
-        // { console.warn(insidData)}
+        // { console.log("hjkj",phone)}
+        // setPhone( localStorage.getItem("phonenumber"))
     }
-    useEffect(() => {
-        newProductApi();
-    }, []);
+    // useEffect(() => {
+    //     newProductApi();
+    // },[] );
     var token
     const getData = async () => {
         const data = await JSON.parse((sessionStorage.getItem('user-info_token')))
@@ -82,8 +83,8 @@ const loginHandler  = () => {
                                         <div className="row">
                                             <div className="col-sm-6 col-md-4">
                                                 <span className="widget-about-title">Got Question? Call us 24/7</span>
-                                                
-                                                <a href={JSON.parse(localStorage.getItem('phonenumber'))}>{}</a>
+                                                { console.log("hjkj",phone)}
+                                                <a href={JSON.parse(localStorage.getItem('phonenumber'))}>{JSON.parse(localStorage.getItem('phonenumber'))}</a>
                                             </div>
                                             {/* <!-- End .col-sm-6 --> */}
                                             <div className="col-sm-6 col-md-8">
