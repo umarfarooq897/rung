@@ -192,10 +192,10 @@ const Fullwitdh = (props) => {
                                                         {/* <!-- End .details-filter-row --> */}
 
                                                         <div className="details-filter-row details-row-size">
-                                                            <label for="size">Size:</label>
+                                                            <label forhtml="size">Size:</label>
                                                             <div className="select-custom">
-                                                                <select name="size" id="size" className="form-control">
-                                                                    <option value="#" selected="selected">Select a size</option>
+                                                                <select name="size" defaultValue="#" id="size" className="form-control">
+                                                                    <option value="#">Select a size</option>
                                                                     <option value="s">Small</option>
                                                                     <option value="m">Medium</option>
                                                                     <option value="l">Large</option>
@@ -207,7 +207,7 @@ const Fullwitdh = (props) => {
                                                         {/* <!-- End .details-filter-row --> */}
                                                        
                                                         <div className="details-filter-row details-row-size">
-                                                            <label for="qty">Qty:</label>
+                                                            <label forhtml="qty">Qty:</label>
                                                             <div className="product-details-quantity" >
                                                                 <div className="input-group-prepend"><button onClick={inputDecrement}  className="btn btn-qantity-mines btn-decrement btn-spinner" type="button">
                                                                     <i className="icon-minus"></i></button>

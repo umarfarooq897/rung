@@ -204,7 +204,7 @@ const Header2 = (props) => {
                                 </span>
                                 <form action="#" method="get" onSubmit={toggleSearch}>
                                     <div className="header-search-wrapper show" >
-                                        <label for="q" className="sr-only">Search</label>
+                                        <label forhtml="q" className="sr-only">Search</label>
                                         <input type="search" className="form-control"  name="q" id="searchBar" placeholder="Search in..." onChange={searchHandle} value={searchValue} required/>
                                     </div>
                                     {/* <!-- End .header-search-wrapper --> */}
@@ -332,7 +332,7 @@ const Header2 = (props) => {
                     <span onClick={() => setHiddenmenu(!hiddenmenu)} className="mobile-menu-close"> <i className="icon-close"></i></span>
 
                     <form action="#" method="get" onSubmit={toggleSearch} className="mobile-search">
-                        <label for="mobile-search" className="sr-only">Search</label>
+                        <label forhtml="mobile-search" className="sr-only">Search</label>
                         <input onChange={searchHandle} value={searchValue} type="search" className="form-control" name="mobile-search" id="mobile-search"
                             placeholder="Search in..." required />
                         <button className="btn btn-primary"> <i className="icon-search"></i>

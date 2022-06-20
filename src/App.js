@@ -36,7 +36,6 @@ function App() {
   const Token= async()=>{
     
     token= await sessionStorage.getItem('user-info_token') 
-    console.log(token)
   }
   useEffect(() => {
     Token()
@@ -69,7 +68,6 @@ function App() {
                   <Route exact path="/signup" element={<Register />} />
                   
                   <Route exact path="/dashboard" element={setTimeout((token!=undefined),100)?<Dashboard/>:<Navigate replace to="/login" />} />
-                  {console.log("token",token)}
                   
                   <Route exact path="/shop/product/catogeroy/fullwidth/:id" element={<ProductFullWidth />} />
                   <Route exact path="/cart" element={<Cart/>} />

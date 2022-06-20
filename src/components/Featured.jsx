@@ -207,7 +207,7 @@ const Featured = (props) => {
                 </OwlCarousel>
                 
             </div>
-            <div class="mb-5"></div>
+            <div className="mb-5"></div>
             {/* <!-- End .mb-5 --> */}
 
         </>

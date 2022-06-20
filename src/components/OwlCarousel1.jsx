@@ -7,7 +7,7 @@ import '../assets/css/style.css';
 const OwlCarousel1 = () => {
     const [loading, setLoading] = useState(true);
     const [Banners, SetBanners] = useState([]);
-    var bannerappi=" https://beta.myrung.com/b/api/v2/sliders";
+    var bannerappi="https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/sliders";
     const sliderApi = async () => {
         const response = await fetch(bannerappi);
         const data = await response.json();

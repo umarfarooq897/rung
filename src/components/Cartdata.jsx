@@ -130,7 +130,6 @@ const Cartdata = (props) => {
 									<tbody>
 
 										{data.map((item, index) => {
-											console.log("dtadaaaaa",item)
 											total=(data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0))
 											data_quantity = item.quantity
 											var product_id = item.product_id
@@ -241,7 +240,7 @@ const Cartdata = (props) => {
 												<td>
 													<div className="custom-control custom-radio">
 														<input type="radio" id="free-shipping" name="shipping" className="custom-control-input" />
-														<label className="custom-control-label" for="free-shipping">Free Shipping</label>
+														<label className="custom-control-label" forhtml="free-shipping">Free Shipping</label>
 													</div>
 													{/* <!-- End .custom-control --> */}
 												</td>
@@ -253,7 +252,7 @@ const Cartdata = (props) => {
 												<td>
 													<div className="custom-control custom-radio">
 														<input type="radio" id="standart-shipping" name="shipping" className="custom-control-input" />
-														<label className="custom-control-label" for="standart-shipping">Standart:</label>
+														<label className="custom-control-label" forhtml="standart-shipping">Standart:</label>
 													</div> */}
 													{/* <!-- End .custom-control --> */}
 												{/* </td>
@@ -265,7 +264,7 @@ const Cartdata = (props) => {
 												<td>
 													<div className="custom-control custom-radio">
 														<input type="radio" id="express-shipping" name="shipping" className="custom-control-input" />
-														<label className="custom-control-label" for="express-shipping">Express:</label>
+														<label className="custom-control-label" forhtml="express-shipping">Express:</label>
 													</div> */}
 													{/* <!-- End .custom-control --> */}
 												{/* </td>

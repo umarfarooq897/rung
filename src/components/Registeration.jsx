@@ -60,18 +60,18 @@ const addUserHandler = async(event) => {
 							    <div className="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
 							    	<form action="#" onSubmit={addUserHandler}>
 							    		<div className="form-group">
-							    			<label for="register-name-2">Enter Name *</label>
+							    			<label forhtml="register-name-2">Enter Name *</label>
 							    			<input type="text" value={name} onChange={(e)=>setName(e.target.value)} className="form-control" id="register-name-2" name="name" required />
 							    		</div>
                                         {/* <!-- End .form-group --> */}
 							    		<div className="form-group">
-							    			<label for="register-email-2">Enter email address *</label>
+							    			<label forhtml="register-email-2">Enter email address *</label>
 							    			<input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} className="form-control" id="register-email-2" name="email" required />
 							    		</div>
                                         {/* <!-- End .form-group --> */}
 
 							    		<div className="form-group">
-							    			<label for="register-password-2">Password *</label>
+							    			<label forhtml="register-password-2">Password *</label>
 							    			<input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} className="form-control" id="register-password-2" name="password" required />
 							    		</div>
                                         {/* <!-- End .form-group --> */}
@@ -84,7 +84,7 @@ const addUserHandler = async(event) => {
 
 			                				<div className="custom-control custom-checkbox">
 												<input type="checkbox" className="custom-control-input" id="register-policy-2" required />
-												<label className="custom-control-label" for="register-policy-2">I agree to the <a href="#">privacy policy</a> *</label>
+												<label className="custom-control-label" forhtml="register-policy-2">I agree to the <a href="#">privacy policy</a> *</label>
 											</div>
                                             {/* <!-- End .custom-checkbox --> */}
 							    		</div>
