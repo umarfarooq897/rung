@@ -15,7 +15,7 @@ const SearchFilter = (props) => {
     let searchName = {name}
     // var productsapilink = "https://beta.myrung.com/b/api/v2/products/search"
     const getProductApi = async () => {
-        let response = await fetch("https://beta.myrung.com/b/api/v2/products/search",{
+        let response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/search",{
             method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -48,13 +48,13 @@ const SearchFilter = (props) => {
     const notify_add_whishlist = () => {
         toast("Item added into Whishlist")
     };
-    const getData = async () => {
-        const data = await JSON.parse((localStorage.getItem('user-info')))
-        user_id = data.user.id
-    }
-    useEffect(() => {
-        getData()
-    }, [getData])
+    // const getData = async () => {
+    //     const data = await JSON.parse((localStorage.getItem('user-info')))
+    //     user_id = data.user.id
+    // }
+    // useEffect(() => {
+    //     getData()
+    // }, [getData])
 
     const addWhishlistHandler = async (e) => {
         if (user_id) {
@@ -62,7 +62,7 @@ const SearchFilter = (props) => {
             let product_id = e.target.getAttribute("data-id")
             let data = {product_id,user_id}
             // https://cors-anywhere.herokuapp.com/
-            var Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
+            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {

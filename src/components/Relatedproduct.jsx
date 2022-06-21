@@ -88,6 +88,17 @@ const Related_product = (props) => {
 
         }
     }
+    const [popId, setPopId] = useState()
+    const [showpopup, setShowPopup] = useState()
+    const quickView = (e)=>{
+        setPopId(e)
+        console.log(popId)
+        setShowPopup("d-block")
+    }
+    const hidePopup = ()=>{
+        setShowPopup("d-none")
+
+    }
     return (
         <>
             <div className="products mb-3">
@@ -114,7 +125,7 @@ const Related_product = (props) => {
                                             </NavLink>
                                             <div className="product-action-vertical">
                                                 <NavLink to='' onClick={addWhishlistHandler} data-id={product_id} className="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></NavLink>
-                                                <NavLink to='' className="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></NavLink>
+                                                <div onClick={()=>{quickView(product_id)}} className="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></div>
                                                 {/* <NavLink to='' className="btn-product-icon btn-compare" title="Compare"><span>Compare</span></NavLink> */}
                                             </div>
                                             <ToastContainer />
@@ -168,9 +179,12 @@ const Related_product = (props) => {
                 {/* <!-- End .row --> */}
             </div>
 
+            <div onClick={hidePopup} className={"popup-overlay " + showpopup}></div>
+            <div id="quick_view_popup" className={showpopup}>
+                <div onClick={hidePopup} className="close-btn"><i className="icon-close"></i></div>
+                <QuickViewPopup itemId={popId} />
+            </div>
 
-
-           <QuickViewPopup/>
 
         </>
     );

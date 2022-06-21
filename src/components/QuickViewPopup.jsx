@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const QuickViewPopup = (props) => {
-    console.log(props)
+
+    console.log("prop value", props)
     const [Product, SetProduct] = useState([]);
     const [loading, setLoading] = useState(true);
     var [Value, setValue] = useState(1);
@@ -25,12 +26,9 @@ const QuickViewPopup = (props) => {
             setValue(Value + 1)
     }
     var user_id;
-    var path = window.location.pathname;
-    var splitCurUrl = path.split('/');
-    const nthElementcurnt = (splitCurUrl, n = 0) => (n > 0 ? splitCurUrl.slice(n, n + 1) : splitCurUrl.slice(n))[0];
-    var Page_Title_id = nthElementcurnt(splitCurUrl, -1);
+    
     // https://cors-anywhere.herokuapp.com/
-    var fullwidthapilink = "https://beta.myrung.com/b/api/v2/products/" + Page_Title_id;
+    var fullwidthapilink = "https://beta.myrung.com/b/api/v2/products/" + props.itemId;
     const getProductApi = async () => {
         const response = await fetch(fullwidthapilink);
         const data = await response.json();
@@ -40,7 +38,7 @@ const QuickViewPopup = (props) => {
     }
     useEffect(() => {
         getProductApi();
-    }, [reload]);
+    }, [props.itemId]);
 
 
     const notify = () => {
@@ -95,7 +93,7 @@ const QuickViewPopup = (props) => {
     }
     return (
         <>
-            <div className="page-content">
+            <div className="page-content" >
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-xl-10 ">
