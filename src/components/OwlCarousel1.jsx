@@ -4,9 +4,9 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import '../assets/css/style.css';
 import axios from "axios";
-import PlaceholderLoading from 'react-placeholder-loading'
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+// import PlaceholderLoading from 'react-placeholder-loading'
+// import Skeleton from 'react-loading-skeleton'
+// import 'react-loading-skeleton/dist/skeleton.css'
 
 
 const OwlCarousel1 = () => {

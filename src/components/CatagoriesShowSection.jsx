@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useNavigate, useLocation} from "react-router-dom";
 
 
 const CategoriesSection = () => {
@@ -17,6 +17,18 @@ const CategoriesSection = () => {
 		getApi();
 	}, []);
 
+	var itemName;
+	var itemId;
+	const navigate = useNavigate();
+	const toggleCatagory = (id, name) => {
+		itemId = id
+		itemName = name.replace(' ', '');
+		console.log(itemName)
+		navigate(
+			`/shop/product/catogeroy/${itemName}`,
+				{ state: { itemId } })
+}
+
 	
 	return (
 		<>
@@ -29,11 +41,12 @@ const CategoriesSection = () => {
 									<>
 										<div className="col-md-4" key={item.id}>
 											<div className="banner banner-cat banner-badge">
-												<NavLink to={`/shop/product/catogeroy/${item.id}`}  >
+												<div onClick={()=>{toggleCatagory(item.id, item.name)}}  >
+													
 													<img src={"https://beta.myrung.com/b/public/" + item.banner} alt="Banner" />
-												</NavLink>
+												</div>
 
-												<NavLink className="banner-link" to={`/shop/product/catogeroy/${item.id}`}>
+												<div onClick={()=>{toggleCatagory(item.id, item.name)}} className="banner-link" >
 
 													<h3 className="banner-title">{item.name}</h3>
 
@@ -41,7 +54,7 @@ const CategoriesSection = () => {
 													<h4 className="banner-subtitle"> Products</h4>
 													{/* <!-- End .banner-subtitle -->  */}
 													<span className="banner-link-text">Shop Now</span>
-												</NavLink>
+												</div>
 											</div>
 										</div>
 									</>

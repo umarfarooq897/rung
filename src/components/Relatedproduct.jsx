@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import QuickViewPopup from "./QuickViewPopup";
@@ -8,13 +8,16 @@ const Related_product = (props) => {
     const [Product, SetProduct] = useState([]);
     const [min, setMin] = useState()
     const [max, setMax] = useState()
+    const location = useLocation()
+    const { itemId } = location.state;
+    let item_id = itemId
     // const [user_id, setUser_id] = useState()
     var user_id;
-    var path = window.location.pathname;
-    var splitCurUrl = path.split('/');
-    const nthElementcurnt = (splitCurUrl, n = 0) => (n > 0 ? splitCurUrl.slice(n, n + 1) : splitCurUrl.slice(n))[0];
-    var Page_Title_id = nthElementcurnt(splitCurUrl, -1);
-    var productsapilink = " https://beta.myrung.com/b/api/v2/products/category/" + Page_Title_id
+    // var path = window.location.pathname;
+    // var splitCurUrl = path.split('/');
+    // const nthElementcurnt = (splitCurUrl, n = 0) => (n > 0 ? splitCurUrl.slice(n, n + 1) : splitCurUrl.slice(n))[0];
+    // var Page_Title_id = nthElementcurnt(splitCurUrl, -1);
+    var productsapilink = " https://beta.myrung.com/b/api/v2/products/category/" + item_id
     const getProductApi = async () => {
         const response = await fetch(productsapilink);
         const data = await response.json();
