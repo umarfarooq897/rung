@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import React, { useEffect, useState, useContext } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-=======
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
->>>>>>> 8126e6243eb5a214d26e0d8920f3f32ffaac9a74
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Quickviewcontainer from "../container/Quickviewcontainer";
