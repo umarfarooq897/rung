@@ -13,7 +13,7 @@ const Fotter = () => {
     const [product,setProduct]=useState([]);
     const [phone,setPhone]=useState();
     
-    var socialapi ="https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/business-settings"
+    var socialapi ="https://beta.myrung.com/b/api/v2/business-settings"
     const newProductApi = async () => {
         const response = await fetch(socialapi);
         const data = await response.json();

@@ -14,7 +14,7 @@ const phoneNumber = createContext();
  const Testimonial=()=>{
     const [SocialLinks, SetSocialLinks] = useState([]);
 	const getApi = async () => {
-		const response = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/business-settings');
+		const response = await fetch('https://beta.myrung.com/b/api/v2/business-settings');
 		const data = await response.json();
 		var insidData = data.data;
 		SetSocialLinks(insidData);

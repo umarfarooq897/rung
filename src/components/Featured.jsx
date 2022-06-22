@@ -13,7 +13,7 @@ const Featured = (props) => {
     var user_id;
     var verifyToken;
     let FeaturedProduct = [];
-    var api ='https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/featured';
+    var api ='https://beta.myrung.com/b/api/v2/products/featured';
     const getFeaturedApi = async () => {
         const response = await fetch(api);
         const data = await response.json();
@@ -59,7 +59,7 @@ const Featured = (props) => {
         if (token != null) {
             let product_id = e.target.getAttribute("data-id")
             let data = { product_id, user_id }
-            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
+            var Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {

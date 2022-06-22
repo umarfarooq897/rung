@@ -24,7 +24,7 @@ const LoginForm = () => {
 		let user_type = "customer"
 		let data = {user_type ,email, password }
 		// https://cors-anywhere.herokuapp.com/
-		let Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/auth/login', {
+		let Result = await fetch('https://beta.myrung.com/b/api/v2/auth/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
