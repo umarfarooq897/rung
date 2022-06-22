@@ -7,19 +7,18 @@ import '../assets/css/style.css';
 const OwlCarousel1 = () => {
     const [loading, setLoading] = useState(true);
     const [Banners, SetBanners] = useState([]);
-    var bannerappi=" https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/sliders";
+    var bannerappi="https://beta.myrung.com/b/api/v2/sliders";
     const sliderApi = async () => {
         const response = await fetch(bannerappi);
         const data = await response.json();
         var insidData = data.data;
-        console.log(insidData)
         SetBanners(insidData);
         setLoading(false)
         // localStorage.setItem("catgeroiesData",JSON.stringify(insidData))
     }
     useEffect(() => {
         sliderApi();
-    },[]);
+    },[loading]);
     return (<>
         <div>
 
@@ -28,18 +27,18 @@ const OwlCarousel1 = () => {
                     {/* var background1 = "https://alpha.techcon.com.pk/rung_backend/public/" + item.photo; */}
                     {/* console.log(item); */}
                     return (
-                        <>
                     
-                            <div className="intro-slide" style={{ backgroundImage : `url(${'https://beta.myrung.com/b/public/' + item.photo})` }} >
+                            <div key={i} className="intro-slide" style={{ backgroundImage : `url(${'https://beta.myrung.com/b/public/' + item.photo})` }} >
                                 {/* <div className="container intro-content text-center">
                                     <h3 className="intro-subtitle text-white">Limited time only</h3>
+
                                     <h1 className="intro-title text-white">Treat your self</h1>
+
                                     <div className="intro-text text-white">Up to 50% off</div>
+
                                     <a href="category.html" className="btn btn-primary">Shop NOW</a>
                                 </div> */}
                             </div>
-
-                        </>
                     );
 
                 }) : ""

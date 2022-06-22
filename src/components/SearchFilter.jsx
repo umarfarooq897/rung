@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { NavLink, useLocation} from "react-router-dom";
 import { ToastContainer , toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import QuickViewPopup from "./QuickViewPopup";
 const SearchFilter = (props) => {
     // console.warn("product",props.data)
     const [Product, SetProduct] = useState([]);
@@ -62,7 +62,7 @@ const SearchFilter = (props) => {
             let product_id = e.target.getAttribute("data-id")
             let data = {product_id,user_id}
             // https://cors-anywhere.herokuapp.com/
-            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
+            var Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -85,8 +85,16 @@ const SearchFilter = (props) => {
             
         }
     }
-    const noResult = ()=>{
-        return <h1>false</h1>
+    
+    const [popId, setPopId] = useState()
+    const [showpopup, setShowPopup] = useState()
+    const quickView = (e)=>{
+        setPopId(e)
+        console.log(popId)
+        setShowPopup("d-block")
+    }
+    const hidePopup = ()=>{
+        setShowPopup("d-none")
     }
     
     return (
@@ -113,7 +121,7 @@ const SearchFilter = (props) => {
                                                  </NavLink>
                                                  <div className="product-action-vertical">
                                                      <NavLink to='' onClick={addWhishlistHandler} data-id={product_id} className="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></NavLink>
-                                                     <NavLink to='' className="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></NavLink>
+                                                     <div onClick={()=>{quickView(product_id)}} className="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></div>
                                                  </div>
                                                  <ToastContainer/>
                                                  <div onClick={notify}  className="product-action">
@@ -143,7 +151,11 @@ const SearchFilter = (props) => {
                 {/* <!-- End .row --> */}
             </div>
 
-
+            <div onClick={hidePopup} className={"popup-overlay " + showpopup}></div>
+            <div id="quick_view_popup" className={showpopup}>
+                <div onClick={hidePopup} className="close-btn"><i className="icon-close"></i></div>
+                <QuickViewPopup itemId={popId} />
+            </div>
         </>
     );
 }

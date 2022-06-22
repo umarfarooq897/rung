@@ -97,7 +97,6 @@ const Related_product = (props) => {
     }
     const hidePopup = ()=>{
         setShowPopup("d-none")
-
     }
     return (
         <>

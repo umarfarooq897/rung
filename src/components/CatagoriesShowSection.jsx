@@ -11,12 +11,13 @@ const CategoriesSection = () => {
 		const data = await response.json();
 		var insidData = data.data;
 		SetCatagories(insidData);
-		console.log("dataa",insidData);
 		// localStorage.setItem("catgeroiesData",JSON.stringify(insidData))
 	}
 	useEffect(() => {
 		getApi();
 	}, []);
+
+	
 	return (
 		<>
 			<div className="categories-page">
@@ -29,7 +30,6 @@ const CategoriesSection = () => {
 										<div className="col-md-4" key={item.id}>
 											{/* {console.log(item.links)}; */}
 											<div className="banner banner-cat banner-badge">
-
 												<NavLink to={`/shop/product/catogeroy/${item.id}`}  >
 													<img src={"https://beta.myrung.com/b/public/" + item.banner} alt="Banner" />
 												</NavLink>
@@ -39,7 +39,7 @@ const CategoriesSection = () => {
 													<h3 className="banner-title">{item.name}</h3>
 
 													{/* <!-- End .banner-title --> */}
-													<h4 className="banner-subtitle">3 Products</h4>
+													<h4 className="banner-subtitle"> Products</h4>
 													{/* <!-- End .banner-subtitle -->  */}
 													<span className="banner-link-text">Shop Now</span>
 												</NavLink>
