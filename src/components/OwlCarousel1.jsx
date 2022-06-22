@@ -41,17 +41,18 @@ const OwlCarousel1 = () => {
                 {Banners ? Banners.map((item, i) => {
                     {/* var background1 = "https://alpha.techcon.com.pk/rung_backend/public/" + item.photo; */}
                     return (
-                        <>
-                                
-                            {/* <div style={{height:"100vh"}}> */}
-                                {/* {isloading &&<Skeleton count={20} />} */}
-                                <div className="intro-slide" style={{ backgroundImage : `url(${'https://beta.myrung.com/b/public/' + item.photo})` }} >
-                            </div>
-                            {/* </div> */}
-                            
-                            
+                    
+                            <div key={i} className="intro-slide" style={{ backgroundImage : `url(${'https://beta.myrung.com/b/public/' + item.photo})` }} >
+                                {/* <div className="container intro-content text-center">
+                                    <h3 className="intro-subtitle text-white">Limited time only</h3>
 
-                        </>
+                                    <h1 className="intro-title text-white">Treat your self</h1>
+
+                                    <div className="intro-text text-white">Up to 50% off</div>
+
+                                    <a href="category.html" className="btn btn-primary">Shop NOW</a>
+                                </div> */}
+                            </div>
                     );
 
                 }) : ""

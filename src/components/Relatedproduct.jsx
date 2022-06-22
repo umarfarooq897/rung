@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { ToastContainer , toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import QuickViewPopup from "./QuickViewPopup";
 
 const Related_product = (props) => {
     const [Product, SetProduct] = useState([]);
@@ -29,11 +30,13 @@ const Related_product = (props) => {
     useEffect(() => {
         priceFilter();
     }, [max]);
-    const priceFilter=async()=>{
-        setMin(sessionStorage.getItem('min') )
-        setMax(sessionStorage.getItem('max') )
+    const priceFilter = async () => {
+        setMin(sessionStorage.getItem('min'))
+        // console.log(min)
+        setMax(sessionStorage.getItem('max'))
+        // console.log(max)
     }
-    const notify = () => {  
+    const notify = () => {
         toast("Item added")
         let cartDrp = document.querySelector(".dropdown-menu")
         cartDrp.style.visibility = "visible"
@@ -60,7 +63,7 @@ const Related_product = (props) => {
         if (user_id) {
             // setUser_id(userdata.user.id)
             let product_id = e.target.getAttribute("data-id")
-            let data = {product_id,user_id}
+            let data = { product_id, user_id }
             // https://cors-anywhere.herokuapp.com/
             var Result = await fetch(' https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
@@ -75,30 +78,42 @@ const Related_product = (props) => {
             notifywhish()
         }
         Result = await Result.json()
-        var Data=Result.is_in_wishlist;
-        if(Data===true)
-        {
+        var Data = Result.is_in_wishlist;
+        // console.log(Data);
+        if (Data === true) {
             notify_add_whishlist();
         }
-        else if(Data===false){
-            
+        else if (Data === false) {
+
         }
+    }
+    const [popId, setPopId] = useState()
+    const [showpopup, setShowPopup] = useState()
+    const quickView = (e)=>{
+        setPopId(e)
+        console.log(popId)
+        setShowPopup("d-block")
+    }
+    const hidePopup = ()=>{
+        setShowPopup("d-none")
     }
     return (
         <>
             <div className="products mb-3">
                 <div className="row justify-content-center">
-                        {Product.map((product, index) => {
-                            document.getElementById('cat_title').innerText = product.category_name;
-                            var cat_name=product.category_name
-                            var name=product.name
-                            var calculable_price = product.calculable_price
-                            var currency_symbol = product.currency_symbol
-                            var image = product.thumbnail_image
-                            var product_id = product.id
-                         return (
-                             <>
-                            
+                    {Product.map((product, index) => {
+                        document.getElementById('cat_title').innerText = product.category_name;
+                        var cat_name = product.category_name
+                        var name = product.name
+                        var calculable_price = product.calculable_price
+                        var currency_symbol = product.currency_symbol
+                        var image = product.thumbnail_image
+                        var product_id = product.id
+
+                        // console.log(calculable_price)
+                        return (
+                            <>
+
                                 <div className="col-6">
                                     <div className="product product-7 text-center">
                                         <figure className="product-media">
@@ -108,15 +123,19 @@ const Related_product = (props) => {
                                             </NavLink>
                                             <div className="product-action-vertical">
                                                 <NavLink to='' onClick={addWhishlistHandler} data-id={product_id} className="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></NavLink>
-                                                <NavLink to='' className="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></NavLink>
+                                                <div onClick={()=>{quickView(product_id)}} className="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></div>
                                                 {/* <NavLink to='' className="btn-product-icon btn-compare" title="Compare"><span>Compare</span></NavLink> */}
                                             </div>
-                                            <ToastContainer/>
-                                            <div onClick={notify}  className="product-action">
-                                                <a  onClick={()=>{props.addToCartHandler({cat_name:cat_name,name:name,quantity:1,
-                                                 Price:calculable_price, symbol:currency_symbol,
-                                                 product_image:image,product_id:product_id})}}
-                                                 className="btn-product btn-cart"><span>add to cart</span></a>
+                                            <ToastContainer />
+                                            <div onClick={notify} className="product-action">
+                                                <a onClick={() => {
+                                                    props.addToCartHandler({
+                                                        cat_name: cat_name, name: name, quantity: 1,
+                                                        Price: calculable_price, symbol: currency_symbol,
+                                                        product_image: image, product_id: product_id
+                                                    })
+                                                }}
+                                                    className="btn-product btn-cart"><span>add to cart</span></a>
                                             </div>
                                         </figure>
                                         <div className="product-body">
@@ -148,14 +167,20 @@ const Related_product = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                </>
-                                );
-                            
+                            </>
+                        );
+
 
                     })}
                     {/* <!-- End .col-sm-6 --> */}
                 </div>
                 {/* <!-- End .row --> */}
+            </div>
+
+            <div onClick={hidePopup} className={"popup-overlay " + showpopup}></div>
+            <div id="quick_view_popup" className={showpopup}>
+                <div onClick={hidePopup} className="close-btn"><i className="icon-close"></i></div>
+                <QuickViewPopup itemId={popId} />
             </div>
 
 

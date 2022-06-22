@@ -8,11 +8,6 @@ const Sidebar = () => {
 	
 	const [rang ,setRang] = useState([])
 
-	const demo = (e)=>{
-		setRang(e)
-	   sessionStorage.setItem('min', e[0]);
-	   sessionStorage.setItem('max', e[1]);
-	}
 	// var a=localStorage.getItem('min')
 	// var b=localStorage.getItem('max')
 	// console.log(a)
@@ -24,7 +19,7 @@ const Sidebar = () => {
 				<div className="sidebar sidebar-shop">
 					<div className="widget widget-clean">
 						<label>Filters:</label>
-						<a onSlide={demo} href="#" className="sidebar-filter-clear">Clean All</a>
+						<a  href="#" className="sidebar-filter-clear">Clean All</a>
 					</div>
 					{/* <!-- End .widget widget-clean --> */}
 

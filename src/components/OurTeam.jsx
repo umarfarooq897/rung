@@ -11,7 +11,7 @@ import member_8 from "../assets/images/team/about-2/member-8.jpg";
 const Team = () => {
     return (
         <>
-            <div class="page-content pb-3">
+            <div className="page-content pb-3">
                 <div className="bg-light-2 pt-6 pb-7 mb-6">
                     <div className="container">
                         <h2 className="title text-center mb-4">Meet Our Team</h2>

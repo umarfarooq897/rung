@@ -64,29 +64,29 @@ const Contact_content=()=>{
                 			<form action="#" className="contact-form mb-2">
                 				<div className="row">
                 					<div className="col-sm-4">
-                                        <label for="cname" className="sr-only">Name</label>
+                                        <label forhtml="cname" className="sr-only">Name</label>
                 						<input type="text" className="form-control" id="cname" placeholder="Name *" required/>
                 					</div>
                                     {/* <!-- End .col-sm-4 --> */}
 
                 					<div className="col-sm-4">
-                                        <label for="cemail" className="sr-only">Name</label>
+                                        <label forhtml="cemail" className="sr-only">Name</label>
                 						<input type="email" className="form-control" id="cemail" placeholder="Email *" required/>
                 					</div>
                                     {/* <!-- End .col-sm-4 --> */}
 
                 					<div className="col-sm-4">
-                                        <label for="cphone" className="sr-only">Phone</label>
+                                        <label forhtml="cphone" className="sr-only">Phone</label>
                 						<input type="tel" className="form-control" id="cphone" placeholder="Phone"/>
                 					</div>
                                     {/* <!-- End .col-sm-4 --> */}
                 				</div>
                                 {/* <!-- End .row --> */}
 
-                                <label for="csubject" className="sr-only">Subject</label>
+                                <label forhtml="csubject" className="sr-only">Subject</label>
         						<input type="text" className="form-control" id="csubject" placeholder="Subject"/>
 
-                                <label for="cmessage" className="sr-only">Message</label>
+                                <label forhtml="cmessage" className="sr-only">Message</label>
                 				<textarea className="form-control" cols="30" rows="4" id="cmessage" required placeholder="Message *"></textarea>
 								
 								<div className="text-center">

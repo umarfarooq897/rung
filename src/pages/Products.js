@@ -20,13 +20,13 @@ const Products = (props) => {
             <HeaderContainer/>
             {/* page={props.page} navbar={props.navbar} title={props.title} */}
             <ProductPageTitle />
-            <div class="page-content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3">
+            <div className="page-content">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-3">
                             <Sidebar />
                         </div>
-                        <div class="col-lg-9">
+                        <div className="col-lg-9">
                             <Homecontainer />
                         </div>
                     </div>

@@ -30,6 +30,8 @@ const Related_product = () => {
                     {
                         Catagaries.map((item, i) => {
                             linksApi = item.links.products;
+                            //apiurl
+                            
                             var splitApiUrl = linksApi.split('/');
                             const nthElement = (splitApiUrl, n = 0) => (n > 0 ? splitApiUrl.slice(n, n + 1) : splitApiUrl.slice(n))[0];
                             var category_id = nthElement(splitApiUrl, -1);
