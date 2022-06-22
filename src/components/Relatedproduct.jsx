@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 import React, { useEffect, useState, useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+=======
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+>>>>>>> 8126e6243eb5a214d26e0d8920f3f32ffaac9a74
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import QuickViewPopup from "./QuickViewPopup";
+import Quickviewcontainer from "../container/Quickviewcontainer";
 
 const Related_product = (props) => {
     const [Product, SetProduct] = useState([]);
@@ -129,7 +134,7 @@ const Related_product = (props) => {
                                                 <div onClick={()=>{quickView(product_id)}} className="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></div>
                                                 {/* <NavLink to='' className="btn-product-icon btn-compare" title="Compare"><span>Compare</span></NavLink> */}
                                             </div>
-                                            <ToastContainer />
+                                            {/* <ToastContainer /> */}
                                             <div onClick={notify} className="product-action">
                                                 <a onClick={() => {
                                                     props.addToCartHandler({
@@ -183,7 +188,7 @@ const Related_product = (props) => {
             <div onClick={hidePopup} className={"popup-overlay " + showpopup}></div>
             <div id="quick_view_popup" className={showpopup}>
                 <div onClick={hidePopup} className="close-btn"><i className="icon-close"></i></div>
-                <QuickViewPopup itemId={popId} />
+                <Quickviewcontainer itemId={popId} />
             </div>
 
 

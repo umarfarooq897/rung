@@ -228,12 +228,12 @@ const Team = () => {
                         </div>
                         {/* <!-- End .row --> */}
 
-                        <div className="text-center mt-3">
+                        {/* <div className="text-center mt-3">
                             <a href="blog.php" className="btn btn-sm btn-minwidth-lg btn-outline-primary-2">
                                 <span>LETS START WORK</span>
                                 <i className="icon-long-arrow-right"></i>
                             </a>
-                        </div>
+                        </div> */}
                         {/* <!-- End .text-center --> */}
                     </div>
                     {/* <!-- End .container --> */}

@@ -6,7 +6,7 @@ const CategoriesSection = () => {
 	const [Catagaries, SetCatagories] = useState([]);
 	const getApi = async () => {
 		// https://cors-anywhere.herokuapp.com/
-		const response = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/categories');
+		const response = await fetch('https://beta.myrung.com/b/api/v2/categories');
 
 		const data = await response.json();
 		var insidData = data.data;

@@ -13,7 +13,7 @@ const Fotter = () => {
     const [product,setProduct]=useState([]);
     const [phone,setPhone]=useState();
     
-    var socialapi ="https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/business-settings"
+    var socialapi ="https://beta.myrung.com/b/api/v2/business-settings"
     const newProductApi = async () => {
         const response = await fetch(socialapi);
         const data = await response.json();
@@ -230,7 +230,7 @@ const loginHandler  = () => {
             {/* </form>
                             <div className="custom-control custom-checkbox">
                                 <input type="checkbox" className="custom-control-input" id="register-policy-2" required/>
-                                <label className="custom-control-label" forhtml="register-policy-2">Do not show this popup
+                                <label className="custom-control-label" htmlFor="register-policy-2">Do not show this popup
                                     again</label>
                             </div> */}
             {/* <!-- End .custom-checkbox --> */}

@@ -39,7 +39,7 @@ const ShopMainArea=()=>{
 
                 				<div className="toolbox-right">
                 					<div className="toolbox-sort">
-                						<label forhtml="sortby">Sort by:</label>
+                						<label htmlFor="sortby">Sort by:</label>
                 						<div className="select-custom">
 											<select name="sortby" defaultValue="rating" id="sortby" className="form-control">
 												<option value="popularity" >Most Popular</option>
@@ -485,7 +485,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="cat-1"/>
-														<label className="custom-control-label" forhtml="cat-1">Dresses</label>
+														<label className="custom-control-label" htmlFor="cat-1">Dresses</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 													<span className="item-count">3</span>
@@ -495,7 +495,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="cat-2"/>
-														<label className="custom-control-label" forhtml="cat-2">T-shirts</label>
+														<label className="custom-control-label" htmlFor="cat-2">T-shirts</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 													<span className="item-count">0</span>
@@ -505,7 +505,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="cat-3"/>
-														<label className="custom-control-label" forhtml="cat-3">Bags</label>
+														<label className="custom-control-label" htmlFor="cat-3">Bags</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 													<span className="item-count">4</span>
@@ -515,7 +515,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="cat-4"/>
-														<label className="custom-control-label" forhtml="cat-4">Jackets</label>
+														<label className="custom-control-label" htmlFor="cat-4">Jackets</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 													<span className="item-count">2</span>
@@ -525,7 +525,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="cat-5"/>
-														<label className="custom-control-label" forhtml="cat-5">Shoes</label>
+														<label className="custom-control-label" htmlFor="cat-5">Shoes</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 													<span className="item-count">2</span>
@@ -535,7 +535,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="cat-6"/>
-														<label className="custom-control-label" forhtml="cat-6">Jumpers</label>
+														<label className="custom-control-label" htmlFor="cat-6">Jumpers</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 													<span className="item-count">1</span>
@@ -545,7 +545,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="cat-7"/>
-														<label className="custom-control-label" forhtml="cat-7">Jeans</label>
+														<label className="custom-control-label" htmlFor="cat-7">Jeans</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 													<span className="item-count">1</span>
@@ -555,7 +555,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="cat-8"/>
-														<label className="custom-control-label" forhtml="cat-8">Sportwear</label>
+														<label className="custom-control-label" htmlFor="cat-8">Sportwear</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 													<span className="item-count">0</span>
@@ -584,7 +584,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="size-1"/>
-														<label className="custom-control-label" forhtml="size-1">XS</label>
+														<label className="custom-control-label" htmlFor="size-1">XS</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 												</div>
@@ -593,7 +593,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="size-2"/>
-														<label className="custom-control-label" forhtml="size-2">S</label>
+														<label className="custom-control-label" htmlFor="size-2">S</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 												</div>
@@ -602,7 +602,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" checked id="size-3"/>
-														<label className="custom-control-label" forhtml="size-3">M</label>
+														<label className="custom-control-label" htmlFor="size-3">M</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 												</div>
@@ -611,7 +611,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" checked id="size-4"/>
-														<label className="custom-control-label" forhtml="size-4">L</label>
+														<label className="custom-control-label" htmlFor="size-4">L</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 												</div>
@@ -620,7 +620,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="size-5"/>
-														<label className="custom-control-label" forhtml="size-5">XL</label>
+														<label className="custom-control-label" htmlFor="size-5">XL</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 												</div>
@@ -629,7 +629,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="size-6"/>
-														<label className="custom-control-label" forhtml="size-6">XXL</label>
+														<label className="custom-control-label" htmlFor="size-6">XXL</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 												</div>
@@ -659,7 +659,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="brand-1"/>
-														<label className="custom-control-label" forhtml="brand-1">Next</label>
+														<label className="custom-control-label" htmlFor="brand-1">Next</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 												</div>
@@ -668,7 +668,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="brand-2"/>
-														<label className="custom-control-label" forhtml="brand-2">River Island</label>
+														<label className="custom-control-label" htmlFor="brand-2">River Island</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 												</div>
@@ -677,7 +677,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="brand-3"/>
-														<label className="custom-control-label" forhtml="brand-3">Geox</label>
+														<label className="custom-control-label" htmlFor="brand-3">Geox</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 												</div>
@@ -686,7 +686,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="brand-4"/>
-														<label className="custom-control-label" forhtml="brand-4">New Balance</label>
+														<label className="custom-control-label" htmlFor="brand-4">New Balance</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 												</div>
@@ -695,7 +695,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="brand-5"/>
-														<label className="custom-control-label" forhtml="brand-5">UGG</label>
+														<label className="custom-control-label" htmlFor="brand-5">UGG</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 												</div>
@@ -704,7 +704,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="brand-6"/>
-														<label className="custom-control-label" forhtml="brand-6">F&F</label>
+														<label className="custom-control-label" htmlFor="brand-6">F&F</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 												</div>
@@ -713,7 +713,7 @@ const ShopMainArea=()=>{
 												<div className="filter-item">
 													<div className="custom-control custom-checkbox">
 														<input type="checkbox" className="custom-control-input" id="brand-7"/>
-														<label className="custom-control-label" forhtml="brand-7">Nike</label>
+														<label className="custom-control-label" htmlFor="brand-7">Nike</label>
 													</div>
 													{/* <!-- End .custom-checkbox --> */}
 												</div>

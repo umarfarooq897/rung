@@ -2,7 +2,7 @@ import React,{useEffect,useState} from "react";
 const Returns_content =() =>{
     const [ReturnData, SetReturnData] = useState([]);
 	const getReturnApi = async () => {
-		const response = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/policies/return');
+		const response = await fetch('https://beta.myrung.com/b/api/v2/policies/return');
 		const data = await response.json();
 		var insidData = data.data;
 		SetReturnData(insidData);

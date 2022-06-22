@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import backgrounds_cta from '../assets/images/backgrounds/cta/bg-7.jpg';
 const Faqmainara = () =>{
     return(
@@ -252,7 +253,7 @@ const Faqmainara = () =>{
                                 {/* <!-- End .col --> */}
 
                                 <div className="col-auto">
-                                    <a href="contact.php" className="btn btn-outline-white"><span>CONTACT US</span><i className="icon-long-arrow-right"></i></a>
+                                    <NavLink to='/contact' className="btn btn-outline-white"><span>CONTACT US</span><i className="icon-long-arrow-right"></i></NavLink>
                                 </div>
                                 {/* <!-- End .col-auto --> */}
                             </div>

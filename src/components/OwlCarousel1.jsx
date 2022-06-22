@@ -12,7 +12,7 @@ import axios from "axios";
 const OwlCarousel1 = () => {
     const [isloading, setLoading] = useState(true);
     const [Banners, SetBanners] = useState([]);
-    // var bannerappi="https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/sliders";
+    // var bannerappi="https://beta.myrung.com/b/api/v2/sliders";
     // const sliderApi = async () => {
     //     const response = await fetch(bannerappi);
     //     const data = await response.json();
@@ -25,7 +25,7 @@ const OwlCarousel1 = () => {
       
     useEffect(() => {
         // setTimeout(()=>{
-            axios.get("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/sliders")
+            axios.get("https://beta.myrung.com/b/api/v2/sliders")
             .then(res=>{
                 var insidData = res.data.data;
                 SetBanners(insidData);
