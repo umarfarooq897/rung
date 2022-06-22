@@ -189,7 +189,7 @@ const Fullwitdh = (props) => {
                                                         {/* <!-- End .details-filter-row --> */}
 
                                                         <div className="details-filter-row details-row-size">
-                                                            <label forhtml="size">Size:</label>
+                                                            <label htmlFor="size">Size:</label>
                                                             <div className="select-custom">
                                                                 <select name="size" defaultValue="#" id="size" className="form-control">
                                                                     <option value="#">Select a size</option>
@@ -204,7 +204,7 @@ const Fullwitdh = (props) => {
                                                         {/* <!-- End .details-filter-row --> */}
                                                        
                                                         <div className="details-filter-row details-row-size">
-                                                            <label forhtml="qty">Qty:</label>
+                                                            <label htmlFor="qty">Qty:</label>
                                                             <div className="product-details-quantity" >
                                                                 <div className="input-group-prepend"><button onClick={inputDecrement}  className="btn btn-qantity-mines btn-decrement btn-spinner" type="button">
                                                                     <i className="icon-minus"></i></button>

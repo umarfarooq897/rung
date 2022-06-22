@@ -41,7 +41,7 @@ const QuickViewPopup = (props) => {
     }, [props.itemId]);
 
 
-    const notify = () => {
+    const notifyitem = () => {
         toast("Item added")
         let cartDrp = document.querySelector(".dropdown-menu")
         cartDrp.style.visibility = "visible"
@@ -177,7 +177,7 @@ const QuickViewPopup = (props) => {
                                                         {/* <!-- End .details-filter-row --> */}
 
                                                         <div className="details-filter-row details-row-size">
-                                                            <label forhtml="size">Size:</label>
+                                                            <label htmlFor="size">Size:</label>
                                                             <div className="select-custom">
                                                                 <select name="size" id="size" defaultValue="#" className="form-control">
                                                                     <option value="#" >Select a size</option>
@@ -192,7 +192,7 @@ const QuickViewPopup = (props) => {
                                                         {/* <!-- End .details-filter-row --> */}
 
                                                         <div className="details-filter-row details-row-size">
-                                                            <label forhtml="qty">Qty:</label>
+                                                            <label htmlFor="qty">Qty:</label>
                                                             <div className="product-details-quantity" >
                                                                 <div className="input-group-prepend"><button onClick={inputDecrement} className="btn btn-qantity-mines btn-decrement btn-spinner" type="button">
                                                                     <i className="icon-minus"></i></button>
@@ -207,8 +207,8 @@ const QuickViewPopup = (props) => {
                                                         </div>
                                                         {/* <!-- End .details-filter-row --> */}
 
-                                                        <ToastContainer />
-                                                        <div onClick={notify} className="product-details-action">
+                                                        {/* <ToastContainer /> */}
+                                                        <div onClick={notifyitem} className="product-details-action">
 
                                                             <a onClick={() => {
                                                                 props.addToCartHandler({
@@ -217,7 +217,7 @@ const QuickViewPopup = (props) => {
                                                                 })
                                                             }}
                                                                 className="btn-product btn-cart add_to_cat "><span >add to cart</span></a>
-
+                                                            </div>
 
 
 
@@ -227,7 +227,7 @@ const QuickViewPopup = (props) => {
                                                                 {/* <a href="#" className="btn-product btn-compare" title="Compare"><span>Add to Compare</span></a> */}
                                                             </div>
                                                             {/* <!-- End .details-action-wrapper --> */}
-                                                        </div>
+                                                        
                                                         {/* <!-- End .product-details-action --> */}
 
                                                         <div className="product-details-footer">

@@ -120,7 +120,7 @@ const Header = (props) => {
                                                                         <a href="#" className="search-toggle" role="button"><i className="icon-search"></i></a>
                                                                         <form action="#" method="get" onSubmit={toggleSearch}>
                                                                                 <div className="header-search-wrapper">
-                                                                                        <label forhtml="q" className="sr-only">Search</label>
+                                                                                        <label htmlFor="q" className="sr-only">Search</label>
                                                                                         <input onChange={searchHandle} type="search" className="form-control" name="q" id="q" placeholder="Search product ..." required />
                                                                                         <button className="btn btn-primary" type="submit"><i className="icon-search"></i></button>
                                                                                 </div>
@@ -228,7 +228,7 @@ const Header = (props) => {
                                         <span onClick={() => setHiddenmenu(!hiddenmenu)} className="mobile-menu-close"> <i className="icon-close"></i></span>
 
                                         <form action="#" onSubmit={toggleSearch}  method="get" className="mobile-search">
-                                                <label forhtml="mobile-search" className="sr-only">Search</label>
+                                                <label htmlFor="mobile-search" className="sr-only">Search</label>
                                                 <input onChange={searchHandle} value={searchValue} type="search" className="form-control" name="mobile-search" id="mobile-search"
                                                         placeholder="Search in..." required />
                                                 <button className="btn btn-primary"> <i className="icon-search"></i>

@@ -50,7 +50,7 @@ const Checkout_content=(props)=>{
             			{/* <div className="checkout-discount">
             				<form action="#">
         						<input type="text" className="form-control" required id="checkout-discount-input"/>
-            					<label forhtml="checkout-discount-input" className="text-truncate">Have a coupon? <span>Click here to enter your code</span></label>
+            					<label htmlFor="checkout-discount-input" className="text-truncate">Have a coupon? <span>Click here to enter your code</span></label>
             				</form>
             			</div> */}
                         {/* <!-- End .checkout-discount --> */}
@@ -119,13 +119,13 @@ const Checkout_content=(props)=>{
 
 	        							{/* <div className="custom-control custom-checkbox">
 											<input type="checkbox" className="custom-control-input" id="checkout-create-acc"/>
-											<label className="custom-control-label" forhtml="checkout-create-acc">Create an account?</label>
+											<label className="custom-control-label" htmlFor="checkout-create-acc">Create an account?</label>
 										</div> */}
                                         {/* <!-- End .custom-checkbox --> */}
 
 										{/* <div className="custom-control custom-checkbox">
 											<input type="checkbox" className="custom-control-input" id="checkout-diff-address"/>
-											<label className="custom-control-label" forhtml="checkout-diff-address">Ship to a different address?</label>
+											<label className="custom-control-label" htmlFor="checkout-diff-address">Ship to a different address?</label>
 										</div> */}
                                         {/* <!-- End .custom-checkbox --> */}
 

@@ -75,13 +75,13 @@ const LoginForm = () => {
 								<div className="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
 									<form action="#" onSubmit={loginHandler}>
 										<div className="form-group">
-											<label forhtml="register-email-2">Your email address *</label>
+											<label htmlFor="register-email-2">Your email address *</label>
 											<input type="email" onChange={(e) => setEmail(e.target.value)} className="form-control" id="register-email-2" name="email" required />
 										</div>
 										{/* <!-- End .form-group --> */}
 										{/* <input type="hidden"    id="custId" name="user_type" value="customer" /> */}
 										<div className="form-group">
-											<label forhtml="register-password-2">Password *</label>
+											<label htmlFor="register-password-2">Password *</label>
 											<input type="password" onChange={(e) => setPassword(e.target.value)} className="form-control" id="register-password-2" name="password" required />
 										</div>
 
@@ -97,7 +97,7 @@ const LoginForm = () => {
 
 											{/* <div className="custom-control custom-checkbox">
 												<!--<input type="checkbox" className="custom-control-input" id="register-policy-2" required>-->
-												<label className="" forhtml="register-policy-2"><a href="forget-password.php">forget password?</a> </label>
+												<label className="" htmlFor="register-policy-2"><a href="forget-password.php">forget password?</a> </label>
 											</div> */}
 											{/* <!-- End .custom-checkbox --> */}
 										</div>

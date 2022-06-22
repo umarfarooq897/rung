@@ -236,7 +236,7 @@ const Cartdata = (props) => {
 												<td>
 													<div className="custom-control custom-radio">
 														<input type="radio" id="free-shipping" name="shipping" className="custom-control-input" />
-														<label className="custom-control-label" forhtml="free-shipping">Free Shipping</label>
+														<label className="custom-control-label" htmlFor="free-shipping">Free Shipping</label>
 													</div>
 													{/* <!-- End .custom-control --> */}
 												</td>
@@ -248,7 +248,7 @@ const Cartdata = (props) => {
 												<td>
 													<div className="custom-control custom-radio">
 														<input type="radio" id="standart-shipping" name="shipping" className="custom-control-input" />
-														<label className="custom-control-label" forhtml="standart-shipping">Standart:</label>
+														<label className="custom-control-label" htmlFor="standart-shipping">Standart:</label>
 													</div> */}
 													{/* <!-- End .custom-control --> */}
 												{/* </td>
@@ -260,7 +260,7 @@ const Cartdata = (props) => {
 												<td>
 													<div className="custom-control custom-radio">
 														<input type="radio" id="express-shipping" name="shipping" className="custom-control-input" />
-														<label className="custom-control-label" forhtml="express-shipping">Express:</label>
+														<label className="custom-control-label" htmlFor="express-shipping">Express:</label>
 													</div> */}
 													{/* <!-- End .custom-control --> */}
 												{/* </td>

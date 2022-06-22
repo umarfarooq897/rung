@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState} from "react";
 import { NavLink, useLocation} from "react-router-dom";
 import { ToastContainer , toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import QuickViewPopup from "./QuickViewPopup";
+import Quickviewcontainer from "../container/Quickviewcontainer";
 const SearchFilter = (props) => {
     const [Product, SetProduct] = useState([]);
     // const [user_id, setUser_id] = useState()
@@ -149,7 +149,7 @@ const SearchFilter = (props) => {
             <div onClick={hidePopup} className={"popup-overlay " + showpopup}></div>
             <div id="quick_view_popup" className={showpopup}>
                 <div onClick={hidePopup} className="close-btn"><i className="icon-close"></i></div>
-                <QuickViewPopup itemId={popId} />
+                <Quickviewcontainer itemId={popId} />
             </div>
         </>
     );
