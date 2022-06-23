@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from "react";
+import PaymentMethods from "./PaymentMethods";
 const Checkout_content=(props)=>{
     const [name, setName] = useState('');
     const [country, setCountry] = useState('');
@@ -217,13 +218,7 @@ const Checkout_content=(props)=>{
                                             {/* <!-- End .card --> */}
 
 										    <div className="card">
-										        <div className="card-header" id="heading-3">
-										            <h2 className="card-title">
-										                <a className="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
-										                    Cash on delivery
-										                </a>
-										            </h2>
-										        </div>
+										        <PaymentMethods/>
                                                 {/* <!-- End .card-header --> */}
 										        <div id="collapse-3" className="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
 										            <div className="card-body">Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. 

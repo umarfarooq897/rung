@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-// import Nouislider from "nouislider-react";
-// import "nouislider/distribute/nouislider.css";
+import React, { useEffect, useState } from "react";
+import Nouislider from "nouislider-react";
+import "nouislider/distribute/nouislider.css";
 
 
 
@@ -8,11 +8,16 @@ const Sidebar = () => {
 	
 	const [rang ,setRang] = useState([])
 
+	const demo = (e)=>{
+		setRang(e)
+		localStorage.setItem('min', e[0]);
+		localStorage.setItem('max', e[1]);
+	}
 	// var a=localStorage.getItem('min')
 	// var b=localStorage.getItem('max')
 	// console.log(a)
 	// console.log(b)
-	
+
 	return (
 		<>
 			<aside className=" order-lg-first">
@@ -40,7 +45,7 @@ const Sidebar = () => {
 										<span id="filter-price-range"></span>
 									</div>
 									{/* <!-- End .filter-price-text --> */}
-									{/* <Nouislider onSlide={demo} range={{ min: 0, max: 1000 }} start={[20, 580]} connect /> */}
+									<Nouislider onSlide={demo} range={{ min: 0, max: 1000 }} start={[20, 100]} connect />
 									{/* <!-- End #price-slider --> */}
 									
 									

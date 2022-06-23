@@ -42,7 +42,7 @@ const Header2 = (props) => {
     // }
     // Toastdel_Fo_cart()
     const getData = async () => {
-        const data = await JSON.parse((localStorage.getItem('user-info_token')))
+        const data = await JSON.parse((sessionStorage.getItem('user-info_token')))
         token = data
     }
     useEffect(() => {

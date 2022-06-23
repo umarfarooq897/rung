@@ -42,7 +42,6 @@ function App() {
             <Route exact index element={<Home />} />
             <Route exact path="/about" element={<AboutUs />} />
             <Route exact path="/shop/categories" element={<Catagory />} />
-            <Route exact path="/shop" element={<Shop />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/shop/product/catogeroy/:id" element={<Products />} />

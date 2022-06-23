@@ -4,15 +4,20 @@ import { Outlet, NavLink } from "react-router-dom";
 
 const CategoriesSection = () => {
 	const [Catagaries, SetCatagories] = useState([]);
+	const [Subcatagaries, SetSubCatagories] = useState([]); 
 	const getApi = async () => {
 		// https://cors-anywhere.herokuapp.com/
-		const response = await fetch('https://beta.myrung.com/b/api/v2/categories');
-
+		const response = await fetch(' https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/categories');
 		const data = await response.json();
 		var insidData = data.data;
 		SetCatagories(insidData);
-		// localStorage.setItem("catgeroiesData",JSON.stringify(insidData))
 	}
+	// const getSubApi = async () => {
+	// 	const response = await fetch(' https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/categories');
+	// 	const data = await response.json();
+	// 	var insidData = data.data;
+	// 	SetSubCatagories(insidData);
+	// }
 	useEffect(() => {
 		getApi();
 	}, []);
@@ -25,6 +30,7 @@ const CategoriesSection = () => {
 					<div className="row">
 						{
 							Catagaries.map((item, i) => {
+								console.log(item)
 								return (
 									<>
 										<div className="col-md-4" key={item.id}>

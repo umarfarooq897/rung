@@ -17,7 +17,7 @@ const Whishlist_content = (props) => {
             const ShowWhishlist = async () => {
                 const data = { user_id }
                 // https://cors-anywhere.herokuapp.com/
-                let Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-list ', {
+                let Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-list ', {
                     method: 'POST',
                     body: JSON.stringify(data),
                     headers: {
@@ -42,7 +42,7 @@ const Whishlist_content = (props) => {
         let product_id = e.target.getAttribute("data-id")
         const data = {product_id,user_id}
         // https://cors-anywhere.herokuapp.com/
-        let Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-remove-product ', {
+        let Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-remove-product ', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
