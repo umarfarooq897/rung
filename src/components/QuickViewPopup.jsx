@@ -93,10 +93,10 @@ const QuickViewPopup = (props) => {
     }
     return (
         <>
-            <div className="page-content" >
+            <div className="page-content pb-0" >
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-xl-10 ">
+                        <div className="col-xl-12 ">
                             <div className="product-details-top">
                                 <div className="row">
                                     {Product.map((item, index) => {
@@ -208,45 +208,29 @@ const QuickViewPopup = (props) => {
                                                         {/* <!-- End .details-filter-row --> */}
 
                                                         {/* <ToastContainer /> */}
-                                                        <div onClick={notifyitem} className="product-details-action">
+                                                        <div  className="product-details-action">
 
                                                             <a onClick={() => {
                                                                 props.addToCartHandler({
                                                                     name: name, Price: calculable_price, symbol: currency_symbol, quantity: Value,
                                                                     product_image: image, product_id: product_id,
-                                                                })
+                                                                }); notifyitem()
                                                             }}
                                                                 className="btn-product btn-cart add_to_cat "><span >add to cart</span></a>
-                                                            </div>
-
-
-
                                                             <div className="details-action-wrapper">
                                                                 {/* {console.log(product_id)} */}
                                                                 <a onClick={addWhishlistHandler} data-id={product_id} className="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
                                                                 {/* <a href="#" className="btn-product btn-compare" title="Compare"><span>Add to Compare</span></a> */}
                                                             </div>
+                                                            </div>
+
+
+
                                                             {/* <!-- End .details-action-wrapper --> */}
                                                         
                                                         {/* <!-- End .product-details-action --> */}
 
-                                                        <div className="product-details-footer">
-                                                            <div className="product-cat">
-                                                                <span>Category:</span>
-                                                                <a href="#">Women</a>,
-                                                                <a href="#">Dresses</a>,
-                                                                <a href="#">Yellow</a>
-                                                            </div>
-                                                            {/* <!-- End .product-cat --> */}
-
-                                                            <div className="social-icons social-icons-sm">
-                                                                <span className="social-label">Share:</span>
-                                                                <a href="#" className="social-icon" title="Facebook" target="_blank"><i className="icon-facebook-f"></i></a>
-                                                                <a href="#" className="social-icon" title="Twitter" target="_blank"><i className="icon-twitter"></i></a>
-                                                                <a href="#" className="social-icon" title="Instagram" target="_blank"><i className="icon-instagram"></i></a>
-                                                                <a href="#" className="social-icon" title="Pinterest" target="_blank"><i className="icon-pinterest"></i></a>
-                                                            </div>
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </>

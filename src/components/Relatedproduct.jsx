@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Quickviewcontainer from "../container/Quickviewcontainer";
@@ -23,6 +23,7 @@ const Related_product = (props) => {
         const data = await response.json();
         var productData = data.data;
         SetProduct(productData);
+        console.log(productData)
     }
     useEffect(() => {
         getProductApi();
