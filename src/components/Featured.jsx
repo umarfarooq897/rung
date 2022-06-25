@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import OwlCarousel from 'react-owl-carousel';
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import { ToastContainer, toast } from 'react-toastify';
@@ -181,10 +180,6 @@ const Featured = (props) => {
 
                     {/* <!-- End .owl-carousel --> */}
                 </OwlCarousel>
-                <PayPalScriptProvider options={{ "client-id": "test" }}>
-            <PayPalButtons style={{ layout: "horizontal" }} />
-        </PayPalScriptProvider>
-
             </div>
             <div className="mb-5"></div>
             {/* <!-- End .mb-5 --> */}

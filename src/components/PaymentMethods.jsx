@@ -6,13 +6,14 @@ import {
 } from "@paypal/react-paypal-js";
 
 // This values are the props in the UI
-const amount = "400";
-const currency = "USD";
-const style = {"color":"white"};
 
-const  PaymentMethods = () => {
+const  PaymentMethods = (props) => {
+	var Total=props.total;
+	const amount = Total;
+	const currency = "USD";
+	const style = {"color":"white"};
     // , "card", "paylater"
-	const fundingSources = ["paypal","cash on delivery"];
+	const fundingSources = ["paypal","paylater"];
 	// Remember the amount props is received from the control panel
 	const [selectedFundingSource, setSelectedFundingSource] = useState(
 		fundingSources[0]

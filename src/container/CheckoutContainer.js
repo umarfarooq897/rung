@@ -5,11 +5,11 @@ import { addToCart } from "../services/actions/action";
 
 const mapStateToProps=state=>({
         data: state.cardItem
-})
-const mapDispatchToProps=dispatch=>({
-    addToCartHandler:data=>dispatch(addToCart(data)),
-
-    // {console.warn("container",data)}
-  
-})
+    })
+    const mapDispatchToProps=dispatch=>({
+        addToCartHandler:data=>dispatch(addToCart(data)),
+        
+        // {console.warn("container",data)}
+        
+    })
 export default connect(mapStateToProps,mapDispatchToProps) (Checkout_content) ;

@@ -1,46 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Quickviewcontainer from "../container/Quickviewcontainer";
 import ProductCard from "./ProductCard";
+import Sidebar from "./Shopsidbar";
 
 const Related_product = (props) => {
     const [Product, SetProduct] = useState([]);
     const [isloding, setIsloading] = useState(true);
     const [min, setMin] = useState()
-    const [max, setMax] = useState()
+    const [max, setMax] = useState() 
     const [filterP, setFilter] = useState()
     var user_id;
-    var id
     var path = window.location.pathname;
     var splitCurUrl = path.split('/');
     const nthElementcurnt = (splitCurUrl, n = 0) => (n > 0 ? splitCurUrl.slice(n, n + 1) : splitCurUrl.slice(n))[0];
     var Page_Title_id = nthElementcurnt(splitCurUrl, -1);
-    var productsapilink = " https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/category/" + Page_Title_id
-    const getProductApi = async () => {
-        const response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/category/" + Page_Title_id);
-        const data = await response.json();
-        var productData = data.data;
-        SetProduct(productData);
-        setIsloading(false)
-    }
-    useEffect(() => {
-        getProductApi();
-    }, [min,max]);
-   
-    const priceFilter = async () => {
-        setMin(localStorage.getItem('min'))
-        console.log(min)
-        setMax(localStorage.getItem('max'))
-        console.log(max)
-    }
-    useEffect(() => {
-        priceFilter();
-    }, [min,max]);
+    var id = Page_Title_id;
+    // var productsapilink = " https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/category/" + Page_Title_id
+    // const getProductApi = async () => {
+    //     const response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/category/" + Page_Title_id);
+    //     const data = await response.json();
+    //     var productData = data.data;
+    //     SetProduct(productData);
+    //     setIsloading(false)
+    // }
+    // useEffect(() => {
+    //     getProductApi();
+    // }, []);
+
+    // const priceFilter = async () => {
+    //     setMin(localStorage.getItem('min'))
+    //     setMax(localStorage.getItem('max'))
+    // console.log('min',localStorage.getItem('min'))
+    // console.log('max',max)
+    // }
     // useEffect(() => {
     //     priceFilter();
-    // }, [max]);
+    // }, [localStorage.getItem('min')]);
     const notify = () => {
         toast("Item added")
         let cartDrp = document.querySelector(".dropdown-menu")
@@ -64,15 +61,31 @@ const Related_product = (props) => {
     useEffect(() => {
         getData()
     }, [getData])
-    
+
+    const priceFilter = () => {
+        // You can await here
+        setMin(localStorage.getItem('min'));
+        setMax(localStorage.getItem('max'))
+        // ...
+    }
+    useEffect(() => {
+        priceFilter()
+        setIsloading(false)
+        console.log("pricefilter")
+        
+    }, [isloding])
+    useEffect(() => {
+        filter()
+    }, [isloding])
     const filter = async (e) => {
-        console.log("apicall")
         // setUser_id(userdata.user.id)
         // let product_id = e.target.getAttribute("data-id")
-        console.log("cat",id)
-        let data = { min,max,id}
+        console.log(min)
+        console.log(max)
+        console.log("cat", id)
+        let data = { min, max, id }
         // https://cors-anywhere.herokuapp.com
-        var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/pricefilter ', {
+        var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/pricefilter', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -82,12 +95,11 @@ const Related_product = (props) => {
         });
         Result = await Result.json()
         var productData = Result.data;
-        // console.log(productData)
         setFilter(productData)
     }
-    useEffect(() => {
-        filter()
-    },[])
+
+
+
     const addWhishlistHandler = async (e) => {
         if (user_id) {
             // setUser_id(userdata.user.id)
@@ -118,46 +130,59 @@ const Related_product = (props) => {
     }
     const [popId, setPopId] = useState()
     const [showpopup, setShowPopup] = useState()
-    const quickView = (e)=>{
+    const quickView = (e) => {
         setPopId(e)
         // console.log(popId)
         setShowPopup("d-block")
     }
-    const hidePopup = ()=>{
+    const hidePopup = () => {
         setShowPopup("d-none")
     }
+    // console.log("minnn",min)
     return (
         <>
-            <div className="products mb-3">
-                <div className="row justify-content-center">
-                {Product.map((item, index) => {
-                        document.getElementById('cat_title').innerText = item.category_name;
-                         id = item.category_id
-                         {/* console.log("cat",name) */}
-                    })}
-                    {filterP ?filterP.map((product, index) => {
-                        {/* document.getElementById('cat_title').innerText = product.category_name; */}
-                         {/* cat_name = product.category_name */}
-                         {/* console.log("cat",cat_name) */}
-                        {/* var name = product.name */}
-                        var calculable_price = product.calculable_price
-                        var currency_symbol = product.currency_symbol
-                        var image = product.thumbnail_image
-                        var product_id = product.id
-                        return (
-                            <ProductCard array={product}  />
-                        );
-                    })
-                    :""}
-                    {/* <!-- End .col-sm-6 --> */}
-                </div>
-                {/* <!-- End .row --> */}
-            </div>
+            <div className="page-content">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-3">
+                            <Sidebar />
+                        </div>
+                        <div className="col-lg-9">
+                            <div className="products mb-3">
+                                <div className="row justify-content-center">
+                                    {/* {Product.map((item, index) => {
+                                        document.getElementById('cat_title').innerText = item.category_name;
+                                        id = item.category_id
+                                        {/* console.log("cat",name) */ }
+                                    {/* })} */}
+                                    {filterP ? filterP.map((product, index) => {
+                                        {/* document.getElementById('cat_title').innerText = product.category_name;  */ }
+                                        {/* cat_name = product.category_name */ }
+                                        {/* console.log("cat",cat_name) */ }
+                                        {/* var name = product.name */ }
+                                        var calculable_price = product.calculable_price
+                                        var currency_symbol = product.currency_symbol
+                                        var image = product.thumbnail_image
+                                        var product_id = product.id
+                                        return (
+                                            <ProductCard array={product} />
+                                        );
+                                    })
+                                        : ""}
+                                    {/* <!-- End .col-sm-6 --> */}
+                                </div>
+                                {/* <!-- End .row --> */}
+                            </div>
 
-            <div onClick={hidePopup} className={"popup-overlay " + showpopup}></div>
-            <div id="quick_view_popup" className={showpopup}>
-                <div onClick={hidePopup} className="close-btn"><i className="icon-close"></i></div>
-                <Quickviewcontainer itemId={popId} />
+                            <div onClick={hidePopup} className={"popup-overlay " + showpopup}></div>
+                            <div id="quick_view_popup" className={showpopup}>
+                                <div onClick={hidePopup} className="close-btn"><i className="icon-close"></i></div>
+                                <Quickviewcontainer itemId={popId} />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
 

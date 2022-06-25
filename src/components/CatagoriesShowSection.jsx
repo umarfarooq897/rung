@@ -4,20 +4,15 @@ import { Outlet, NavLink } from "react-router-dom";
 
 const CategoriesSection = () => {
 	const [Catagaries, SetCatagories] = useState([]);
-	const [Subcatagaries, SetSubCatagories] = useState([]); 
 	const getApi = async () => {
 		// https://cors-anywhere.herokuapp.com/
 		const response = await fetch(' https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/categories');
 		const data = await response.json();
 		var insidData = data.data;
+		// console.log(insidData)
 		SetCatagories(insidData);
 	}
-	// const getSubApi = async () => {
-	// 	const response = await fetch(' https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/categories');
-	// 	const data = await response.json();
-	// 	var insidData = data.data;
-	// 	SetSubCatagories(insidData);
-	// }
+
 	useEffect(() => {
 		getApi();
 	}, []);

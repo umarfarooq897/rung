@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from "react";
+import { NavLink,useNavigate } from "react-router-dom";
 import PaymentMethods from "./PaymentMethods";
 const Checkout_content=(props)=>{
     const [name, setName] = useState('');
@@ -10,8 +11,11 @@ const Checkout_content=(props)=>{
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [notes, setNotes] = useState('');
+    const [Gatway, setGateway] = useState();
+	const navigate = useNavigate();
     var products=[]
-	var total
+	var total;
+	var currency;
 	var data = props.data.cardData
 	if(props.data.discount){
 	var discounted_price = props.data.discount[0].DiscountetdPrice
@@ -42,7 +46,20 @@ const Checkout_content=(props)=>{
 		return  {cat_name:item.cat_name,name:item.name,product_id:item.product_id,product_image:item.product_image
 			,quantity:item.quantity,totalprice:item.totalPrice,price:item.Price,tax:0,discount:0,user_id:user_id};
 	})
-
+	const Payments=()=>{
+		navigate('/checkout/payments')
+	}
+	const getGatewaysApi = async () => {
+        const response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/payment_get");
+        const data = await response.json();
+        var productData = data;
+        console.log(productData.paypal)
+        setGateway(productData);
+        // setIsloading(false)
+    }
+    useEffect(() => {
+        getGatewaysApi();
+    }, []);
     return(
         <>
                   <div className="page-content">
@@ -149,6 +166,7 @@ const Checkout_content=(props)=>{
 
 		                					<tbody>
 											{data.map((item,index) =>{
+												currency=item.symbol
 												total=data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0)
 
 												return(
@@ -161,7 +179,7 @@ const Checkout_content=(props)=>{
 										})}
 		                						<tr className="summary-subtotal">
 		                							<td>Subtotal:</td>
-		                							<td>{discounted_price?discounted_price:total}</td>
+		                							<td>{currency}{discounted_price?discounted_price:total}</td>
 		                						</tr>
                                               
 		                						<tr>
@@ -170,7 +188,7 @@ const Checkout_content=(props)=>{
 		                						</tr>
 		                						<tr className="summary-total">
 		                							<td>Total:</td>
-		                							<td>{discounted_price?discounted_price:total}</td>
+		                							<td>{currency}{discounted_price?discounted_price:total}</td>
 		                						</tr>
 										
                                                 {/* <!-- End .summary-total --> */}
@@ -179,74 +197,43 @@ const Checkout_content=(props)=>{
                                         {/* <!-- End .table table-summary --> */}
 
 		                				<div className="accordion-summary" id="accordion-payment">
+										  
 										    {/* <div className="card">
-										        <div className="card-header" id="heading-1">
+										        <div className="card-header" id="heading-3">
 										            <h2 className="card-title">
-										                <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-										                    Direct bank transfer
+										                <a className="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
+										                    Cash on delivery
 										                </a>
 										            </h2>
 										        </div> */}
-                                                {/* <!-- End .card-header --> */}
-										        {/* <div id="collapse-1" className="collapse show" aria-labelledby="heading-1" data-parent="#accordion-payment">
-										            <div className="card-body">
-										                Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
-										            </div> */}
-                                                    {/* <!-- End .card-body --> */}
-										        {/* </div> */}
-                                                {/* <!-- End .collapse --> */}
-										    {/* </div> */}
-                                            {/* <!-- End .card --> */}
-
-										    {/* <div className="card">
-										        <div className="card-header" id="heading-2">
-										            <h2 className="card-title">
-										                <a className="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-										                    Check payments
-										                </a>
-										            </h2>
-										        </div> */}
-                                                {/* <!-- End .card-header --> */}
-										        {/* <div id="collapse-2" className="collapse" aria-labelledby="heading-2" data-parent="#accordion-payment">
-										            <div className="card-body">
-										                Ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. 
-										            </div> */}
-                                                    {/* <!-- End .card-body --> */}
-										        {/* </div> */}
-                                                {/* <!-- End .collapse --> */}
-										    {/* </div> */}
-                                            {/* <!-- End .card --> */}
-
-										    <div className="card">
-										        <PaymentMethods/>
-                                                {/* <!-- End .card-header --> */}
-										        <div id="collapse-3" className="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
+												{/* <!-- End .card-header --> */}
+										        {/* <div id="collapse-3" className="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
 										            <div className="card-body">Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. 
-										            </div>
-                                                    {/* <!-- End .card-body --> */}
-										        </div>
-                                                {/* <!-- End .collapse --> */}
-										    </div>
-                                            {/* <!-- End .card --> */}
-
-										    {/* <div className="card">
+										            </div> */}
+													{/* <!-- End .card-body --> */}
+										        {/* </div> */}
+												{/* <!-- End .collapse --> */}
+										    {/* </div> */}
+											{/* <!-- End .card --> */}
+										{console.log(Gatway)}
+										    <div className="card">
 										        <div className="card-header" id="heading-4">
 										            <h2 className="card-title">
 										                <a className="collapsed" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
 										                    PayPal <small className="float-right paypal-link">What is PayPal?</small>
 										                </a>
 										            </h2>
-										        </div> */}
-                                                {/* <!-- End .card-header --> */}
-										        {/* <div id="collapse-4" className="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
+										        </div>
+												{/* <!-- End .card-header --> */}
+										        <div id="collapse-4" className="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
 										            <div className="card-body">
 										                Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum.
-										            </div> */}
-                                                    {/* <!-- End .card-body --> */}
-										        {/* </div> */}
-                                                {/* <!-- End .collapse --> */}
-										    {/* </div> */}
-                                            {/* <!-- End .card --> */}
+										            </div>
+													{/* <!-- End .card-body --> */}
+										        </div>
+												{/* <!-- End .collapse --> */}
+										    </div>
+											{/* <!-- End .card --> */}
 
 										    {/* <div className="card">
 										        <div className="card-header" id="heading-5">
@@ -257,21 +244,22 @@ const Checkout_content=(props)=>{
 										                </a>
 										            </h2>
 										        </div> */}
-                                                {/* <!-- End .card-header --> */}
+												{/* <!-- End .card-header --> */}
 										        {/* <div id="collapse-5" className="collapse" aria-labelledby="heading-5" data-parent="#accordion-payment">
 										            <div className="card-body"> Donec nec justo eget felis facilisis fermentum.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Lorem ipsum dolor sit ame.
 										            </div> */}
-                                                    {/* <!-- End .card-body --> */}
+													{/* <!-- End .card-body --> */}
 										        {/* </div> */}
-                                                {/* <!-- End .collapse --> */}
+												{/* <!-- End .collapse --> */}
 										    {/* </div> */}
-                                            {/* <!-- End .card --> */}
+											{/* <!-- End .card --> */}
+
 										</div>
                                         {/* <!-- End .accordion --> */}
 
-		                				<button type="submit" className="btn btn-outline-primary-2 btn-order btn-block">
+		                				<button onClick={Payments} type="submit" className="btn btn-outline-primary-2 btn-order btn-block">
 		                					<span className="btn-text">Place Order</span>
-		                					<span className="btn-hover-text">Proceed to Checkout</span>
+		                					<span className="btn-hover-text" >Proceed to Checkout</span>
 		                				</button>
 		                			</div>
                                     {/* <!-- End .summary --> */}

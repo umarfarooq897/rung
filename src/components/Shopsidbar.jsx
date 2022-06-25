@@ -17,7 +17,9 @@ const Sidebar = () => {
 	// var b=localStorage.getItem('max')
 	// console.log(a)
 	// console.log(b)
-
+	// useEffect(()=>{
+	// 	demo()
+	// },[])
 	return (
 		<>
 			<aside className=" order-lg-first">
