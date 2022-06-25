@@ -60,17 +60,19 @@ const Related_product = () => {
     }, [getData])
 
     const priceFilter = () => {
+        console.log("call from chiled")
         setMin(localStorage.getItem('min'));
         setMax(localStorage.getItem('max'));
+        setIsloading(false)
     }
     useEffect(() => {
         priceFilter()
-        setIsloading(false)
     }, [isloding])
     useEffect(() => {
         filter()
     }, [isloding])
     const filter = async (e) => {
+        console.log("filter run")
         let data = { min, max, id }
         // https://cors-anywhere.herokuapp.com
         var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/pricefilter', {
@@ -113,6 +115,10 @@ const Related_product = () => {
         else if (Data === false) {
         }
     }
+    const passfunction=()=>{
+        priceFilter();
+        filter();
+    }
     const [popId, setPopId] = useState()
     const [showpopup, setShowPopup] = useState()
     const quickView = (e) => {
@@ -128,7 +134,7 @@ const Related_product = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-3">
-                            <Sidebar />
+                            <Sidebar callpriceFilterfunction={()=>passfunction()}  />
                         </div>
                         <div className="col-lg-9">
                             <div className="products mb-3">

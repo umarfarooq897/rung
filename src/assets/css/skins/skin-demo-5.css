@@ -13,11 +13,11 @@
   background-color: #c15454 !important; }
 
 a {
-  color: #f30095; }
+  color: #fdcc04 ; }
 
 a:hover,
 a:focus {
-  color: #bf4040; }
+  color: #fdcc04; }
 
 .link-underline {
   box-shadow: 0 1px 0 0 #f30095; }

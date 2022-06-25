@@ -210,6 +210,10 @@ input[type=number] {
     right: 10px;
     cursor: pointer;
 }
+.filter-price-text a{
+    color: #fdcc04 !important;
+    cursor: pointer;
+}
 
 @media (max-width:768px) {
     .product.product-sm .product-title {
