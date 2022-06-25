@@ -16,6 +16,7 @@ const Related_product = (props) => {
     let item_id = itemId
     // const [user_id, setUser_id] = useState()
     var user_id;
+    var id = item_id;
     // var path = window.location.pathname;
     // var splitCurUrl = path.split('/');
     // const nthElementcurnt = (splitCurUrl, n = 0) => (n > 0 ? splitCurUrl.slice(n, n + 1) : splitCurUrl.slice(n))[0];
@@ -78,10 +79,6 @@ const Related_product = (props) => {
         filter()
     }, [isloding])
     const filter = async (e) => {
-        // setUser_id(userdata.user.id)
-        // let product_id = e.target.getAttribute("data-id")
-        console.log(min)
-        console.log(max)
         console.log("cat", id)
         let data = { min, max, id }
         // https://cors-anywhere.herokuapp.com
