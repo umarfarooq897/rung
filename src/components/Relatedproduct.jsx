@@ -10,7 +10,8 @@ const Related_product = (props) => {
     const [Product, SetProduct] = useState([]);
     const [isloding, setIsloading] = useState(true);
     const [min, setMin] = useState()
-    const [max, setMax] = useState()
+    const [max, setMax] = useState() 
+    const [filterP, setFilter] = useState()
     const location = useLocation()
     const { itemId } = location.state;
     let item_id = itemId
