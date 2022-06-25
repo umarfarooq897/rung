@@ -2,24 +2,13 @@ import React, { useEffect, useState } from "react";
 import Nouislider from "nouislider-react";
 import "nouislider/distribute/nouislider.css";
 
-
-
 const Sidebar = () => {
-	
 	const [rang ,setRang] = useState([])
-
 	const demo = (e)=>{
 		setRang(e)
 		localStorage.setItem('min', e[0]);
 		localStorage.setItem('max', e[1]);
 	}
-	// var a=localStorage.getItem('min')
-	// var b=localStorage.getItem('max')
-	// console.log(a)
-	// console.log(b)
-	// useEffect(()=>{
-	// 	demo()
-	// },[])
 	return (
 		<>
 			<aside className=" order-lg-first">
