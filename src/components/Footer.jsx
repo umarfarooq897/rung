@@ -1,69 +1,89 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import finel_logo from "../assets/images/finellogo-min.png";
 import payamentsimg from "../assets/images/payments.png";
-import { NavLink,Link,useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import popup from "../assets/images/popup/newsletter/img-1.jpg";
 import popuplogo from "../assets/images/popup/newsletter/logo.png";
-import { phoneNumber } from './Testimonial';
 const Fotter = () => {
     var insidData;
     const [loading, setLoading] = useState(true);
-    const [product,setProduct]=useState([]);
-    const [phone,setPhone]=useState();
-    
-    var socialapi ="https://beta.myrung.com/b/api/v2/business-settings"
+    const [product, setProduct] = useState([]);
+    var socialapi = "https://beta.myrung.com/b/api/v2/business-settings"
     const newProductApi = async () => {
         const response = await fetch(socialapi);
         const data = await response.json();
-        insidData = await data;
-        setProduct(insidData) 
+        insidData = await data.data;
+        setProduct(insidData)
         setLoading(false)
-        localStorage.setItem("phonenumber",JSON.stringify(insidData[57].value))
-        setPhone( localStorage.getItem("phonenumber"))
-        localStorage.setItem("facbookelink",JSON.stringify(insidData[64].value))
-        localStorage.setItem("twitter_link",JSON.stringify(insidData[65].value))
-        localStorage.setItem("instagram_link",JSON.stringify(insidData[66].value))
-        localStorage.setItem("youtube_link",JSON.stringify(insidData[67].value))
-        // { console.log("hjkj",phone)}
-        // setPhone( localStorage.getItem("phonenumber"))
     }
-    // useEffect(() => {
-    //     newProductApi();
-    // },[] );
+    useEffect(() => {
+        newProductApi();
+    }, []);
     var token
     const getData = async () => {
         const data = await JSON.parse((sessionStorage.getItem('user-info_token')))
         token = data
-}
-const notifywhish = () => {
-    toast("Please Login first")
-};
-useEffect(() => {
+    }
+    const notifywhish = () => {
+        toast("Please Login first")
+    };
+    useEffect(() => {
         getData()
-}, [getData])
-const navigate = useNavigate();
-const WhishlistHandler = () => {
-        if (token!=null) {
-                navigate('/whishlist')
+    }, [getData])
+    const navigate = useNavigate();
+    const WhishlistHandler = () => {
+        if (token != null) {
+            navigate('/whishlist')
         }
         else {
             notifywhish();
         }
-}
-
-const loginHandler  = () => {
-    if (token) {
-        sessionStorage.removeItem('user-info_token')
-        localStorage.removeItem('user-info')
-        navigate('/login')
-    }
-    else{
-        navigate('/login')
     }
 
-}
+    const loginHandler = () => {
+        if (token) {
+            sessionStorage.removeItem('user-info_token')
+            localStorage.removeItem('user-info')
+            navigate('/login')
+        }
+        else {
+            navigate('/login')
+        }
+
+    }
+    var contact_number;
+    var facbook_link;
+    var twiter_link;
+    var instagram_link;
+    var youtube_link;
+    var linkedin_link;
+    {
+        product.map((item, index) => {
+            {
+                if (item.type === "contact_phone") {
+                    contact_number = item.value
+                }
+                else if (item.type === "facebook_link") {
+                    facbook_link = item.value
+                }
+                else if (item.type === "twitter_link") {
+                    twiter_link = item.value
+                }
+                else if (item.type === "instagram_link") {
+                    instagram_link = item.value
+                }
+                else if (item.type === "youtube_link") {
+                    youtube_link = item.value
+                }
+                else if (item.type === "linkedin_link") {
+                    linkedin_link = item.value
+                }
+            }
+
+        })
+    }
 
 
     return (
@@ -83,8 +103,8 @@ const loginHandler  = () => {
                                         <div className="row">
                                             <div className="col-sm-6 col-md-4">
                                                 <span className="widget-about-title">Got Question? Call us 24/7</span>
-                                                { console.log("hjkj",phone)}
-                                                <a href={JSON.parse(localStorage.getItem('phonenumber'))}>{JSON.parse(localStorage.getItem('phonenumber'))}</a>
+
+                                                <a href={contact_number}>{contact_number}</a>
                                             </div>
                                             {/* <!-- End .col-sm-6 --> */}
                                             <div className="col-sm-6 col-md-8">
@@ -151,8 +171,8 @@ const loginHandler  = () => {
                                     <ul className="widget-list">
                                         <li><NavLink exact to="/signup">Sign Up</NavLink> </li>
                                         <li><NavLink exact to="/cart">View Cart</NavLink> </li>
-                                        <li><a style={{ cursor: "pointer" }}  onClick={WhishlistHandler} >My Wishlist</a> </li>
-										{/* <ToastContainer/> */}
+                                        <li><a style={{ cursor: "pointer" }} onClick={WhishlistHandler} >My Wishlist</a> </li>
+                                        {/* <ToastContainer/> */}
                                         {/* <li><a href="#">Track My Order</a></li> */}
                                         <li><NavLink exact to="/help">Help</NavLink> </li>
 
@@ -180,13 +200,13 @@ const loginHandler  = () => {
                         {/* <!-- End .footer-menu --> */}
                         <div className="social-icons social-icons-color">
                             <span className="social-label">Social Media</span>
-                            <a href={JSON.parse(localStorage.getItem("facbookelink"))} className="social-icon social-facebook" title="Facebook" target="_blank">{}<i
+                            <a href={facbook_link} className="social-icon social-facebook" title="Facebook" target="_blank"><i
                                 className="icon-facebook-f"></i></a>
-                            <a href={JSON.parse(localStorage.getItem("twitter_link"))} className="social-icon social-twitter" title="Twitter" target="_blank"><i
+                            <a href={twiter_link} className="social-icon social-twitter" title="Twitter" target="_blank"><i
                                 className="icon-twitter"></i></a>
-                            <a href={JSON.parse(localStorage.getItem("instagram_link"))} className="social-icon social-instagram" title="Instagram" target="_blank"><i
+                            <a href={instagram_link} className="social-icon social-instagram" title="Instagram" target="_blank"><i
                                 className="icon-instagram"></i></a>
-                            <a href={JSON.parse(localStorage.getItem("youtube_link"))} className="social-icon social-youtube" title="Youtube" target="_blank"><i
+                            <a href={youtube_link} className="social-icon social-youtube" title="Youtube" target="_blank"><i
                                 className="icon-youtube"></i></a>
                             {/* <a href="#" className="social-icon social-pinterest" title="Pinterest" target="_blank"><i
                                 className="icon-pinterest"></i></a> */}

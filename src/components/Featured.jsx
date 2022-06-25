@@ -12,7 +12,7 @@ const Featured = (props) => {
     var token
     var user_id;
     var verifyToken;
-    let FeaturedProduct = [];
+    let FeaturedProduct = []; 
     var api ='https://beta.myrung.com/b/api/v2/products/featured';
     const getFeaturedApi = async () => {
         const response = await fetch(api);
@@ -30,7 +30,7 @@ const Featured = (props) => {
     }, [Token])
     useEffect(() => {
         getFeaturedApi()
-    }, []);
+    },[loading]);
     const notify = () => {
         toast("Item added")
         let cartDrp = document.querySelector(".dropdown-menu")
@@ -57,9 +57,10 @@ const Featured = (props) => {
 
     const addWhishlistHandler = async (e) => {
         if (token != null) {
+            // console.log(e.target.getAttribute("data-id"))
             let product_id = e.target.getAttribute("data-id")
-            let data = { product_id, user_id }
-            var Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
+            let data = { product_id }
+            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -134,7 +135,7 @@ const Featured = (props) => {
                                         <img src={'https://beta.myrung.com/b/public/' + item.thumbnail_image} alt="Product image" className="product-image" />
                                     </NavLink>
                                     <div className="product-action-vertical">
-                                        {/* <a onClick={addWhishlistHandler} data-id={product_id} className="btn-product-icon btn-wishlist btn-expandable" title="Add to wishlist"><span>add to wishlist</span></a> */}
+                                        <a onClick={addWhishlistHandler} data-id={product_id} className="btn-product-icon btn-wishlist btn-expandable" title="Add to wishlist"><span>add to wishlist</span></a>
                                     </div>
                                     {/* <!-- End .product-action --> */}
 
@@ -179,7 +180,6 @@ const Featured = (props) => {
 
                     {/* <!-- End .owl-carousel --> */}
                 </OwlCarousel>
-
             </div>
             <div className="mb-5"></div>
             {/* <!-- End .mb-5 --> */}

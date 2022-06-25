@@ -52,7 +52,7 @@ const NewArrivel = (props) => {
         toast("Please Login first")
     };
     const getData = async () => {
-        const data = await JSON.parse((localStorage.getItem('user-info_token')))
+        const data = await JSON.parse((sessionStorage.getItem('user-info_token')))
         user_id = data
     }
     useEffect(() => {
@@ -65,7 +65,7 @@ const NewArrivel = (props) => {
             let product_id = e.target.getAttribute("data-id")
             let data = { product_id, user_id }
             // https://cors-anywhere.herokuapp.com
-            var Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
+            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {

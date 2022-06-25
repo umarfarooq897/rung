@@ -7,7 +7,7 @@ import Footer2 from '../components/Footer2';
 import Navigation from "../components/Pagenavigation";
 import Sidebar from "../components/Shopsidbar";
 import Related_product from "../components/Relatedproduct";
-import Homecontainer from "../container/Homecontainer";
+// import Homecontainer from "../container/Homecontainer";
 import SearchContainer from "../container/SearchContainer";
 import HeaderContainer from "../container/HeaderContainer";
 import SearchFilter from '../components/SearchFilter'

@@ -6,7 +6,7 @@ import '../assets/css/style.css';
 import axios from "axios";
 // import PlaceholderLoading from 'react-placeholder-loading'
 // import Skeleton from 'react-loading-skeleton'
-// import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 const OwlCarousel1 = () => {
@@ -25,7 +25,7 @@ const OwlCarousel1 = () => {
       
     useEffect(() => {
         // setTimeout(()=>{
-            axios.get("https://beta.myrung.com/b/api/v2/sliders")
+            axios.get("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/sliders")
             .then(res=>{
                 var insidData = res.data.data;
                 SetBanners(insidData);
