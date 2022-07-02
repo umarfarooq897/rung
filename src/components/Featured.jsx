@@ -11,6 +11,7 @@ const Featured = (props) => {
     const [product, setProduct] = useState([]);
     var token
     var user_id;
+    var Value=1;
     var verifyToken;
     let FeaturedProduct = []; 
     var api ='https://beta.myrung.com/b/api/v2/products/featured';
@@ -22,7 +23,6 @@ const Featured = (props) => {
         setLoading(false)
     }
     const Token = () => {
-
         token = sessionStorage.getItem('user-info_token')
     }
     useEffect(() => {
@@ -59,7 +59,7 @@ const Featured = (props) => {
         if (token != null) {
             // console.log(e.target.getAttribute("data-id"))
             let product_id = e.target.getAttribute("data-id")
-            let data = { product_id }
+            let data = { product_id,user_id }
             var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -143,7 +143,8 @@ const Featured = (props) => {
                                         <a onClick={() => {
                                             props.addToCartHandler({
                                                 cat_name: cat_name, name: name,
-                                                Price: calculable_price, symbol: currency_symbol, product_image: image, product_id: product_id, quantity: 1
+                                                Price: calculable_price, symbol: currency_symbol, product_image: image, product_id: product_id, quantity: Value,
+                                                totalprice:(Value*calculable_price)
                                             })
                                         }} className="btn-product btn-cart"><span>add to cart</span></a>
                                     </div>

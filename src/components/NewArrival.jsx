@@ -8,6 +8,7 @@ import product_5_2 from "../assets/images/demos/demo-5/products/product-5-2.jpg"
 const NewArrivel = (props) => {
 
     const [catData, setCatData] = useState([])
+    var Value=1;
     useEffect(() => {
         const fetchApi = async () => {
             const catagories = await fetch("https://beta.myrung.com/b/api/v2/categories")
@@ -144,8 +145,9 @@ const NewArrivel = (props) => {
                                                         <div onClick={notify} className="product-action product-action-transparent">
                                                             <a onClick={() => {
                                                                 props.addToCartHandler({
-                                                                    cat_name: cat_name, name: name, quantity: 1,
-                                                                    Price: calculable_price, symbol: currency_symbol, product_image: image, product_id: product_id
+                                                                    cat_name: cat_name, name: name, quantity: Value,
+                                                                    Price: calculable_price, symbol: currency_symbol, product_image: image, product_id: product_id,
+                                                                    totalprice:(Value*calculable_price)
                                                                 })
                                                             }}
                                                                 className="btn-product btn-cart"><span>add to cart</span></a>

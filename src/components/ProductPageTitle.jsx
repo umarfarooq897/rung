@@ -27,7 +27,9 @@ const ProductPageTitle = () => {
 
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item"><NavLink to='/'>Home</NavLink></li>
-                        {
+                        <li className="breadcrumb-item"><NavLink to='/shop/categories'>Shop</NavLink></li>
+                        <li id='cat_bred_cumb' className="breadcrumb-item"><NavLink to=''></NavLink></li>
+                        {/* {
                             splitUrl.map((item, i) => {
                                 return (
                                     <>
@@ -36,7 +38,7 @@ const ProductPageTitle = () => {
                                     </>
                                 )
                             })
-                        }
+                        } */}
                     </ol>
                 </div>
 

@@ -301,7 +301,7 @@ const Header2 = (props) => {
                                     <div className="dropdown-cart-total">
                                         <span>Total</span>
 
-                                        <span className="cart-total-price">{data.reduce((total, item) => total + (item.totalPrice ? item.totalPrice : item.Price), 0)}</span>
+                                        <span className="cart-total-price">{data.reduce((total, item) => total + (item.totalprice ? item.totalprice : item.Price), 0)}</span>
                                     </div>
                                     {/* <!-- End .dropdown-cart-total --> */}
 

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const QuickViewPopup = (props) => {
-
-    console.log("prop value", props)
     const [Product, SetProduct] = useState([]);
     const [loading, setLoading] = useState(true);
     var [Value, setValue] = useState(1);
@@ -26,21 +24,17 @@ const QuickViewPopup = (props) => {
             setValue(Value + 1)
     }
     var user_id;
-    
     // https://cors-anywhere.herokuapp.com/
-    var fullwidthapilink = "https://beta.myrung.com/b/api/v2/products/" + props.itemId;
+    var fullwidthapilink = "https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/" + props.itemId;
     const getProductApi = async () => {
         const response = await fetch(fullwidthapilink);
         const data = await response.json();
         var productData = data.data;
-        // console.log(Product[0].current_stock)
         SetProduct(productData);
     }
     useEffect(() => {
         getProductApi();
     }, [props.itemId]);
-
-
     const notifyitem = () => {
         toast("Item added")
         let cartDrp = document.querySelector(".dropdown-menu")
@@ -67,10 +61,10 @@ const QuickViewPopup = (props) => {
     const addWhishlistHandler = async (e) => {
         if (user_id) {
             let product_id = e.target.getAttribute("data-id")
-            console.log(e.target.getAttribute("data-id"))
+            // console.log(e.target.getAttribute("data-id"))
             let data = { product_id, user_id }
             // https://cors-anywhere.herokuapp.com/
-            var Result = await fetch(' https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
+            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -100,7 +94,6 @@ const QuickViewPopup = (props) => {
                             <div className="product-details-top">
                                 <div className="row">
                                     {Product.map((item, index) => {
-                                        console.log(item)
                                         var name = item.name
                                         var calculable_price = item.calculable_price
                                         var currency_symbol = item.currency_symbol
@@ -209,16 +202,15 @@ const QuickViewPopup = (props) => {
 
                                                         {/* <ToastContainer /> */}
                                                         <div  className="product-details-action">
-
+                                                            {console.log("valuse",Value)}
                                                             <a onClick={() => {
                                                                 props.addToCartHandler({
                                                                     name: name, Price: calculable_price, symbol: currency_symbol, quantity: Value,
-                                                                    product_image: image, product_id: product_id,
+                                                                    product_image: image, product_id: product_id,totalprice:(Value*calculable_price),
                                                                 }); notifyitem()
                                                             }}
                                                                 className="btn-product btn-cart add_to_cat "><span >add to cart</span></a>
                                                             <div className="details-action-wrapper">
-                                                                {/* {console.log(product_id)} */}
                                                                 <a onClick={addWhishlistHandler} data-id={product_id} className="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
                                                                 {/* <a href="#" className="btn-product btn-compare" title="Compare"><span>Add to Compare</span></a> */}
                                                             </div>

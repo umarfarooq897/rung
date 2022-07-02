@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useEffect } from 'react';
 import HeaderContainer from "../container/HeaderContainer";
 import PageTitle from '../components/PageTitle';
 import CategoriesSection from '../components/CatagoriesShowSection';
@@ -9,6 +9,9 @@ const Title = createContext();
 
 
 const Catagory = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
     return (
         <>
             {/* <PageTitle page={props.page} navbar={props.navbar} title={props.title} /> */}

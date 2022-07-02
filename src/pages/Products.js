@@ -1,7 +1,7 @@
 import React from "react";
 import ProductPageTitle from "../components/ProductPageTitle";
 import Footer2 from '../components/Footer2';
-import Related_productcontainer from "../container/Related_productcontainer";
+import Related_product from "../components/Relatedproduct";
 import HeaderContainer from "../container/HeaderContainer";
 
 
@@ -13,7 +13,7 @@ const Products = (props) => {
         <>
             <HeaderContainer />
             <ProductPageTitle />
-            <Related_productcontainer />
+            <Related_product />
             <Footer2 />
         </>
     );

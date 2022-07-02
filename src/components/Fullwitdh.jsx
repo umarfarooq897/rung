@@ -9,6 +9,8 @@ const Fullwitdh = (props) => {
     const [loading, setLoading] = useState(true);
     var [Value, setValue] = useState(1);
     const [reload, setReload] = useState(1)
+    var galryImage;
+    const [GalaryImag, setGalaryImag] = useState(galryImage)
     var data=props.data.cardData
     function reloadComp() {
         setReload(reload + 1)
@@ -37,6 +39,7 @@ const Fullwitdh = (props) => {
         const response = await fetch(fullwidthapilink);
         const data = await response.json();
         var productData = data.data;
+        
         // console.log(Product[0].current_stock)
         SetProduct(productData);
     }
@@ -45,9 +48,10 @@ const Fullwitdh = (props) => {
     }, [reload]);
     const relatedProductApi = async () => {
         // https://cors-anywhere.herokuapp.com/
-        const response = await fetch("https://beta.myrung.com/b/api/v2/products/related/6");
+        const response = await fetch("https://beta.myrung.com/b/api/v2/products/related/"+ Page_Title_id);
         const data = await response.json();
         var insidData = data.data;
+        
         SetRelatedProduct(insidData);
         setLoading(false)
     }
@@ -104,7 +108,7 @@ const Fullwitdh = (props) => {
 
         }
     }
-    return (
+     return (
         <>
             <div className="page-content">
                 <div className="container-fluid">
@@ -113,12 +117,14 @@ const Fullwitdh = (props) => {
                             <div className="product-details-top">
                                 <div className="row">
                                     {Product.map((item, index) => {
+                                        galryImage=item.thumbnail_image
+                                        var galary=item.photos
                                         var name = item.name
                                         var calculable_price = item.calculable_price
                                         var currency_symbol = item.currency_symbol
                                         var image = item.thumbnail_image
                                         var product_id = item.id
-                                        var product_price = item.main_price
+                                        
                                         return (
                                             <>
                                                 <div className="col-md-6" key={index}>
@@ -133,10 +139,13 @@ const Fullwitdh = (props) => {
                                                             </a>
                                                         </figure>
                                                         {/* <!-- End .product-main-image --> */}
-
                                                         <div id="product-zoom-gallery" className="product-image-gallery max-col-6">
-                                                            <a className="product-gallery-item active" href="#" data-image={"https://beta.myrung.com/b/public/" + item.thumbnail_image} data-zoom-image="assets/images/products/single/fullwidth/1-big.jpg">
-                                                                <img src={"https://beta.myrung.com/b/public/" + item.thumbnail_image} alt="product side" />
+                                                    {galary.map((phots,index)=>{
+                                                        {/* galphotopath=phots.path */}
+                                                        return(
+                                                            <>
+                                                            <a onclick={()=> setGalaryImag(phots.path)} className="product-gallery-item active" href="#" data-image={"https://beta.myrung.com/b/public/" + phots.path} data-zoom-image={"https://beta.myrung.com/b/public/" + phots.path}>
+                                                                <img src={"https://beta.myrung.com/b/public/" + phots.path} alt="product side" />
                                                             </a>
 
                                                             {/* <a className="product-gallery-item" href="#" data-image="assets/images/products/single/fullwidth/2.jpg" data-zoom-image="assets/images/products/single/fullwidth/2-big.jpg">
@@ -151,6 +160,9 @@ const Fullwitdh = (props) => {
                                                     <img src="assets/images/products/single/fullwidth/4-small.jpg" alt="product back" />
                                                 </a> */}
 
+                                                            </>
+                                                        );
+                                                    })}
                                                         </div>
                                                         {/* <!-- End .product-image-gallery --> */}
                                                     </div>
@@ -225,7 +237,7 @@ const Fullwitdh = (props) => {
                                                             <a onClick={() => {
                                                                 props.addToCartHandler({
                                                                      name: name, Price:calculable_price, symbol:currency_symbol,quantity:Value,
-                                                                    product_image: image, product_id: product_id,
+                                                                    product_image: image, product_id: product_id,totalprice:(Value*calculable_price)
                                                                 })
                                                             }}
                                                                 className="btn-product btn-cart add_to_cat "><span >add to cart</span></a>
@@ -463,7 +475,7 @@ const Fullwitdh = (props) => {
                                     <div className="products">
 
                                         {relatedProduct.map((item, index) => {
-                                          
+                                            if(index<=3){
                                             return (
                                                 <div className="product product-sm">
                                                     <figure className="product-media">
@@ -484,6 +496,7 @@ const Fullwitdh = (props) => {
                                                     {/* <!-- End .product-body --> */}
                                                 </div>
                                             );
+                                            }
                                         })}
 
                                         {/* <!-- End .product product-sm --> */}

@@ -95,6 +95,7 @@ const Cartdata = (props) => {
 	const notify = () => toast("Succesfully Deleted from cart");
 
 	var data = props.data.cardData
+	console.log(props.data)
 	if(props.data.discount){
 	var discounted_price = props.data.discount[0].DiscountetdPrice
 	}
@@ -129,7 +130,8 @@ const Cartdata = (props) => {
 									<tbody>
 
 										{data.map((item, index) => {
-											total=(data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0))
+											console.log(item)
+											total=(data.reduce((total, item) => total + (item.totalprice?item.totalprice:item.Price), 0))
 											data_quantity = item.quantity
 											var product_id = item.product_id
 											calculable_price = item.Price
@@ -182,7 +184,7 @@ const Cartdata = (props) => {
 													</td>
 
 
-													<td className="total-col">{item.symbol}{item.totalPrice ? item.totalPrice : calculable_price}</td>
+													<td className="total-col">{item.symbol}{item.totalprice}</td>
 													<td className="remove-col"><button onClick={() => props.removeToCartHandler({ item })} className="btn-remove"><i onClick={notify} className="icon-close"></i></button></td>
 													<ToastContainer />
 												</tr>

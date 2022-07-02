@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import User_orders from "./Userorders";
 const Dashboardcontent = ()=>{
    
     const [name , setName] = useState('');
@@ -49,11 +50,12 @@ const Dashboardcontent = ()=>{
                                     <a className="nav-link active" id="tab-dashboard-link" data-toggle="tab" href="#tab-dashboard" role="tab" aria-controls="tab-dashboard" aria-selected="true">Dashboard</a>
                                 </li>
                                 <li className="nav-item">
+                                    
                                     <a className="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">Orders</a>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a className="nav-link" id="tab-downloads-link" data-toggle="tab" href="#tab-downloads" role="tab" aria-controls="tab-downloads" aria-selected="false">Downloads</a>
-                                </li>
+                                </li> */}
                                 <li className="nav-item">
                                     <a className="nav-link" id="tab-address-link" data-toggle="tab" href="#tab-address" role="tab" aria-controls="tab-address" aria-selected="false">Adresses</a>
                                 </li>
@@ -77,6 +79,7 @@ const Dashboardcontent = ()=>{
                                 {/* <!-- .End .tab-pane --> */}
 
                                 <div className="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
+                                <User_orders/>
                                     <p>No order has been made yet.</p>
                                     <a href="category.html" className="btn btn-outline-primary-2"><span>GO SHOP</span><i className="icon-long-arrow-right"></i></a>
                                 </div>

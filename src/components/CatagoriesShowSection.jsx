@@ -9,25 +9,22 @@ const CategoriesSection = () => {
 		const response = await fetch(' https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/categories');
 		const data = await response.json();
 		var insidData = data.data;
-		// console.log(insidData)
 		SetCatagories(insidData);
 	}
-
 	useEffect(() => {
 		getApi();
 	}, []);
 
 	var itemName;
 	var itemId;
-	const navigate = useNavigate();
-	const toggleCatagory = (id, name) => {
-		itemId = id
-		itemName = name.replace(' ', '');
-		console.log(itemName)
-		navigate(
-			`/shop/product/catogeroy/${itemName}`,
-				{ state: { itemId } })
-}
+	// const navigate = useNavigate();
+// 	const toggleCatagory = (id, name) => {
+// 		itemId = id
+// 		itemName = name.replace(' ', '');
+// 		navigate(
+// 			`/shop/product/catogeroy/${itemName}`,
+// 				{ state: { itemId } })
+// }
 
 	
 	return (
@@ -37,25 +34,25 @@ const CategoriesSection = () => {
 					<div className="row">
 						{
 							Catagaries.map((item, i) => {
-								console.log(item)
+								itemName = item.name.replace(' ', '');
 								return (
 									<>
 										<div className="col-md-4" key={item.id}>
 											<div className="banner banner-cat banner-badge">
-												<div onClick={()=>{toggleCatagory(item.id, item.name)}}  >
+												<NavLink to={`/shop/product/catogeroy/${itemName}=${item.id}`}  >
 													
 													<img src={"https://beta.myrung.com/b/public/" + item.banner} alt="Banner" />
-												</div>
+												</NavLink>
 
-												<div onClick={()=>{toggleCatagory(item.id, item.name)}} className="banner-link" >
+												<NavLink to={`/shop/product/catogeroy/${itemName}=${item.id}`} className="banner-link" >
 
 													<h3 className="banner-title">{item.name}</h3>
 
 													{/* <!-- End .banner-title --> */}
-													<h4 className="banner-subtitle"> Products</h4>
+													<h4 className="banner-subtitle">{item.product_cout} Products</h4>
 													{/* <!-- End .banner-subtitle -->  */}
 													<span className="banner-link-text">Shop Now</span>
-												</div>
+												</NavLink>
 											</div>
 										</div>
 									</>

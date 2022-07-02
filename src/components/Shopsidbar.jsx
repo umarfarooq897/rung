@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Nouislider from "nouislider-react";
 import "nouislider/distribute/nouislider.css";
-import { Button } from "bootstrap";
 
 const Sidebar = (props) => {
 	const [rang ,setRang] = useState([])
@@ -10,6 +9,14 @@ const Sidebar = (props) => {
 		localStorage.setItem('min', e[0]);
 		localStorage.setItem('max', e[1]);
 	}
+	var formatForSlider = {
+		from: function (formattedValue) {
+			return Number(formattedValue);
+		},
+		to: function(numericValue) {
+			return Math.round(numericValue);
+		}
+	};
 	return (
 		<>
 			<aside className=" order-lg-first">
@@ -37,7 +44,8 @@ const Sidebar = (props) => {
 										<a  onClick={props.callpriceFilterfunction}>filter</a>
 									</div>
 									{/* <!-- End .filter-price-text --> */}
-									<Nouislider onSlide={demo} range={{ min: 0, max: 1000 }} start={[20, 100]} connect />
+									<Nouislider tooltips={true}
+									onSlide={demo} range={{ min: 0, max: 1000 }} start={[20, 100]} connect />
 									{/* <!-- End #price-slider --> */}
 									
 									

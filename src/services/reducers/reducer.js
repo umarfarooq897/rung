@@ -15,31 +15,24 @@ export function  cardItem(state=initialState,action){
             //   var qty = 0;
             return {
               ...state,
-              cardData: state.cardData.map(item => item.product_id === action.data.product_id
+              cardData: state.cardData.map(item => item.product_id === action.data.product_id 
                 ? {
                   ...item,
-                  quantity: item.quantity + 1,
-                  totalPrice: (action.data.Price * (item.quantity+1)),
+                  quantity: item.quantity + action.data.quantity,
+                  totalprice: (action.data.Price * (item.quantity+action.data.quantity)),
                 }
                 : item
               ),
             }
-        };
-        // console.warn("reducer",action.data.quantity) ;
-        if(action.data.quantity>1){
-          console.log(action.data.quantity)
-        return {
-            ...state,
-            cardData: [...state.cardData, action.data],
-            totalPrice: (action.data.Price * action.data.quantity),
-          }}
+        }
           else{
+          
             return {
               ...state,
               cardData: [...state.cardData, action.data],
               totalPrice: (action.data.Price * action.data.quantity),
-            }
-          }
+            }}
+          
         
         // return {
         //     ...state,
@@ -59,7 +52,7 @@ export function  cardItem(state=initialState,action){
                     ? {
                       ...item,
                       quantity: item.quantity + 1,
-                      totalPrice: (item.Price * (item.quantity+1)),
+                      totalprice: (item.Price * (item.quantity+1)),
                     }
                     : item
                   ),
@@ -87,7 +80,7 @@ export function  cardItem(state=initialState,action){
                     ? {
                       ...itemdec,
                       quantity: item.quantity - 1,
-                      totalPrice: (item.Price * (item.quantity-1)),
+                      totalprice: (item.Price * (item.quantity-1)),
                     }
                     : item
                   ),

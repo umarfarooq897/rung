@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {
 	PayPalScriptProvider,
 	PayPalButtons,
@@ -8,6 +8,19 @@ import {
 // This values are the props in the UI
 
 const  PaymentMethods = (props) => {
+	
+    const [Gatway, setGateway] = useState();
+	const getGatewaysApi = async () => {
+        const response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/payment-types-active");
+        const data = await response.json();
+        var productData = data;
+        setGateway(productData);
+        // setIsloading(false)
+    }
+	console.log(Gatway)
+    useEffect(() => {
+        getGatewaysApi();
+    }, []);
 	var Total=props.total;
 	const amount = Total;
 	const currency = "USD";
@@ -65,7 +78,8 @@ const  PaymentMethods = (props) => {
 						})
 						.then((orderId) => {
 							// Your code here after create the order
-							return orderId;
+							return (orderId);
+							
 						});
 				}}
 				onApprove={(data, actions) => {

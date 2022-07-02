@@ -11,7 +11,6 @@ const Checkout_content=(props)=>{
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [notes, setNotes] = useState('');
-    const [Gatway, setGateway] = useState();
 	const navigate = useNavigate();
     var products=[]
 	var total;
@@ -25,7 +24,7 @@ const Checkout_content=(props)=>{
 		// let user_type = "customer"
 		let data = {name,country,city,street_address,state,zip,phone,email,notes,products,user_id}
 		// https://cors-anywhere.herokuapp.com/
-		let Result = await fetch('https://beta.myrung.com/b/api/v2/order/store', {
+		let Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/order/store', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -37,7 +36,7 @@ const Checkout_content=(props)=>{
 	var user_id;
     const getData = async () => {
         const data = await JSON.parse((localStorage.getItem('user-info')))
-        user_id = data.user.id
+        user_id = data
     }
     useEffect(() => {
         getData()
@@ -49,17 +48,7 @@ const Checkout_content=(props)=>{
 	const Payments=()=>{
 		navigate('/checkout/payments')
 	}
-	const getGatewaysApi = async () => {
-        const response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/payment_get");
-        const data = await response.json();
-        var productData = data;
-        console.log(productData.paypal)
-        setGateway(productData);
-        // setIsloading(false)
-    }
-    useEffect(() => {
-        getGatewaysApi();
-    }, []);
+
     return(
         <>
                   <div className="page-content">
@@ -197,7 +186,7 @@ const Checkout_content=(props)=>{
                                         {/* <!-- End .table table-summary --> */}
 
 		                				<div className="accordion-summary" id="accordion-payment">
-										  
+										  <PaymentMethods total={discounted_price?discounted_price:total}/>
 										    {/* <div className="card">
 										        <div className="card-header" id="heading-3">
 										            <h2 className="card-title">
@@ -215,24 +204,23 @@ const Checkout_content=(props)=>{
 												{/* <!-- End .collapse --> */}
 										    {/* </div> */}
 											{/* <!-- End .card --> */}
-										{console.log(Gatway)}
-										    <div className="card">
+										    {/* <div className="card">
 										        <div className="card-header" id="heading-4">
 										            <h2 className="card-title">
 										                <a className="collapsed" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
 										                    PayPal <small className="float-right paypal-link">What is PayPal?</small>
 										                </a>
 										            </h2>
-										        </div>
+										        </div> */}
 												{/* <!-- End .card-header --> */}
-										        <div id="collapse-4" className="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
+										        {/* <div id="collapse-4" className="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
 										            <div className="card-body">
 										                Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum.
-										            </div>
+										            </div> */}
 													{/* <!-- End .card-body --> */}
-										        </div>
+										        {/* </div> */}
 												{/* <!-- End .collapse --> */}
-										    </div>
+										    {/* </div> */}
 											{/* <!-- End .card --> */}
 
 										    {/* <div className="card">
@@ -257,7 +245,7 @@ const Checkout_content=(props)=>{
 										</div>
                                         {/* <!-- End .accordion --> */}
 
-		                				<button onClick={Payments} type="submit" className="btn btn-outline-primary-2 btn-order btn-block">
+		                				<button  type="submit" className="btn btn-outline-primary-2 btn-order btn-block">
 		                					<span className="btn-text">Place Order</span>
 		                					<span className="btn-hover-text" >Proceed to Checkout</span>
 		                				</button>
