@@ -4,11 +4,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import product_5_1 from "../assets/images/demos/demo-5/products/product-5-1.jpg";
 import product_5_2 from "../assets/images/demos/demo-5/products/product-5-2.jpg";
+import ProductSkeltonCard from "./Productskeltoncard";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import axios from "axios";
 
 const NewArrivel = (props) => {
 
     const [catData, setCatData] = useState([])
-    var Value=1;
+    var Value = 1;
     useEffect(() => {
         const fetchApi = async () => {
             const catagories = await fetch("https://beta.myrung.com/b/api/v2/categories")
@@ -23,19 +26,29 @@ const NewArrivel = (props) => {
 
 
     const [Product, SetProduct] = useState([]);
-    // const [userdata, setUserdata] = useState()
+    const [isloading, setLoading] = useState(true)
     // const [user_id, setUser_id] = useState()
     var user_id;
-    const newProductApi = async () => {
-        // https://cors-anywhere.herokuapp.com/
-        const response = await fetch("https://beta.myrung.com/b/api/v2/products");
-        const data = await response.json();
-        var insidData = data.data;
-        SetProduct(insidData);
-    }
     useEffect(() => {
-        newProductApi();
-    }, []);
+        setTimeout(() => {
+            axios.get("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products")
+                .then(res => {
+                    var insidData = res.data.data;
+                    SetProduct(insidData);
+                    setLoading(false)
+                })
+        }, 1000)
+    }, [isloading])
+    // const newProductApi = async () => {
+    // https://cors-anywhere.herokuapp.com/
+    //     const response = await fetch("https://beta.myrung.com/b/api/v2/products");
+    //     const data = await response.json();
+    //     var insidData = data.data;
+    //     SetProduct(insidData);
+    // }
+    // useEffect(() => {
+    //     newProductApi();
+    // }, []);
     const notify = () => {
         toast("Item added")
         let cartDrp = document.querySelector(".dropdown-menu")
@@ -53,7 +66,7 @@ const NewArrivel = (props) => {
         toast("Please Login first")
     };
     const getData = async () => {
-        const data = await JSON.parse((sessionStorage.getItem('user-info_token')))
+        const data = await JSON.parse((localStorage.getItem('user-info')))
         user_id = data
     }
     useEffect(() => {
@@ -62,7 +75,6 @@ const NewArrivel = (props) => {
     const addWhishlistHandler = async (e) => {
 
         if (user_id) {
-            // setUser_id(userdata.user.id)
             let product_id = e.target.getAttribute("data-id")
             let data = { product_id, user_id }
             // https://cors-anywhere.herokuapp.com
@@ -115,66 +127,88 @@ const NewArrivel = (props) => {
                         aria-labelledby="new-all-link">
                         <div className="products">
                             <div className="row justify-content-center">
-                                {Product.slice(0, 8).map((item, i) => {
-                                    var background1 = "https://beta.myrung.com/b/public/" + item.thumbnail_image;
-                                    var cat_name = item.category_name
-                                    var name = item.name
-                                    var calculable_price = item.calculable_price
-                                    var currency_symbol = item.currency_symbol
-                                    {/* var main_price = item.main_price */ }
-                                    var image = item.thumbnail_image
-                                    var product_id = item.id
-                                    return (
+                                <SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
+                                    {isloading ?
                                         <>
-                                            <div className="col-6 col-md-4 col-lg-3">
-                                                <div className="product product-2">
-                                                    <figure className="product-media">
-                                                        <NavLink to={`/shop/product/catogeroy/fullwidth/${item.id}`} >
-                                                            <img src={background1}
-                                                                alt="Product image" className="product-image" />
-                                                            {/* <img src={background1}
-                                                                    alt="Product image" className="product-image-hover" /> */}
-                                                        </NavLink>
-
-                                                        <div className="product-action-vertical">
-                                                            <a onClick={addWhishlistHandler} data-id={product_id} className="btn-product-icon btn-wishlist"
-                                                                title="Add to wishlist"><span>add to wishlist</span></a>
-                                                        </div>
-                                                        {/* <!-- End .product-action --> */}
-                                                        <ToastContainer />
-                                                        <div onClick={notify} className="product-action product-action-transparent">
-                                                            <a onClick={() => {
-                                                                props.addToCartHandler({
-                                                                    cat_name: cat_name, name: name, quantity: Value,
-                                                                    Price: calculable_price, symbol: currency_symbol, product_image: image, product_id: product_id,
-                                                                    totalprice:(Value*calculable_price)
-                                                                })
-                                                            }}
-                                                                className="btn-product btn-cart"><span>add to cart</span></a>
-                                                        </div>
-                                                        {/* <!-- End .product-action --> */}
-                                                    </figure>
-                                                    {/* <!-- End .product-media --> */}
-
-                                                    <div className="product-body">
-                                                        <div className="product-cat">
-                                                            <NavLink to=''>{item.category_name}</NavLink>
-                                                        </div>
-                                                        {/* <!-- End .product-cat --> */}
-                                                        <h3 className="product-title"><NavLink to=''>{item.name}</NavLink></h3>
-                                                        {/* <!-- End .product-title --> */}
-                                                        <div className="product-price">
-                                                            {item.currency_symbol}{item.calculable_price}
-                                                        </div>
-                                                        {/* <!-- End .product-price --> */}
-                                                    </div>
-                                                    {/* <!-- End .product-body --> */}
-                                                </div>
-                                                {/* <!-- End .product --> */}
+                                        <div className="col-6 col-md-4 col-lg-3">
+                                            <ProductSkeltonCard />
                                             </div>
+                                        <div className="col-6 col-md-4 col-lg-3">
+                                            <ProductSkeltonCard />
+                                            </div>
+                                        <div className="col-6 col-md-4 col-lg-3">
+                                            <ProductSkeltonCard />
+                                            </div>
+                                        <div className="col-6 col-md-4 col-lg-3">
+                                            <ProductSkeltonCard />
+                                            </div>
+                                            
                                         </>
-                                    );
-                                })}
+                                        :
+                                        Product.slice(0, 8).map((item, i) => {
+                                            var background1 = "https://beta.myrung.com/b/public/" + item.thumbnail_image;
+                                            var cat_name = item.category_name
+                                            var name = item.name
+                                            var calculable_price = item.calculable_price
+                                            var currency_symbol = item.currency_symbol
+                                            {/* var main_price = item.main_price */ }
+                                            var image = item.thumbnail_image
+                                            var product_id = item.id
+                                            return (
+                                                <>
+                                                    <div className="col-6 col-md-4 col-lg-3">
+                                                        <div className="product product-2">
+                                                            <figure className="product-media">
+                                                                <NavLink to={`/shop/product/catogeroy/fullwidth/${item.id}`} >
+                                                                    <img src={background1}
+                                                                        alt="Product image" className="product-image" />
+                                                                    {/* <img src={background1}
+                                                                    alt="Product image" className="product-image-hover" /> */}
+                                                                </NavLink>
+
+                                                                <div className="product-action-vertical">
+                                                                    <a onClick={addWhishlistHandler} data-id={product_id} className="btn-product-icon btn-wishlist"
+                                                                        title="Add to wishlist"><span>add to wishlist</span></a>
+                                                                </div>
+                                                                {/* <!-- End .product-action --> */}
+                                                                <ToastContainer />
+                                                                <div onClick={notify} className="product-action product-action-transparent">
+                                                                    <a onClick={() => {
+                                                                        props.addToCartHandler({
+                                                                            cat_name: cat_name, name: name, quantity: Value,
+                                                                            Price: calculable_price, symbol: currency_symbol, product_image: image, product_id: product_id,
+                                                                            totalprice: (Value * calculable_price)
+                                                                        })
+                                                                    }}
+                                                                        className="btn-product btn-cart"><span>add to cart</span></a>
+                                                                </div>
+                                                                {/* <!-- End .product-action --> */}
+                                                            </figure>
+                                                            {/* <!-- End .product-media --> */}
+
+                                                            <div className="product-body">
+                                                                <div className="product-cat">
+                                                                    <NavLink to=''>{item.category_name}</NavLink>
+                                                                </div>
+                                                                {/* <!-- End .product-cat --> */}
+                                                                <h3 className="product-title"><NavLink to=''>{item.name}</NavLink></h3>
+                                                                {/* <!-- End .product-title --> */}
+                                                                <div className="product-price">
+                                                                    {item.currency_symbol}{item.calculable_price}
+                                                                </div>
+                                                                {/* <!-- End .product-price --> */}
+                                                            </div>
+                                                            {/* <!-- End .product-body --> */}
+                                                        </div>
+                                                        {/* <!-- End .product --> */}
+                                                    </div>
+                                                </>
+                                            );
+                                        })
+                                    }
+                                    </SkeletonTheme>
+                                    
+                                    
 
 
                             </div>

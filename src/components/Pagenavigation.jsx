@@ -1,20 +1,32 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import ReactPaginate from "react-paginate";
+import Product_card_container from "../container/Product_card_container";
 const Navigation=(props)=>{
 	// console.log(props.meta.current_page)
 	
 	const [pages, setPages] = useState([]);
 	const fetchpageination = async (currentPage) => {
+		// alert("hjn")
 		// https://cors-anywhere.herokuapp.com/
-		const response = await fetch(`https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/pricefilter?page=${currentPage}`);
-		const data = await response.json();
-		console.log("data",data)
-		 return data;
+
+			var response = await fetch(`https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/pricefilter?page=${currentPage}`, {
+                method: 'POST',
+                // body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+
+                }
+            });
+			const data = await response.json();
+			console.log("data",data)
+			 return data;
+        }
 		// SetCatagories(insidData);
-	}
+	
 
 	// useEffect(() => {
-	// 	getApi();
+	// 	fetchpageination();
 	// }, []);
 	const handlePageClick= async(data)=>{
 		// console.log(data.selected)
@@ -22,10 +34,10 @@ const Navigation=(props)=>{
 		const paginationdata=await fetchpageination(currentPage);
 		setPages(paginationdata)
 	}
-	// console.log(pages)
+	console.log(pages)
     return(
         <>
-		<div></div>
+		{/* {pages?<Product_card_container array={pages}/>:""} */}
 		<div>
 		<ReactPaginate 
 			breakLabel={'...'}
@@ -48,6 +60,7 @@ const Navigation=(props)=>{
 			
 		/>
 		</div>
+
             {/* <nav aria-label="Page navigation">
 							    <ul className="pagination justify-content-center">
 							        <li className="page-item disabled">

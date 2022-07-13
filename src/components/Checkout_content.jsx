@@ -152,7 +152,6 @@ const Checkout_content=(props)=>{
 		                							<th>Total</th>
 		                						</tr>
 		                					</thead>
-
 		                					<tbody>
 											{data.map((item,index) =>{
 												currency=item.symbol

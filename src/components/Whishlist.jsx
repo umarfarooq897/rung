@@ -5,9 +5,11 @@ const Whishlist_content = (props) => {
     const [loading, setLoading] = useState(true);
     const [Product, setProduct] = useState([]);
     var user_id;
+    var Value=1
     const getData = async () => {
         const data = await JSON.parse((localStorage.getItem('user-info')))
-        user_id = data
+        user_id = data;
+       
     }
     useEffect(() => {
         getData()
@@ -78,6 +80,7 @@ const Whishlist_content = (props) => {
                         <tbody>
                             {Product ? Product.map((item, index) => {
                                 document.getElementById('whishlist_num').innerText = Product.length;
+                                console.log(item)
                                 var cat_name = item.product.category_name
                                 var name = item.product.name
                                 var main_price =item.product.base_price
@@ -104,12 +107,13 @@ const Whishlist_content = (props) => {
                                             <td className="price-col">{item.product.base_price}</td>
                                             <td className="stock-col"><span className="in-stock">{item.product.qty <= 0 ? "Out of stock" : "Instock"}</span></td>
                                             <td className="action-col">
-                                            <ToastContainer/>
+                                            {/* <ToastContainer/> */}
                                                 <a onClick={notify} >
                                                 <button onClick={() => {
+                                                    console.log(Value)
                                                     props.addToCartHandler({
-                                                        cat_name: cat_name, name: name,
-                                                        main_price: main_price, product_image: image, product_id: product_id
+                                                        cat_name: cat_name, name: name,quaintity:Value,
+                                                         product_image: image, product_id: product_id,totalprice: (Value * main_price)
                                                     })
                                                 }} 
                                                 className="btn btn-block btn-outline-primary-2"><i className="icon-cart-plus"></i>Add to Cart</button>

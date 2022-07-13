@@ -1,6 +1,6 @@
 import { ADD_TO_CART,INCREMENT,DECREMENT,REMOVE_TO_CART,TOTAL_PRICE } from "../constants"
 export const addToCart = (data) =>{
-    console.warn("action",data)
+    // console.warn("action",data)
     return {
         type:ADD_TO_CART,
         data:data
@@ -21,7 +21,7 @@ export const Decre = (data) =>{
     }
 }
 export const Discount = (data) =>{
-    console.warn("action",data)
+    // console.warn("action",data)
     return {
         type:TOTAL_PRICE,
         data:data

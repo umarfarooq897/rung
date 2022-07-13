@@ -37,7 +37,7 @@ const User_orders = () => {
                     </tr>
                 </thead>
                 <tbody>
-                   { orders.map((item, index) => {
+                   {orders? orders.map((item, index) => {
                         return (
                             <>
                                 <tr>
@@ -50,7 +50,7 @@ const User_orders = () => {
                             </>
                         );
 
-                    }) }
+                    }):"" }
 
                 </tbody>
             </table>

@@ -3,30 +3,34 @@ import OwlCarousel from 'react-owl-carousel';
 import { NavLink, useHistory } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ProductSkeltonCard from "./Productskeltoncard";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import axios from "axios";
 const Fullwitdh = (props) => {
     const [Product, SetProduct] = useState([]);
     const [relatedProduct, SetRelatedProduct] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [isloading, setLoading] = useState(true);
+    const [productloading, setproductloading] = useState(true);
     var [Value, setValue] = useState(1);
     const [reload, setReload] = useState(1)
     var galryImage;
     const [GalaryImag, setGalaryImag] = useState(galryImage)
-    var data=props.data.cardData
+    var data = props.data.cardData
     function reloadComp() {
         setReload(reload + 1)
     }
     const inputDecrement = () => {
         if (Value > 1) {
             setValue(Value - 1);
-          }
-      
-          else {
+        }
+
+        else {
             setValue(1)
-          }
+        }
     }
     const inputIncrement = () => {
-       if(Value<10)
-        setValue(Value + 1)
+        if (Value < 10)
+            setValue(Value + 1)
     }
     var user_id;
     var path = window.location.pathname;
@@ -34,24 +38,32 @@ const Fullwitdh = (props) => {
     const nthElementcurnt = (splitCurUrl, n = 0) => (n > 0 ? splitCurUrl.slice(n, n + 1) : splitCurUrl.slice(n))[0];
     var Page_Title_id = nthElementcurnt(splitCurUrl, -1);
     // https://cors-anywhere.herokuapp.com/
-    var fullwidthapilink = "https://beta.myrung.com/b/api/v2/products/" + Page_Title_id;
-    const getProductApi = async () => {
-        const response = await fetch(fullwidthapilink);
-        const data = await response.json();
-        var productData = data.data;
-        
-        // console.log(Product[0].current_stock)
-        SetProduct(productData);
-    }
+    var fullwidthapilink = "https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/" + Page_Title_id;
     useEffect(() => {
-        getProductApi();
-    }, [reload]);
+        setTimeout(() => {
+            axios.get(fullwidthapilink)
+                .then(res => {
+                    var insidData = res.data.data;
+                    SetProduct(insidData);
+                    setproductloading(false)
+                })
+        }, 1000)
+    }, [productloading, reload])
+    // const getProductApi = async () => {
+    //     const response = await fetch(fullwidthapilink);
+    //     const data = await response.json();
+    //     var productData = data.data;
+    //     SetProduct(productData);
+    // }
+    // useEffect(() => {
+    //     getProductApi();
+    // }, [reload]);
     const relatedProductApi = async () => {
         // https://cors-anywhere.herokuapp.com/
-        const response = await fetch("https://beta.myrung.com/b/api/v2/products/related/"+ Page_Title_id);
+        const response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/related/" + Page_Title_id);
         const data = await response.json();
         var insidData = data.data;
-        
+
         SetRelatedProduct(insidData);
         setLoading(false)
     }
@@ -108,7 +120,7 @@ const Fullwitdh = (props) => {
 
         }
     }
-     return (
+    return (
         <>
             <div className="page-content">
                 <div className="container-fluid">
@@ -116,39 +128,132 @@ const Fullwitdh = (props) => {
                         <div className="col-xl-10 ">
                             <div className="product-details-top">
                                 <div className="row">
-                                    {Product.map((item, index) => {
-                                        galryImage=item.thumbnail_image
-                                        var galary=item.photos
+                                    {<SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
+                                    {productloading?
+                                    <>
+                                        <div className="col-md-6">
+                                                    <div className="product-gallery">
+                                                    <figure className="product-main-image">
+                                                    <ProductSkeltonCard/>
+                                                    </figure>
+                                                        {/* <!-- End .product-main-image --> */}
+                                                        <div id="product-zoom-gallery" className="product-image-gallery max-col-6">
+                                                            <h1><Skeleton/></h1>
+                                                        </div>
+                                                        {/* <!-- End .product-image-gallery --> */}
+                                                    </div>
+
+                                                    {/* <!-- End .product-gallery --> */}
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="product-details">
+                                                    <h1><Skeleton/></h1>
+                                                        {/* <!-- End .product-title --> */}
+
+                                                       
+                                                        {/* <!-- End .rating-container --> */}
+
+                                                        <div className="product-price">
+                                                        <h3><Skeleton width={130}/></h3>
+                                                            {/* <span className="old-price">$110.00</span> */}
+                                                        </div>
+                                                        {/* <!-- End .product-price --> */}
+
+                                                        <div className="product-content">
+                                                        <p><Skeleton/></p>
+                                                        </div>
+                                                        {/* <!-- End .product-content --> */}
+
+                                                        {/* <!-- End .details-filter-row --> */}
+
+                                                        <div className="details-filter-row details-row-size">
+                                                            <div className="select-custom">
+                                                                {/* <select name="size" defaultValue="#" id="size" className="form-control"> */}
+                                                                <h1><Skeleton/></h1>
+                                                                   
+                                                                {/* </select> */}
+                                                            </div>
+                                                            {/* <!-- End .select-custom --> */}
+                                                        </div>
+                                                        {/* <!-- End .details-filter-row --> */}
+
+                                                        <div className="details-filter-row details-row-size">
+                                                        <h1><Skeleton width={130}/></h1>
+                                                            {/* <!-- End .product-details-quantity --> */}
+                                                        </div>
+                                                        {/* <!-- End .details-filter-row --> */}
+                                                        <div  className="product-details-action">
+                                                        <h1><Skeleton width={170}/></h1>
+                                                            <div className="details-action-wrapper">
+                                                            <h1><Skeleton width={170}/></h1>
+                                                            </div>
+                                                            {/* <!-- End .details-action-wrapper --> */}
+                                                        </div>
+                                                        {/* <!-- End .product-details-action --> */}
+
+                                                        <div className="product-details-footer">
+                                                            <div className="product-cat">
+                                                            <h2><Skeleton width={200}/></h2>
+                                                            </div>
+                                                            {/* <!-- End .product-cat --> */}
+                                                            <div className="social-icons social-icons-sm">
+                                                            <h2><Skeleton width={200}/></h2>
+                                                            </div>
+                                                        </div>
+                                                        {/* <!-- End .product-details-footer --> */}
+
+                                                        <div className="accordion accordion-plus d-none d-md-block product-details-accordion" id="product-accordion">
+                                                            <div className="card card-box card-sm">
+                                                                <div className="card-header" id="product-desc-heading">
+                                                                    <h2 className="card-title">
+                                                                    <h1><Skeleton width={100}/></h1>
+                                                                    </h2>
+                                                                </div>
+                                                                {/* <!-- End .card-header --> */}
+                                                         
+                                                                {/* <!-- End .collapse --> */}
+                                                            </div>
+                                                            {/* <!-- End .card --> */}
+                                                        </div>
+                                                        {/* <!-- End .accordion --> */}
+                                                    </div>
+                                                    {/* <!-- End .product-details --> */}
+                                                </div>
+                                                </>
+                                    :
+                                    Product.map((item, index) => {
+                                        galryImage = item.thumbnail_image
+                                        var galary = item.photos
                                         var name = item.name
                                         var calculable_price = item.calculable_price
                                         var currency_symbol = item.currency_symbol
                                         var image = item.thumbnail_image
                                         var product_id = item.id
-                                        
+
                                         return (
                                             <>
+
                                                 <div className="col-md-6" key={index}>
-                                                    <div className="product-gallery">
+                                                    <div className="product-gallery"><figure className="product-main-image">
+                                                        <span className="product-label label-sale">Sale</span>
+                                                        <img id="product-zoom" src={"https://beta.myrung.com/b/public/" + item.thumbnail_image} data-zoom-image={"https://beta.myrung.com/b/public/" + item.thumbnail_image} alt="product image" />
 
-                                                        <figure className="product-main-image">
-                                                            <span className="product-label label-sale">Sale</span>
-                                                            <img id="product-zoom" src={"https://beta.myrung.com/b/public/" + item.thumbnail_image} data-zoom-image={"https://beta.myrung.com/b/public/" + item.thumbnail_image} alt="product image" />
-
-                                                            <a href="#" id="btn-product-gallery" className="btn-product-gallery">
-                                                                <i className="icon-arrows"></i>
-                                                            </a>
-                                                        </figure>
+                                                        <a href="#" id="btn-product-gallery" className="btn-product-gallery">
+                                                            <i className="icon-arrows"></i>
+                                                        </a>
+                                                    </figure>
                                                         {/* <!-- End .product-main-image --> */}
                                                         <div id="product-zoom-gallery" className="product-image-gallery max-col-6">
-                                                    {galary.map((phots,index)=>{
-                                                        {/* galphotopath=phots.path */}
-                                                        return(
-                                                            <>
-                                                            <a onclick={()=> setGalaryImag(phots.path)} className="product-gallery-item active" href="#" data-image={"https://beta.myrung.com/b/public/" + phots.path} data-zoom-image={"https://beta.myrung.com/b/public/" + phots.path}>
-                                                                <img src={"https://beta.myrung.com/b/public/" + phots.path} alt="product side" />
-                                                            </a>
+                                                            {galary.map((phots, index) => {
+                                                                {/* galphotopath=phots.path */ }
+                                                                return (
+                                                                    <>
+                                                                        <a onclick={() => setGalaryImag(phots.path)} className="product-gallery-item active" href="#" data-image={"https://beta.myrung.com/b/public/" + phots.path} data-zoom-image={"https://beta.myrung.com/b/public/" + phots.path}>
+                                                                            <img src={"https://beta.myrung.com/b/public/" + phots.path} alt="product side" />
+                                                                        </a>
 
-                                                            {/* <a className="product-gallery-item" href="#" data-image="assets/images/products/single/fullwidth/2.jpg" data-zoom-image="assets/images/products/single/fullwidth/2-big.jpg">
+                                                                        {/* <a className="product-gallery-item" href="#" data-image="assets/images/products/single/fullwidth/2.jpg" data-zoom-image="assets/images/products/single/fullwidth/2-big.jpg">
                                                     <img src="assets/images/products/single/fullwidth/2-small.jpg" alt="product cross" />
                                                 </a>
 
@@ -160,14 +265,17 @@ const Fullwitdh = (props) => {
                                                     <img src="assets/images/products/single/fullwidth/4-small.jpg" alt="product back" />
                                                 </a> */}
 
-                                                            </>
-                                                        );
-                                                    })}
+                                                                    </>
+                                                                );
+                                                            })}
                                                         </div>
                                                         {/* <!-- End .product-image-gallery --> */}
                                                     </div>
+
                                                     {/* <!-- End .product-gallery --> */}
+
                                                 </div>
+
 
 
                                                 {/* <!-- End .col-lg-7 --> */}
@@ -214,16 +322,16 @@ const Fullwitdh = (props) => {
                                                             {/* <!-- End .select-custom --> */}
                                                         </div>
                                                         {/* <!-- End .details-filter-row --> */}
-                                                       
+
                                                         <div className="details-filter-row details-row-size">
                                                             <label htmlFor="qty">Qty:</label>
                                                             <div className="product-details-quantity" >
-                                                                <div className="input-group-prepend"><button onClick={inputDecrement}  className="btn btn-qantity-mines btn-decrement btn-spinner" type="button">
+                                                                <div className="input-group-prepend"><button onClick={inputDecrement} className="btn btn-qantity-mines btn-decrement btn-spinner" type="button">
                                                                     <i className="icon-minus"></i></button>
                                                                 </div>
                                                                 <input type="number" disabled id="quantity" value={Value} className="form-control" min="1" max="10" step="1" data-decimals="0" required />
                                                                 <div className="input-group-append">
-                                                                    <button onClick={inputIncrement}  className="btn btn-qantity-plus btn-increment btn-spinner" type="button">
+                                                                    <button onClick={inputIncrement} className="btn btn-qantity-plus btn-increment btn-spinner" type="button">
                                                                         <i className="icon-plus"></i></button>
                                                                 </div>
                                                             </div>
@@ -233,11 +341,11 @@ const Fullwitdh = (props) => {
 
                                                         <ToastContainer />
                                                         <div onClick={notify} className="product-details-action">
-                                                        
+
                                                             <a onClick={() => {
                                                                 props.addToCartHandler({
-                                                                     name: name, Price:calculable_price, symbol:currency_symbol,quantity:Value,
-                                                                    product_image: image, product_id: product_id,totalprice:(Value*calculable_price)
+                                                                    name: name, Price: calculable_price, symbol: currency_symbol, quantity: Value,
+                                                                    product_image: image, product_id: product_id, totalprice: (Value * calculable_price)
                                                                 })
                                                             }}
                                                                 className="btn-product btn-cart add_to_cat "><span >add to cart</span></a>
@@ -457,6 +565,7 @@ const Fullwitdh = (props) => {
                                             </>);
                                     })}
                                     {/* <!-- End .col-lg-5 --> */}
+                            </SkeletonTheme>}
                                 </div>
                                 {/* <!-- End .row --> */}
                             </div>
@@ -469,42 +578,71 @@ const Fullwitdh = (props) => {
 
                             <div className="sidebar sidebar-product d-none d-md-block">
                                 <div className="widget widget-products">
+                                {<SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
+                                    {isloading? <h4 className="widget-title"><Skeleton/></h4>
+                                    :
                                     <h4 className="widget-title">Related Product</h4>
+                                    }
+                                    </SkeletonTheme>}
                                     {/* <!-- End .widget-title --> */}
 
                                     <div className="products">
+                                     {<SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
+                                    {isloading?
+                                        <div className="product product-sm">
+                                                        <figure >
+                                                            <Skeleton width={80}  height={82.25} className="product-image"/>
+                                                        </figure>
 
-                                        {relatedProduct.map((item, index) => {
-                                            if(index<=3){
-                                            return (
-                                                <div className="product product-sm">
-                                                    <figure className="product-media">
-                                                        <NavLink onClick={reloadComp} to={`/shop/product/catogeroy/fullwidth/${item.id}`}>
-                                                            <img src={'https://beta.myrung.com/b/public/' + item.thumbnail_image} alt="Product image" className="product-image single-product-image" />
-                                                        </NavLink>
-                                                    </figure>
-
-                                                    <div className="product-body">
-                                                        <h5 className="product-title"><a href="product.php">{item.name} <br />Wide fit wedges</a></h5>
-                                                        {/* <!-- End .product-title --> */}
-                                                        <div className="product-price">
-                                                            <span className="new-price">{item.main_price}</span>
-                                                            {/* <span className="old-price">$110.00</span> */}
+                                                        <div className="product-body">
+                                                            <h5 className="product-title"><Skeleton/></h5>
+                                                            {/* <!-- End .product-title --> */}
+                                                            <div className="product-price">
+                                                                <span className="new-price"><Skeleton width={100}/></span>
+                                                                {/* <span className="old-price">$110.00</span> */}
+                                                            </div>
+                                                            {/* <!-- End .product-price --> */}
                                                         </div>
-                                                        {/* <!-- End .product-price --> */}
+                                                        {/* <!-- End .product-body --> */}
                                                     </div>
-                                                    {/* <!-- End .product-body --> */}
-                                                </div>
-                                            );
+                                    :
+                                        relatedProduct.map((item, index) => {
+                                            if (index <= 3) {
+                                                return (
+                                                    <div className="product product-sm">
+                                                        <figure className="product-media">
+                                                            <NavLink onClick={reloadComp} to={`/shop/product/catogeroy/fullwidth/${item.id}`}>
+                                                                <img src={'https://beta.myrung.com/b/public/' + item.thumbnail_image} alt="Product image" className="product-image single-product-image" />
+                                                            </NavLink>
+                                                        </figure>
+
+                                                        <div className="product-body">
+                                                            <h5 className="product-title"><a href="product.php">{item.name} <br />Wide fit wedges</a></h5>
+                                                            {/* <!-- End .product-title --> */}
+                                                            <div className="product-price">
+                                                                <span className="new-price">{item.main_price}</span>
+                                                                {/* <span className="old-price">$110.00</span> */}
+                                                            </div>
+                                                            {/* <!-- End .product-price --> */}
+                                                        </div>
+                                                        {/* <!-- End .product-body --> */}
+                                                    </div>
+                                                );
                                             }
                                         })}
 
                                         {/* <!-- End .product product-sm --> */}
-
+                                        </SkeletonTheme>
+                                     }
                                     </div>
                                     {/* <!-- End .products --> */}
-
-                                    <NavLink to="/shop/categories" className="btn btn-outline-dark-3"><span>View More Products</span><i className="icon-long-arrow-right"></i></NavLink>
+                                    {<SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
+                                    {isloading? <Skeleton width={198.16} height={61}/>:
+                                    <NavLink to="/shop/categories" className="btn btn-outline-dark-3">
+                                    <span>View More Products</span><i className="icon-long-arrow-right"></i></NavLink>
+                                    }
+                                    </SkeletonTheme>
+                                    }
                                 </div>
                                 {/* <!-- End .widget widget-products --> */}
 

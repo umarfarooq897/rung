@@ -1,4 +1,5 @@
 import { useState,useEffect } from "react";
+import axios from "axios";
 import {
 	PayPalScriptProvider,
 	PayPalButtons,
@@ -10,23 +11,36 @@ import {
 const  PaymentMethods = (props) => {
 	
     const [Gatway, setGateway] = useState();
+	useEffect(() => {
+		// setTimeout(() => {
+			axios.get("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/payment-types-active")
+				.then(res => {
+					var insidData = res;
+					setGateway(insidData);
+					console.log(insidData)
+					// setLoading(false)
+				})
+		// }, 1000)
+	}, [])
 	const getGatewaysApi = async () => {
-        const response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/payment-types-active");
+		const response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/payment-types-active");
         const data = await response.json();
         var productData = data;
         setGateway(productData);
         // setIsloading(false)
     }
-	console.log(Gatway)
-    useEffect(() => {
-        getGatewaysApi();
-    }, []);
+	// console.log('gatway',Gatway)
+    // useEffect(() => {
+	// 	getProductApi();
+	// 	alert("hi")
+    // }, []);
 	var Total=props.total;
 	const amount = Total;
 	const currency = "USD";
 	const style = {"color":"white"};
     // , "card", "paylater"
-	const fundingSources = ["paypal","paylater"];
+	var a=0
+	const fundingSources = [a===0?"paylater":"paypal",];
 	// Remember the amount props is received from the control panel
 	const [selectedFundingSource, setSelectedFundingSource] = useState(
 		fundingSources[0]

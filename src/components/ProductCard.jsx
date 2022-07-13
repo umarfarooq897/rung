@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { NavLink } from "react-router-dom";
 import Quickviewcontainer from "../container/Quickviewcontainer";
 import { useLocation } from "react-router-dom";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 const ProductCard = (props) => {
     const [popId, setPopId] = useState()
     const [showpopup, setShowPopup] = useState()

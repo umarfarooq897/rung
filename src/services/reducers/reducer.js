@@ -10,7 +10,7 @@ export function  cardItem(state=initialState,action){
         const item = state.cardData.find(
             product => product.product_id === action.data.product_id,
           );
-          console.warn("reducer",action.data)
+          // console.warn("reducer",action.data)
           if (item) {
             //   var qty = 0;
             return {
@@ -95,7 +95,7 @@ export function  cardItem(state=initialState,action){
           }
 
     case TOTAL_PRICE:
-      console.warn("decre",action.data)
+      // console.warn("decre",action.data)
         return{
           ...state,
           discount: [action.data],   
