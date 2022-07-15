@@ -9,7 +9,7 @@ const User_orders = () => {
         Token()
     }, [Token])
     const addWhishlistHandler = async (e) => {
-        var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/purchase-history ', {
+        var Result = await fetch('https://beta.myrung.com/b/api/v2/purchase-history ', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

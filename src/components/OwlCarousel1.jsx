@@ -26,7 +26,7 @@ const OwlCarousel1 = () => {
       
     useEffect(() => {
         setTimeout(()=>{
-            axios.get("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/sliders")
+            axios.get("https://beta.myrung.com/b/api/v2/sliders")
             .then(res=>{
                 var insidData = res.data.data;
                 SetBanners(insidData);

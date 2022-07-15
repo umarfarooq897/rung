@@ -9,7 +9,7 @@ const Navigation=(props)=>{
 		// alert("hjn")
 		// https://cors-anywhere.herokuapp.com/
 
-			var response = await fetch(`https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/pricefilter?page=${currentPage}`, {
+			var response = await fetch(`https://beta.myrung.com/b/api/v2/products/pricefilter?page=${currentPage}`, {
                 method: 'POST',
                 // body: JSON.stringify(data),
                 headers: {

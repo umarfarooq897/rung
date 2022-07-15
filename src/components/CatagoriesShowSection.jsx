@@ -11,7 +11,7 @@ const CategoriesSection = () => {
 	const [Catagaries, SetCatagories] = useState([]);
 	useEffect(() => {
 		setTimeout(() => {
-			axios.get("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/categories")
+			axios.get("https://beta.myrung.com/b/api/v2/categories")
 				.then(res => {
 					var insidData = res.data.data;
 					SetCatagories(insidData);
@@ -21,7 +21,7 @@ const CategoriesSection = () => {
 	}, [isloading])
 	// const getApi = async () => {
 	// https://cors-anywhere.herokuapp.com/
-	// 	const response = await fetch(' https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/categories');
+	// 	const response = await fetch(' https://beta.myrung.com/b/api/v2/categories');
 	// 	const data = await response.json();
 	// 	var insidData = data.data;
 	// 	SetCatagories(insidData);

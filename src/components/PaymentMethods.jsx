@@ -13,7 +13,7 @@ const  PaymentMethods = (props) => {
     const [Gatway, setGateway] = useState();
 	useEffect(() => {
 		// setTimeout(() => {
-			axios.get("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/payment-types-active")
+			axios.get("https://beta.myrung.com/b/api/v2/payment-types-active")
 				.then(res => {
 					var insidData = res;
 					setGateway(insidData);
@@ -23,7 +23,7 @@ const  PaymentMethods = (props) => {
 		// }, 1000)
 	}, [])
 	const getGatewaysApi = async () => {
-		const response = await fetch("https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/payment-types-active");
+		const response = await fetch("https://beta.myrung.com/b/api/v2/payment-types-active");
         const data = await response.json();
         var productData = data;
         setGateway(productData);

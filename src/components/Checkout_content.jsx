@@ -24,7 +24,7 @@ const Checkout_content=(props)=>{
 		// let user_type = "customer"
 		let data = {name,country,city,street_address,state,zip,phone,email,notes,products,user_id}
 		// https://cors-anywhere.herokuapp.com/
-		let Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/order/store', {
+		let Result = await fetch('https://beta.myrung.com/b/api/v2/order/store', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

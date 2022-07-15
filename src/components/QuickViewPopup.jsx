@@ -25,7 +25,7 @@ const QuickViewPopup = (props) => {
     }
     var user_id;
     // https://cors-anywhere.herokuapp.com/
-    var fullwidthapilink = "https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/" + props.itemId;
+    var fullwidthapilink = "https://beta.myrung.com/b/api/v2/products/" + props.itemId;
     const getProductApi = async () => {
         const response = await fetch(fullwidthapilink);
         const data = await response.json();
@@ -64,7 +64,7 @@ const QuickViewPopup = (props) => {
             // console.log(e.target.getAttribute("data-id"))
             let data = { product_id, user_id }
             // https://cors-anywhere.herokuapp.com/
-            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
+            var Result = await fetch('https://beta.myrung.com/b/api/v2/wishlists-add-product ', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {

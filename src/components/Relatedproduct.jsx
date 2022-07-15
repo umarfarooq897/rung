@@ -47,7 +47,7 @@ const Related_product = () => {
         const filter = async (e) => {
             let data = { min, max, category_id }
             // https://cors-anywhere.herokuapp.com
-            var Result = await fetch('https://cors-anywhere.herokuapp.com/https://beta.myrung.com/b/api/v2/products/pricefilter', {
+            var Result = await fetch('https://beta.myrung.com/b/api/v2/products/pricefilter', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
