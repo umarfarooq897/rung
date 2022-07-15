@@ -25,7 +25,7 @@ import '../assets/css/style.css'
           <OwlCarousel1/>
           <OwlCarousel2/>
           <BannerGroup/>
-          {/* <FeatcuredproductContainer/> */}
+          <FeatcuredproductContainer/>
           <VideoBanner/>
           <Newproductcontainer/>
           <Testimonial/>
