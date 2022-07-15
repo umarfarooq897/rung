@@ -39,7 +39,7 @@ const  PaymentMethods = (props) => {
 	const currency = "USD";
 	const style = {"color":"white"};
     // , "card", "paylater"
-	var a=0
+	var a=1
 	const fundingSources = [a===0?"paylater":"paypal",];
 	// Remember the amount props is received from the control panel
 	const [selectedFundingSource, setSelectedFundingSource] = useState(
