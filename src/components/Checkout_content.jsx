@@ -155,7 +155,7 @@ const Checkout_content=(props)=>{
 		                					<tbody>
 											{data.map((item,index) =>{
 												currency=item.symbol
-												total=data.reduce((total, item) => total + (item.totalPrice?item.totalPrice:item.Price), 0)
+												total=data.reduce((total, item) => total + (item.totalprice?item.totalprice:item.Price), 0)
 
 												return(
 													<>
